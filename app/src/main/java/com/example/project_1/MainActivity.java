@@ -1,8 +1,11 @@
 package com.example.project_1;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
@@ -15,40 +18,78 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
+import java.io.IOException;
+import java.util.List;
+
+// 메인화면 (구글 맵 위에 놓여질 버튼들 관련)
+public class MainActivity extends FragmentActivity implements OnMapReadyCallback
+{
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // 지도 출력
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+
+        if (mapFragment != null)
+        {
+            mapFragment.getMapAsync(this);
+        }
+
+        // 검색 처리
+        EditText searchEditText = findViewById(R.id.searchEditText);
+        Button searchButton = findViewById(R.id.searchButton);
+
+        searchButton.setOnClickListener(v ->
+        {
+            String locationName = searchEditText.getText().toString();
+
+            if (!locationName.isEmpty())
+            {
+                Geocoder geocoder = new Geocoder(MainActivity.this);
+                try
+                {
+                    List<Address> addresses = geocoder.getFromLocationName(locationName, 1);
+
+                    if (addresses != null && !addresses.isEmpty())
+                    {
+                        Address address = addresses.get(0);
+                        LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+
+                        mMap.addMarker(new MarkerOptions().position(latLng).title(locationName));
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                    }
+                    else
+                    {
+                        Toast.makeText(MainActivity.this, "위치를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            } else
+            {
+                Toast.makeText(MainActivity.this, "검색어를 입력하세요.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+        // 위치 공유 버튼 처리
+        Button startStopButton = findViewById(R.id.locationToggleButton);
+        startStopButton.setOnClickListener(v ->
+        {
+            // 코드 향후 추가
+        });
+    }
 
     private GoogleMap mMap;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
-
-
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);  // <-- .xml 제거
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            // 버튼 클릭 시 실행할 코드
-            Toast.makeText(this, "설정 버튼 클릭됨", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(GoogleMap googleMap)
+    {
         mMap = googleMap;
 
         // 우리 학교 위치 (예시 좌표)
@@ -67,5 +108,12 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         int padding = 50;  // 화면 여백 (패딩 값)
         mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));  // 한번만 이동
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_main, menu);  // <-- .xml 제거
+        return true;
     }
 }
