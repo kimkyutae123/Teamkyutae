@@ -40,6 +40,19 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".GroupActivity"
+            android:label="그룹 화면"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".MyPageActivity"
+            android:label="마이페이지 화면"
+            android:exported="true">
+        </activity>
+
+
     </application>
 
 </manifest>

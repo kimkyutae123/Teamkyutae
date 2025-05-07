@@ -1,5 +1,6 @@
 package com.example.project_1;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -75,7 +76,21 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+        // 마이페이지 버튼 처리
+        Button myPageButton = findViewById(R.id.myPageButton);
+        myPageButton.setOnClickListener(v ->
+        {
+            Intent intent = new Intent(MainActivity.this, MyPageActivity.class);
+            startActivity(intent);
+        });
 
+        // 그룹 버튼 처리
+        Button groupButton = findViewById(R.id.groupButton);
+        groupButton.setOnClickListener(v ->
+        {
+            Intent intent = new Intent(MainActivity.this, GroupActivity.class);
+            startActivity(intent);
+        });
 
         // 위치 공유 버튼 처리
         Button startStopButton = findViewById(R.id.locationToggleButton);
