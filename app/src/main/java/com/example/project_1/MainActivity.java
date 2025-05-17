@@ -70,7 +70,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 {
                     e.printStackTrace();
                 }
-            } else
+            }
+            else
             {
                 Toast.makeText(MainActivity.this, "검색어를 입력하세요.", Toast.LENGTH_SHORT).show();
             }

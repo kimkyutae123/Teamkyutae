@@ -58,6 +58,30 @@
             android:exported="false" >
         </activity>
 
+        <activity
+            android:name=".MakingGroupActivity"
+            android:label="그룹 생성"
+            android:exported="false" >
+        </activity>
+
+        <activity
+            android:name=".GroupAgreeActivity"
+            android:label="그룹원 동의"
+            android:exported="false" >
+        </activity>
+
+        <activity
+            android:name=".GroupAgreeList"
+            android:label="그룹원 동의 현황"
+            android:exported="false" >
+        </activity>
+
+        <activity
+            android:name=".GroupChatActivity"
+            android:label="그룹 채팅"
+            android:exported="false" >
+        </activity>
+
     </application>
 
 </manifest>

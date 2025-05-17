@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class Friendinvite extends AppCompatActivity {
-
+public class Friendinvite extends AppCompatActivity
+{
     private EditText friendIdInput;
     private Button sendInviteButton;
     private ListView invitedFriendList;
@@ -21,7 +21,8 @@ public class Friendinvite extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friendinvite);
 
@@ -38,17 +39,23 @@ public class Friendinvite extends AppCompatActivity {
         invitedFriendList.setAdapter(adapter);
 
         // 초대 버튼 클릭 시 친구를 목록에 추가
-        sendInviteButton.setOnClickListener(new View.OnClickListener() {
+        sendInviteButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 String friendId = friendIdInput.getText().toString();
 
                 // 친구 ID가 비어있지 않은지 확인
-                if (!friendId.isEmpty()) {
+                if (!friendId.isEmpty())
+                {
                     // 친구가 이미 초대 목록에 있으면, 추가하지 않음
-                    if (invitedFriends.contains(friendId)) {
+                    if (invitedFriends.contains(friendId))
+                    {
                         Toast.makeText(Friendinvite.this, "이미 초대한 친구입니다!", Toast.LENGTH_SHORT).show();
-                    } else {
+                    }
+                    else
+                    {
                         // 친구를 초대 목록에 추가
                         invitedFriends.add(friendId);
                         adapter.notifyDataSetChanged();  // 리스트 갱신
@@ -57,7 +64,9 @@ public class Friendinvite extends AppCompatActivity {
 
                     // 입력창 초기화
                     friendIdInput.setText("");
-                } else {
+                }
+                else
+                {
                     // 친구 ID가 비어있을 경우 알림
                     Toast.makeText(Friendinvite.this, "친구 ID를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }

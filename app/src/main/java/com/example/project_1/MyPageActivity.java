@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
-public class MyPageActivity extends AppCompatActivity {
-
+public class MyPageActivity extends AppCompatActivity
+{
     private EditText nameEditText;
     private Button saveButton, editButton, updateButton;
     private TextView userNameTextView, userIdTextView;
