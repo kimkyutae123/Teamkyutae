@@ -58,8 +58,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/semi_transparent_button"
+            android:layout_marginEnd="8dp"
             android:text="마이페이지"
-            android:textColor="#FFFFFF" />
+            android:textColor="#000000" />
 
         <!-- 그룹 -->
         <Button
@@ -67,9 +68,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/semi_transparent_button"
             android:text="그룹"
-            android:textColor="#FFFFFF" />
+            android:textColor="#000000" />
 
         <!-- 위치 공유 토글 -->
         <Button
@@ -78,9 +80,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/semi_transparent_button"
             android:text="위치 공유"
-            android:textColor="#FFFFFF" />
+            android:textColor="#000000" />
     </LinearLayout>
 
 </FrameLayout>
