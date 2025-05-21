@@ -5,6 +5,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -104,26 +105,29 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
 
     @Override
-    public void onMapReady(GoogleMap googleMap)
-    {
+    public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // 우리 학교 위치 (예시 좌표)
         LatLng school = new LatLng(37.4867918, 126.8219592);
         LatLng school2 = new LatLng(37.34420, 126.7833);
-        // 마커 추가
+
         mMap.addMarker(new MarkerOptions().position(school).title("우리 학교"));
         mMap.addMarker(new MarkerOptions().position(school2).title("우리집"));
-        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        builder.include(school);  // 학교 위치 추가
-        builder.include(school2);  // 집 위치 추가
 
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        builder.include(school);
+        builder.include(school2);
         LatLngBounds bounds = builder.build();
 
-        // 두 마커를 모두 포함할 수 있는 범위로 카메라 이동
-        int padding = 50;  // 화면 여백 (패딩 값)
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));  // 한번만 이동
+        final View mapView = ((SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map)).getView();
 
+        if (mapView != null) {
+            mapView.post(() -> {
+                int padding = 50;
+                mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
+            });
+        }
     }
 
     @Override

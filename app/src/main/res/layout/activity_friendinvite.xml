@@ -21,7 +21,7 @@
         android:id="@+id/friendIdInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="친구 ID 또는 이메일 입력"
+        android:hint="친구 ID 입력"
         android:inputType="textEmailAddress"
         android:layout_marginBottom="16dp"/>
 

@@ -7,13 +7,15 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
+import java.sql.DriverManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
-public class Friendinvite extends AppCompatActivity
-{
+public class Friendinvite extends AppCompatActivity {
     private EditText friendIdInput;
     private Button sendInviteButton;
     private ListView invitedFriendList;
@@ -21,8 +23,7 @@ public class Friendinvite extends AppCompatActivity
     private ArrayAdapter<String> adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friendinvite);
 
@@ -39,35 +40,46 @@ public class Friendinvite extends AppCompatActivity
         invitedFriendList.setAdapter(adapter);
 
         // 초대 버튼 클릭 시 친구를 목록에 추가
-        sendInviteButton.setOnClickListener(new View.OnClickListener()
-        {
+        sendInviteButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 String friendId = friendIdInput.getText().toString();
 
-                // 친구 ID가 비어있지 않은지 확인
-                if (!friendId.isEmpty())
-                {
-                    // 친구가 이미 초대 목록에 있으면, 추가하지 않음
-                    if (invitedFriends.contains(friendId))
-                    {
+                if (!friendId.isEmpty()) {
+                    if (invitedFriends.contains(friendId)) {
                         Toast.makeText(Friendinvite.this, "이미 초대한 친구입니다!", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        // 친구를 초대 목록에 추가
+                    } else {
                         invitedFriends.add(friendId);
-                        adapter.notifyDataSetChanged();  // 리스트 갱신
-                        Toast.makeText(Friendinvite.this, "친구 초대 완료!", Toast.LENGTH_SHORT).show();  // 초대 완료 메시지
+                        adapter.notifyDataSetChanged();
+                        Toast.makeText(Friendinvite.this, "친구 초대 완료!", Toast.LENGTH_SHORT).show();
+
+                        // ✅ DB에 저장하기 (새 스레드에서 실행)
+                        new Thread(() -> {
+                            try {
+                                // JDBC 드라이버 로드
+                                Class.forName("com.mysql.cj.jdbc.Driver"); // 또는 com.mysql.cj.jdbc.Driver
+                                // 연결 설정
+                                Connection conn = DriverManager.getConnection(
+                                        "jdbc:mysql://192.168.111.1:3306/FriendInvite?useSSL=false",
+                                        "root", "1234"
+                                );
+
+                                // INSERT 쿼리 실행
+                                String sql = "INSERT INTO FriendInvite (id, friendinventory) VALUES (?, ?)";
+                                PreparedStatement stmt = conn.prepareStatement(sql);
+                                stmt.setString(1, "<사용자ID>"); // 예: 로그인된 사용자 ID
+                                stmt.setString(2, friendId);    // 초대한 친구 ID
+                                stmt.executeUpdate();
+
+                                conn.close();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }).start();
                     }
 
-                    // 입력창 초기화
                     friendIdInput.setText("");
-                }
-                else
-                {
-                    // 친구 ID가 비어있을 경우 알림
+                } else {
                     Toast.makeText(Friendinvite.this, "친구 ID를 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
             }
