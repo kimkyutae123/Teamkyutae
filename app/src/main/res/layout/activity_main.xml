@@ -5,13 +5,13 @@
     android:layout_height="match_parent">
 
     <!-- 구글 맵 -->
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!-- 버튼/위젯 -->
+    <!-- 상단 검색 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,64 +26,120 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="검색"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:autofillHints="username"
             android:background="@android:drawable/editbox_background"
-            android:padding="8dp"
-            android:inputType="text" />
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/searchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="검색" />
-
+            android:text="검색"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:textColor="#000000" />
     </LinearLayout>
 
-    <!-- 공백 -->
-    <Space
+    <!-- 메시지 목록 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messageRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="300dp"
+        android:layout_gravity="top"
+        android:padding="8dp" />
 
-    <!-- 버튼들 -->
+    <!-- 메시지 입력 바 -->
+    <LinearLayout
+        android:id="@+id/messageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:layout_gravity="bottom"
+        android:padding="8dp"
+        android:background="#DDFFFFFF">
+
+        <EditText
+            android:id="@+id/etSender"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="보내는 사람"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:autofillHints="username"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="메시지 내용"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:autofillHints="text"
+            android:textColor="#000000" />
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전송"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <!-- 오른쪽 하단 버튼 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:gravity="end"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp">
 
-        <!-- 마이페이지 -->
         <Button
             android:id="@+id/myPageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/semi_transparent_button"
-            android:layout_marginEnd="8dp"
             android:text="마이페이지"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:background="@drawable/semi_transparent_button" />
 
-        <!-- 그룹 -->
         <Button
             android:id="@+id/groupButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/semi_transparent_button"
             android:text="그룹"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:background="@drawable/semi_transparent_button"
+            android:layout_marginTop="8dp" />
 
-        <!-- 위치 공유 토글 -->
         <Button
             android:id="@+id/locationToggleButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/semi_transparent_button"
             android:text="위치 공유"
-            android:textColor="#000000" />
-    </LinearLayout>
+            android:textColor="#000000"
+            android:background="@drawable/semi_transparent_button"
+            android:layout_marginTop="8dp" />
 
+        <Button
+            android:id="@+id/refreshButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="새로고침"
+            android:textColor="#000000"
+            android:background="@drawable/semi_transparent_button"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
 </FrameLayout>
