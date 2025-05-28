@@ -15,21 +15,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import android.content.SharedPreferences;
 
 public class GroupChatActivity extends AppCompatActivity
 {
-
     private DrawerLayout drawerLayout;
     private ImageButton btnMenu;
     private NavigationView navigationView;
     private ListView memberListView;
-
     private RecyclerView chatRecyclerView;
     private EditText editMessage;
     private ImageButton btnSend;
-
     private ChatAdapter chatAdapter;
     private List<ChatMessage> chatMessages;
 
@@ -39,43 +39,79 @@ public class GroupChatActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groupchat);
 
+        initializeViews();
+        setupDrawer();
+        setupMemberList();
+        setupChat();
+    }
+
+    private void initializeViews()
+    {
         drawerLayout = findViewById(R.id.drawerLayout);
         btnMenu = findViewById(R.id.btnMenu);
         navigationView = findViewById(R.id.navigationView);
         memberListView = findViewById(R.id.memberListView);
-
         chatRecyclerView = findViewById(R.id.chatRecyclerView);
         editMessage = findViewById(R.id.editMessage);
         btnSend = findViewById(R.id.btnSend);
+    }
 
-        // 햄버거 버튼 클릭 시 Drawer 열기
-        btnMenu.setOnClickListener(v ->
+    private void setupDrawer()
+    {
+        btnMenu.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
+    }
+
+    private void setupMemberList()
+    {
+        SharedPreferences prefs = getSharedPreferences("GroupPrefs", MODE_PRIVATE);
+        Set<String> members = prefs.getStringSet("group_members", new HashSet<>());
+        String myName = getSharedPreferences("UserPrefs", MODE_PRIVATE).getString("user_name", "");
+        
+        List<String> memberList = new ArrayList<>();
+        memberList.add(myName + " (나)");
+        
+        for (String member : members)
         {
-            drawerLayout.openDrawer(GravityCompat.START);
-        });
-
-        // 그룹원 리스트 예시
-        List<String> members = Arrays.asList("홍길동", "김영희", "이철수");
-        ArrayAdapter<String> memberAdapter = new ArrayAdapter<> (this, android.R.layout.simple_list_item_1, members);
+            if (!member.equals(myName))
+            {
+                memberList.add(member);
+            }
+        }
+        
+        ArrayAdapter<String> memberAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, memberList);
         memberListView.setAdapter(memberAdapter);
+    }
 
-        // 채팅 RecyclerView 설정
+    private void setupChat()
+    {
         chatMessages = new ArrayList<>();
         chatAdapter = new ChatAdapter(chatMessages);
         chatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         chatRecyclerView.setAdapter(chatAdapter);
 
-        // 전송 버튼
-        btnSend.setOnClickListener(v ->
+        editMessage.setOnEditorActionListener((v, actionId, event) ->
         {
-            String message = editMessage.getText().toString().trim();
-            if (!message.isEmpty())
+            if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_SEND)
             {
-                chatMessages.add(new ChatMessage(message, true)); // true = 내가 보낸 메시지
-                chatAdapter.notifyItemInserted(chatMessages.size() - 1);
-                chatRecyclerView.scrollToPosition(chatMessages.size() - 1);
-                editMessage.setText("");
+                sendMessage();
+                return true;
             }
+            return false;
         });
+
+        btnSend.setOnClickListener(v -> sendMessage());
+    }
+
+    private void sendMessage()
+    {
+        String message = editMessage.getText().toString().trim();
+        if (!message.isEmpty())
+        {
+            // (임시) 서버 연동 필요
+            chatMessages.add(new ChatMessage(message, true));
+            chatAdapter.notifyItemInserted(chatMessages.size() - 1);
+            chatRecyclerView.scrollToPosition(chatMessages.size() - 1);
+            editMessage.setText("");
+        }
     }
 }

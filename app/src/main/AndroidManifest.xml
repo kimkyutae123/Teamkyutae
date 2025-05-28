@@ -53,10 +53,9 @@
         </activity>
 
         <activity
-            android:name=".Friendinvite"
-            android:label="친구 초대"
-            android:exported="false" >
-        </activity>
+            android:name=".MemberInvite"
+            android:label="멤버 초대"
+            android:exported="false" />
 
         <activity
             android:name=".MakingGroupActivity"

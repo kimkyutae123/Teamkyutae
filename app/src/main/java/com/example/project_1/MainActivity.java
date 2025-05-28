@@ -1,6 +1,7 @@
 package com.example.project_1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -89,15 +91,67 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         Button groupButton = findViewById(R.id.groupButton);
         groupButton.setOnClickListener(v ->
         {
-            Intent intent = new Intent(MainActivity.this, GroupActivity.class);
-            startActivity(intent);
+            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+            String userName = sharedPreferences.getString("user_name", null);
+            String userId = sharedPreferences.getString("user_id", null);
+
+            if (userName == null || userId == null) {
+                Toast.makeText(MainActivity.this, "마이페이지에서 이름과 아이디를 먼저 생성해주세요.", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(MainActivity.this, GroupActivity.class);
+                startActivity(intent);
+            }
         });
 
         // 위치 공유 버튼 처리
         Button startStopButton = findViewById(R.id.locationToggleButton);
         startStopButton.setOnClickListener(v ->
         {
-            // 코드 향후 추가
+            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+            String userName = sharedPreferences.getString("user_name", null);
+            String userId = sharedPreferences.getString("user_id", null);
+            boolean isAgreed = sharedPreferences.getBoolean("location_agreed", false);
+
+            if (userName == null || userId == null) {
+                Toast.makeText(MainActivity.this, "마이페이지에서 이름과 아이디를 먼저 생성해주세요.", Toast.LENGTH_SHORT).show();
+            } else {
+                if (isAgreed) {
+                    // 이미 동의한 상태면 위치 공유 시작 확인
+                    new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("위치 공유")
+                        .setMessage("위치 공유를 시작하시겠습니까?")
+                        .setPositiveButton("예", (dialog, which) -> {
+                            // 위치 공유 시작 로직
+                            Toast.makeText(MainActivity.this, "위치 공유가 시작되었습니다.", Toast.LENGTH_SHORT).show();
+                        })
+                        .setNegativeButton("아니오", null)
+                        .show();
+                } else {
+                    // 동의하지 않은 상태면 동의 확인
+                    new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("위치 공유 동의")
+                        .setMessage("위치 공유에 동의하시겠습니까?")
+                        .setPositiveButton("예", (dialog, which) -> {
+                            // 동의 처리
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean("location_agreed", true);
+                            editor.apply();
+                            
+                            // 위치 공유 시작 확인
+                            new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("위치 공유")
+                                .setMessage("위치 공유를 시작하시겠습니까?")
+                                .setPositiveButton("예", (dialog2, which2) -> {
+                                    // 위치 공유 시작 로직
+                                    Toast.makeText(MainActivity.this, "위치 공유가 시작되었습니다.", Toast.LENGTH_SHORT).show();
+                                })
+                                .setNegativeButton("아니오", null)
+                                .show();
+                        })
+                        .setNegativeButton("아니오", null)
+                        .show();
+                }
+            }
         });
     }
 
