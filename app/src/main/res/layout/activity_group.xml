@@ -10,7 +10,7 @@
         android:id="@+id/noGroupLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+    android:orientation="vertical"
         android:layout_centerInParent="true">
 
         <TextView
@@ -20,11 +20,11 @@
             android:text="아직 그룹이 없습니다"
             android:layout_marginBottom="32dp"/>
 
-        <Button
-            android:id="@+id/createGroupButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="그룹 생성"
+    <Button
+        android:id="@+id/createGroupButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="그룹 생성"
             android:textColor="#FFFFFF"
             android:backgroundTint="#000000"/>
     </LinearLayout>
@@ -53,21 +53,21 @@
             android:text="멤버 초대"
             android:textColor="#FFFFFF"
             android:backgroundTint="#000000"
-            android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"/>
 
-        <Button
-            android:id="@+id/groupAgreeButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="그룹원 동의"
+    <Button
+        android:id="@+id/groupAgreeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="그룹원 동의"
             android:textColor="#FFFFFF"
             android:backgroundTint="#000000"
-            android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"/>
 
-        <Button
-            android:id="@+id/groupChatButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/groupChatButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
             android:text="그룹 채팅"
             android:textColor="#FFFFFF"
             android:backgroundTint="#000000"
@@ -99,6 +99,6 @@
                 android:backgroundTint="#000000"
                 android:visibility="gone"/>
         </LinearLayout>
-    </LinearLayout>
+</LinearLayout>
 
 </RelativeLayout>
