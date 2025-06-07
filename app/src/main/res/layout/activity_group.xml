@@ -1,104 +1,139 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:padding="16dp">
+    android:orientation="vertical"
+    android:background="#FAFAFA"
+    android:padding="32dp"
+    android:gravity="center_horizontal">
 
-    <!-- 그룹이 없을 때 보여질 레이아웃 -->
+    <!-- 🔹 그룹 없음 상태 -->
     <LinearLayout
         android:id="@+id/noGroupLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-    android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="64dp">
 
         <TextView
-            style="@style/TitleText"
-            android:layout_width="match_parent"
+            android:id="@+id/groupNameText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아직 그룹이 없습니다"
-            android:layout_marginBottom="32dp"/>
+            android:text="그룹 없음"
+            android:textSize="22sp"
+            android:textStyle="normal"
+            android:textColor="#1A1A1A"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="sans-serif-light" />
 
-    <Button
-        android:id="@+id/createGroupButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="그룹 생성"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/createGroupButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="그룹 생성"
+            app:cornerRadius="16dp"
+            android:backgroundTint="#4C3AFF"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#000000"/>
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-light" />
     </LinearLayout>
 
-    <!-- 그룹이 있을 때 보여질 레이아웃 -->
+    <!-- 🔹 그룹 존재 상태 -->
     <LinearLayout
         android:id="@+id/hasGroupLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="64dp"
         android:visibility="gone">
 
         <TextView
-            android:id="@+id/groupNameText"
-            style="@style/TitleText"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="그룹명"
-            android:layout_marginBottom="32dp"/>
+            android:text="kitti"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#1A1A1A"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="sans-serif-light" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/inviteMemberButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:text="멤버 초대"
+            app:icon="@drawable/ic_person"
+            app:iconTint="#FFFFFF"
+            app:iconPadding="8dp"
+            app:iconSize="20dp"
+            app:cornerRadius="16dp"
+            android:backgroundTint="#4C3AFF"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#000000"
-        android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="12dp"
+            android:fontFamily="sans-serif-light"/>
 
-    <Button
-        android:id="@+id/groupAgreeButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="그룹원 동의"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/groupAgreeButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="그룹원 동의"
+            app:icon="@drawable/ic_group"
+            app:iconTint="#FFFFFF"
+            app:iconPadding="8dp"
+            app:iconSize="20dp"
+            app:cornerRadius="16dp"
+            android:backgroundTint="#4C3AFF"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#000000"
-        android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="12dp"
+            android:fontFamily="sans-serif-light"/>
 
-    <Button
-        android:id="@+id/groupChatButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/groupChatButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:text="그룹 채팅"
+            app:icon="@drawable/ic_send_arrow"
+            app:iconTint="#FFFFFF"
+            app:iconPadding="8dp"
+            app:iconSize="20dp"
+            app:cornerRadius="16dp"
+            android:backgroundTint="#4C3AFF"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#000000"
-            android:layout_marginBottom="32dp"/>
+            android:layout_marginBottom="24dp"
+            android:fontFamily="sans-serif-light"/>
 
-        <!-- 그룹 관리 버튼들 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="2">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/leaveGroupButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_weight="1"
-                android:text="그룹 나가기"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#000000"
-                android:layout_marginEnd="8dp"/>
+                android:text="나가기"
+                app:cornerRadius="16dp"
+                android:backgroundTint="#EEEEEE"
+                android:textColor="#4C3AFF"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="sans-serif-light"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/deleteGroupButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_weight="1"
-                android:text="그룹 삭제"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#000000"
-                android:visibility="gone"/>
+                android:text="삭제"
+                app:cornerRadius="16dp"
+                android:backgroundTint="#FDEDED"
+                android:textColor="#D32F2F"
+                android:layout_marginStart="8dp"
+                android:fontFamily="sans-serif-light"/>
         </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
-
-</RelativeLayout>

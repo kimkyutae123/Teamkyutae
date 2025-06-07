@@ -11,4 +11,8 @@
     <color name="divider">#BDBDBD</color>
     <color name="background">#FAFAFA</color>
     <color name="semi_transparent">#80FFFFFF</color>
+    <color name="primary_purple">#7C4DFF</color>
+    <color name="primary_gradient_start">#7C4DFF</color>
+    <color name="primary_gradient_end">#B388FF</color>
+    <color name="button_text">#FFFFFF</color>
 </resources>
