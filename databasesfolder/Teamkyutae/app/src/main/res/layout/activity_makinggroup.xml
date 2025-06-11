@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#FFFFFF">
+
+    <!-- 그룹 이름 입력 -->
+    <EditText
+        android:id="@+id/groupNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="그룹 이름을 입력하세요"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="20dp" />
+
+    <!-- 멤버 추가 버튼 -->
+    <Button
+        android:id="@+id/addMemberButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="멤버 추가"
+        android:layout_marginBottom="20dp" />
+
+    <!-- 멤버 목록 표시 -->
+    <ListView
+        android:id="@+id/memberListView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        android:background="#F5F5F5"
+        android:layout_marginBottom="24dp" />
+
+    <!-- 그룹 저장 버튼 -->
+    <Button
+        android:id="@+id/saveGroupButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="그룹 저장"
+        android:padding="12dp" />
+
+</LinearLayout>
