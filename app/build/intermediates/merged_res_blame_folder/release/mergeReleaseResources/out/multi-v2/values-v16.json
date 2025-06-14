@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.project_1.app-mergeReleaseResources-34:/values-v16/values-v16.xml",
+            "outputFile": "com.example.project_1.app-mergeReleaseResources-32:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\oriole27\\.gradle\\caches\\8.11.1\\transforms\\c5ccda8848cd384b01a1667c56bd86de\\transformed\\appcompat-1.7.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\oriole27\\.gradle\\caches\\8.11.1\\transforms\\b6f7612e234efd38ebfcd919e7030940\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -12,6 +12,24 @@
                         "endLines": "5",
                         "endColumns": "12",
                         "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\oriole27\\.gradle\\caches\\8.11.1\\transforms\\a67284421d90e86515c7c1272606071d\\transformed\\core-1.9.0\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
                     }
                 }
             ]

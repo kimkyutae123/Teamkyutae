@@ -8,11 +8,10 @@
     <!-- 흰색 원 -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10 10,-4.48 10,-10S17.52,2 12,2z"/>
+        android:pathData="M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10 10,-4.48 10,-10S17.52,2 12,2z" />
 
-    <!-- 검정 위쪽 화살표 -->
+    <!-- 검은 화살표 (위쪽을 향함) -->
     <path
         android:fillColor="#000000"
-        android:pathData="M12,7l4,4h-3v6h-2v-6H8z"/>
-
+        android:pathData="M12,8l4,4h-3v4h-2v-4H8l4,-4z" />
 </vector>

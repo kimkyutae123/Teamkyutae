@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background">
+    android:layout_height="match_parent">
 
     <!-- 메인 채팅 화면 -->
     <LinearLayout
@@ -12,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- 상단 바 -->
+        <!-- 상단 바 (툴바 대신 햄버거 버튼) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,20 +19,12 @@
 
             <ImageButton
                 android:id="@+id/btnMenu"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_menu"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="메뉴"
-                android:padding="12dp"/>
-
-            <TextView
-                style="@style/TitleText"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="그룹 채팅"
-                android:layout_marginBottom="0dp"/>
+                android:src="@drawable/ic_menu"
+                android:background="@android:color/transparent"
+                android:contentDescription="메뉴" />
+
         </LinearLayout>
 
         <!-- 채팅 내용 -->
@@ -42,42 +32,30 @@
             android:id="@+id/chatRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:clipToPadding="false"/>
+            android:layout_weight="1" />
 
         <!-- 채팅 입력창 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="8dp"
-            android:background="#000000">
+            android:padding="8dp">
 
             <EditText
                 android:id="@+id/editMessage"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_weight="1"
-                android:hint="메시지를 입력하세요"
-                android:textColorHint="#808080"
-                android:textColor="#000000"
-                android:background="#FFFFFF"
-                android:padding="12dp"
-                android:imeOptions="actionSend"
-                android:inputType="textMultiLine"
-                android:maxLines="4"/>
+                android:padding="8dp"
+                android:hint="메시지를 입력하세요" />
 
             <ImageButton
                 android:id="@+id/btnSend"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="8dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_send_arrow"
-                android:scaleType="fitCenter"
-                app:tint="#FFFFFF"
-                android:contentDescription="메시지 전송"/>
+                android:background="@android:color/transparent"
+                android:contentDescription="전송" />
         </LinearLayout>
     </LinearLayout>
 
@@ -85,31 +63,30 @@
     <com.google.android.material.navigation.NavigationView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/navigationView"
-        android:layout_width="280dp"
+        android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/background"
+        android:background="#FFFFFF"
         android:fitsSystemWindows="true"
+        android:padding="8dp"
         app:itemIconTint="@null">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:orientation="vertical">
 
             <TextView
-                style="@style/TitleText"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="그룹원 리스트"
-                android:layout_marginBottom="16dp"/>
+                android:textSize="18sp"
+                android:paddingBottom="8dp" />
 
             <ListView
                 android:id="@+id/memberListView"
-                style="@style/CustomListView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

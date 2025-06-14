@@ -1,186 +1,158 @@
 [
     {
-        "merged": "com.example.project_1.app-debug-36:/drawable_bg_chat_right.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/bg_chat_right.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/drawable_list_background.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/list_background.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_dialog_consent.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\dialog_consent.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/menu_menu_main.xml.flat",
-        "source": "com.example.project_1.app-main-38:/menu/menu_main.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/drawable_gradient_background.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/gradient_background.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/layout_activity_makinggroup.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/activity_makinggroup.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\drawable_ic_menu.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\drawable\\ic_menu.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.project_1.app-main-38:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "com.example.project_1.app-debug-34:/layout_activity_friendinvite.xml.flat",
+        "source": "com.example.project_1.app-main-36:/layout/activity_friendinvite.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/layout_dialog_agree.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/dialog_agree.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/layout_activity_splash.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/activity_splash.xml"
+        "merged": "com.example.project_1.app-debug-34:/layout_activity_register.xml.flat",
+        "source": "com.example.project_1.app-main-36:/layout/activity_register.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.project_1.app-main-38:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_activity_makinggroup.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\activity_makinggroup.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/layout_activity_main.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/activity_main.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\drawable_bg_chat_right.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\drawable\\bg_chat_right.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/layout_activity_memberinvite.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/activity_memberinvite.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.project_1.app-main-38:/xml/data_extraction_rules.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\drawable_ic_send_arrow.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\drawable\\ic_send_arrow.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/layout_activity_groupagree_list.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/activity_groupagree_list.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.project_1.app-main-38:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_activity_mypage.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\activity_mypage.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.project_1.app-main-38:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.project_1.app-main-38:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_item_chat_left.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\item_chat_left.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/layout_item_group_member.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/item_group_member.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/ic_launcher_background.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\menu_menu_main.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\menu\\menu_main.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.project_1.app-main-38:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_item_group_member.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\item_group_member.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/drawable_edit_text_background.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/edit_text_background.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\drawable_semi_transparent_button.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\drawable\\semi_transparent_button.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.project_1.app-main-38:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_activity_groupagree.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\activity_groupagree.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/layout_item_chat_right.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/item_chat_right.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_activity_splash.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\activity_splash.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.project_1.app-main-38:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_activity_groupagree_list.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\activity_groupagree_list.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/drawable_ic_delete.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/ic_delete.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/drawable_rounded_black_button.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/rounded_black_button.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\xml\\backup_rules.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.project_1.app-main-38:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\drawable_bg_chat_left.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\drawable\\bg_chat_left.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/layout_item_chat_left.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/item_chat_left.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\xml\\data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/layout_dialog_consent.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/dialog_consent.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_activity_register.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\activity_register.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.project_1.app-main-38:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/drawable_ic_menu.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/ic_menu.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/xml_backup_rules.xml.flat",
-        "source": "com.example.project_1.app-main-38:/xml/backup_rules.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_dialog_agree.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\dialog_agree.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/layout_item_search_suggestion.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/item_search_suggestion.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_activity_groupchat.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\activity_groupchat.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/drawable_semi_transparent_button.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/semi_transparent_button.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.project_1.app-main-38:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_item_chat_right.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\item_chat_right.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.project_1.app-main-38:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/drawable_bg_chat_left.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/bg_chat_left.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/drawable_ic_person.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/ic_person.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_activity_friendinvite.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\activity_friendinvite.xml"
     },
     {
-        "merged": "com.example.project_1.app-debug-36:/layout_activity_groupagree.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/activity_groupagree.xml"
-    },
-    {
-        "merged": "com.example.project_1.app-debug-36:/drawable_ic_group.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/ic_group.xml"
-    },
-    {
-        "merged": "com.example.project_1.app-debug-36:/layout_activity_group.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/activity_group.xml"
-    },
-    {
-        "merged": "com.example.project_1.app-debug-36:/drawable_ic_location.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/ic_location.xml"
-    },
-    {
-        "merged": "com.example.project_1.app-debug-36:/layout_activity_mypage.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/activity_mypage.xml"
-    },
-    {
-        "merged": "com.example.project_1.app-debug-36:/drawable_ic_exit.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/ic_exit.xml"
-    },
-    {
-        "merged": "com.example.project_1.app-debug-36:/drawable_ic_send_arrow.xml.flat",
-        "source": "com.example.project_1.app-main-38:/drawable/ic_send_arrow.xml"
-    },
-    {
-        "merged": "com.example.project_1.app-debug-36:/layout_activity_groupchat.xml.flat",
-        "source": "com.example.project_1.app-main-38:/layout/activity_groupchat.xml"
+        "merged": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-debug-34:\\layout_activity_group.xml.flat",
+        "source": "C:\\Users\\oriole27\\.gradle\\daemon\\8.11.1\\com.example.project_1.app-main-36:\\layout\\activity_group.xml"
     }
 ]

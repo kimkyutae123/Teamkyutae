@@ -1,47 +1,33 @@
 package com.example.demo.model;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
-@Table(name = "memberid")
+@Data
+@Table(name = "users")
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Integer userId;
-    
+    private Integer id;
+
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
-    private String email;
+    @Column(nullable = false)
+    private boolean agree = false;
 
-    // getter, setter
-    public Integer getUserId() {
-        return userId;
-    }
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Location location;
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
 
-    public String getName() {
-        return name;
-    }
+    public Member() {}
 
-    public void setName(String name) {
+    public Member(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+        this.agree = false;
     }
 }

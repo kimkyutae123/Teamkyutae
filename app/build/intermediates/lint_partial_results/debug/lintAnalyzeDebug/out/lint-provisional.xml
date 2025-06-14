@@ -19,118 +19,6 @@
     </incident>
 
     <incident
-        id="VectorRaster"
-        severity="warning"
-        message="">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_exit.xml"
-            line="1"
-            column="68"
-            startOffset="67"
-            endLine="1"
-            endColumn="88"
-            endOffset="87"/>
-        <map>
-            <entry
-                name="containsFillType"
-                boolean="false"/>
-            <entry
-                name="containsGradient"
-                boolean="false"/>
-            <entry
-                name="folderVersion"
-                int="-1"/>
-            <entry
-                name="message"
-                string="This attribute is not supported in images generated from this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
-        </map>
-    </incident>
-
-    <incident
-        id="VectorRaster"
-        severity="warning"
-        message="">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_group.xml"
-            line="3"
-            column="30"
-            startOffset="229"
-            endLine="3"
-            endColumn="50"
-            endOffset="249"/>
-        <map>
-            <entry
-                name="containsFillType"
-                boolean="false"/>
-            <entry
-                name="containsGradient"
-                boolean="false"/>
-            <entry
-                name="folderVersion"
-                int="-1"/>
-            <entry
-                name="message"
-                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
-        </map>
-    </incident>
-
-    <incident
-        id="VectorRaster"
-        severity="warning"
-        message="">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_location.xml"
-            line="3"
-            column="30"
-            startOffset="229"
-            endLine="3"
-            endColumn="50"
-            endOffset="249"/>
-        <map>
-            <entry
-                name="containsFillType"
-                boolean="false"/>
-            <entry
-                name="containsGradient"
-                boolean="false"/>
-            <entry
-                name="folderVersion"
-                int="-1"/>
-            <entry
-                name="message"
-                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
-        </map>
-    </incident>
-
-    <incident
-        id="VectorRaster"
-        severity="warning"
-        message="">
-        <location
-            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_person.xml"
-            line="3"
-            column="30"
-            startOffset="227"
-            endLine="3"
-            endColumn="50"
-            endOffset="247"/>
-        <map>
-            <entry
-                name="containsFillType"
-                boolean="false"/>
-            <entry
-                name="containsGradient"
-                boolean="false"/>
-            <entry
-                name="folderVersion"
-                int="-1"/>
-            <entry
-                name="message"
-                string="Resource references will not work correctly in images generated for this vector icon for API &lt; %1$d; check generated icon to make sure it looks acceptable"/>
-        </map>
-    </incident>
-
-    <incident
         id="ObsoleteSdkInt"
         severity="warning"
         message="Unnecessary; `SDK_INT` is always >= 31">
@@ -140,17 +28,17 @@
             priority="0">
             <range
                 file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
-                startOffset="737"
-                endOffset="757"/>
+                startOffset="850"
+                endOffset="870"/>
         </fix-replace>
         <location
             file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
-            line="17"
+            line="19"
             column="9"
-            startOffset="737"
-            endLine="17"
+            startOffset="850"
+            endLine="19"
             endColumn="29"
-            endOffset="757"/>
+            endOffset="870"/>
         <map>
             <condition minGE="31-∞"/>
         </map>

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.project_1.app-mergeReleaseResources-34:/values-v23/values-v23.xml",
+            "outputFile": "com.example.project_1.app-mergeReleaseResources-32:/values-v23/values-v23.xml",
             "map": [
                 {
                     "source": "C:\\Users\\oriole27\\.gradle\\caches\\8.11.1\\transforms\\32b0295859780bfce2ee6f0eb8165f78\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\oriole27\\.gradle\\caches\\8.11.1\\transforms\\c5ccda8848cd384b01a1667c56bd86de\\transformed\\appcompat-1.7.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\oriole27\\.gradle\\caches\\8.11.1\\transforms\\b6f7612e234efd38ebfcd919e7030940\\transformed\\appcompat-1.6.1\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -34,7 +34,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\oriole27\\.gradle\\caches\\8.11.1\\transforms\\57d1f0a64aa9aaad9b882561447d1430\\transformed\\material-1.12.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\oriole27\\.gradle\\caches\\8.11.1\\transforms\\41c643b2057df53117b82643c65ae917\\transformed\\material-1.11.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,5,9,13,16,19,22,25,28,32",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",

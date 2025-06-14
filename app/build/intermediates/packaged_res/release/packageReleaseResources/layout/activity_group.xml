@@ -1,156 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FAFAFA"
-    android:padding="32dp"
+    android:padding="16dp"
     android:gravity="center_horizontal">
 
-    <!-- 🔹 그룹 없음 상태 -->
-    <LinearLayout
-        android:id="@+id/noGroupLayout"
+    <Button
+        android:id="@+id/createGroupButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="64dp">
+        android:text="그룹 생성"
+        android:layout_marginBottom="16dp"/>
 
-        <TextView
-            android:id="@+id/groupNameText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="그룹 없음"
-            android:textSize="22sp"
-            android:textStyle="normal"
-            android:textColor="#1A1A1A"
-            android:layout_marginBottom="32dp"
-            android:fontFamily="sans-serif-light" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/createGroupButton"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="그룹 생성"
-            app:cornerRadius="16dp"
-            android:backgroundTint="#4C3AFF"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:fontFamily="sans-serif-light" />
-    </LinearLayout>
-
-    <!-- 🔹 그룹 존재 상태 -->
-    <LinearLayout
-        android:id="@+id/hasGroupLayout"
+    <Button
+        android:id="@+id/inviteFriendButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="64dp"
-        android:visibility="gone">
+        android:text="친구 초대"
+        android:layout_marginBottom="16dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="kitti"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:letterSpacing="0.02"
-            android:textColor="#1A1A1A"
-            android:layout_marginBottom="24dp"
-            android:fontFamily="sans-serif-medium"/>
+    <Button
+        android:id="@+id/groupAgreeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="그룹원 동의"
+        android:layout_marginBottom="16dp"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/inviteMemberButton"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="멤버 초대"
-            app:icon="@drawable/ic_person"
-            app:iconTint="#FFFFFF"
-            app:iconPadding="8dp"
-            app:iconSize="20dp"
-            app:cornerRadius="16dp"
-            android:backgroundTint="#4C3AFF"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="sans-serif-light"/>
+    <Button
+        android:id="@+id/groupChatButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="그룹 채팅"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/groupAgreeButton"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="그룹원 동의"
-            app:icon="@drawable/ic_group"
-            app:iconTint="#FFFFFF"
-            app:iconPadding="8dp"
-            app:iconSize="30dp"
-            app:cornerRadius="16dp"
-            android:backgroundTint="#4C3AFF"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="sans-serif-light"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/groupChatButton"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:text="그룹 채팅"
-            app:icon="@drawable/ic_send_arrow"
-            app:iconTint="#FFFFFF"
-            app:iconPadding="8dp"
-            app:iconSize="16dp"
-            app:cornerRadius="16dp"
-            android:backgroundTint="#4C3AFF"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="24dp"
-            android:fontFamily="sans-serif-light"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp">
-
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/leaveGroupButton"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:text="나가기"
-                android:fontFamily="sans-serif-light"
-                android:textColor="#4C3AFF"
-                app:backgroundTint="#F3F1FF"
-                app:cornerRadius="16dp"
-                app:elevation="2dp"
-                app:icon="@drawable/ic_exit"
-                app:iconSize="20dp"
-                app:iconPadding="6dp"
-                app:iconGravity="textStart"
-                app:iconTint="#4C3AFF"
-                app:rippleColor="#DDDDFF"
-                android:layout_marginEnd="8dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/deleteGroupButton"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:text="삭제"
-                android:fontFamily="sans-serif-light"
-                android:textColor="#D32F2F"
-                app:backgroundTint="#FFF0F0"
-                app:cornerRadius="16dp"
-                app:elevation="2dp"
-                app:icon="@drawable/ic_delete"
-                app:iconSize="20dp"
-                app:iconPadding="6dp"
-                app:iconGravity="textStart"
-                app:iconTint="#D32F2F"
-                app:rippleColor="#FFCCCC"
-                android:layout_marginStart="8dp" />
-
-        </LinearLayout>
-    </LinearLayout>
 </LinearLayout>

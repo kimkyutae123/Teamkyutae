@@ -1,4 +1,4 @@
-#Sat Jun 14 14:15:51 KST 2025
+#Sat Jun 14 15:16:52 KST 2025
 base.0=C\:\\Users\\oriole27\\Documents\\202107030\\3_android\\Teamkyutae\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
 base.1=C\:\\Users\\oriole27\\Documents\\202107030\\3_android\\Teamkyutae\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes2.dex
 path.0=classes.dex

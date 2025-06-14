@@ -2,18 +2,38 @@
 <issues format="6" by="lint 8.9.1">
 
     <issue
-        id="PotentialBehaviorOverride"
+        id="DefaultLocale"
         severity="Warning"
-        message="Using this method may override behaviors set by the Maps SDK for Android Utility Library. If you are not using clustering, GeoJson, or KML, you can safely suppress this warning, otherwise, refer to the utility library&apos;s migration guide: https://bit.ly/3kTpQmY"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
         category="Correctness"
         priority="6"
-        summary="Using this method may override behaviors set by the Maps SDK for Android Utility Library. If you are not using clustering, GeoJson, or KML, you can safely suppress this warning, otherwise, refer to the utility library&apos;s migration guide: https://bit.ly/3kTpQmY"
-        explanation="This lint warns for potential behavior override while using clustering, GeoJson, or&#xA;KML since these features use this method in their internal implementations. As such,&#xA;to achieve the desired behavior requires using an alternative API.&#xA;&#xA;For example, if you are using the clustering feature and want to set a custom info&#xA;window, rather than invoking `GoogleMap#setInfoWindowAdapter(...)`, you would need&#xA;to set the custom info window on the MarkerManager.Collection object instead.&#xA;&#xA;e.g.&#xA;&#xA;```&#xA;ClusterManager clusterManager = // ...&#xA;MarkerManager.Collection collection = clusterManager.getMarkerCollection();&#xA;collection.setInfoWindowAdapter(...);&#xA;```&#xA;&#xA;Refer to the migration guide for more info: https://bit.ly/3kTpQmY"
-        errorLine1="        mMap.setOnMarkerClickListener(marker -> {"
-        errorLine2="        ^">
+        summary="Implied default locale in case conversion"
+        explanation="Calling `String#toLowerCase()` or `#toUpperCase()` **without specifying an explicit locale** is a common source of bugs. The reason for that is that those methods will use the current locale on the user&apos;s device, and even though the code appears to work correctly when you are developing the app, it will fail in some locales. For example, in the Turkish locale, the uppercase replacement for `i` is **not** `I`.&#xA;&#xA;If you want the methods to just perform ASCII replacement, for example to convert an enum name, call `String#toUpperCase(Locale.ROOT)` instead. If you really want to use the current locale, call `String#toUpperCase(Locale.getDefault())` instead."
+        url="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        urls="https://developer.android.com/reference/java/util/Locale.html#default_locale"
+        errorLine1="        return String.format(&quot;%06d&quot;, random.nextInt(1000000));"
+        errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\MainActivity.java"
-            line="353"
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\MyPageActivity.java"
+            line="173"
+            column="16"/>
+    </issue>
+
+    <issue
+        id="OldTargetApi"
+        severity="Warning"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details."
+        category="Correctness"
+        priority="6"
+        summary="Target SDK attribute is not targeting latest version"
+        explanation="When your application or sdk runs on a version of Android that is more recent than your `targetSdkVersion` specifies that it has been tested with, various compatibility modes kick in. This ensures that your application continues to work, but it may look out of place. For example, if the `targetSdkVersion` is less than 14, your app may get an option button in the UI.&#xA;&#xA;To fix this issue, set the `targetSdkVersion` to the highest available value. Then test your app to make sure everything works correctly. You may want to consult the compatibility notes to see what changes apply to each version you are adding support for: https://developer.android.com/reference/android/os/Build.VERSION_CODES.html as well as follow this guide:&#xA;https://developer.android.com/distribute/best-practices/develop/target-sdk.html"
+        url="https://developer.android.com/distribute/best-practices/develop/target-sdk.html"
+        urls="https://developer.android.com/distribute/best-practices/develop/target-sdk.html,https://developer.android.com/reference/android/os/Build.VERSION_CODES.html"
+        errorLine1="        targetSdk = 34"
+        errorLine2="        ~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="12"
             column="9"/>
     </issue>
 
@@ -49,7 +69,7 @@
         errorLine2="     ~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml"
-            line="9"
+            line="8"
             column="6"/>
     </issue>
 
@@ -65,7 +85,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml"
-            line="25"
+            line="27"
             column="13"/>
     </issue>
 
@@ -120,33 +140,161 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of com.squareup.okhttp3:okhttp than 4.9.3 is available: 4.12.0"
+        message="A newer version of `compileSdkVersion` than 34 is available: 35"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
         explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
-        errorLine1="    implementation(&quot;com.squareup.okhttp3:okhttp:4.9.3&quot;)"
-        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="    compileSdk = 34"
+        errorLine2="    ~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
-            line="43"
+            line="7"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.1"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    implementation(&quot;androidx.appcompat:appcompat:1.6.1&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="30"
             column="20"/>
     </issue>
 
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of com.google.maps.android:android-maps-utils than 2.2.5 is available: 3.8.0"
+        message="A newer version of com.google.android.material:material than 1.11.0 is available: 1.12.0"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
         explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
-        errorLine1="    implementation(&quot;com.google.maps.android:android-maps-utils:2.2.5&quot;)"
+        errorLine1="    implementation(&quot;com.google.android.material:material:1.11.0&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="31"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.1"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    implementation(&quot;androidx.constraintlayout:constraintlayout:2.1.4&quot;)"
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
-            line="44"
+            line="32"
             column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of com.google.android.gms:play-services-maps than 18.2.0 is available: 19.2.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    implementation(&quot;com.google.android.gms:play-services-maps:18.2.0&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="33"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of org.projectlombok:lombok than 1.18.30 is available: 1.18.38"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    implementation(&quot;org.projectlombok:lombok:1.18.30&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="36"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of org.projectlombok:lombok than 1.18.30 is available: 1.18.38"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    annotationProcessor(&quot;org.projectlombok:lombok:1.18.30&quot;)"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="37"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of com.squareup.okhttp3:logging-interceptor than 4.9.0 is available: 4.12.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    implementation(&quot;com.squareup.okhttp3:logging-interceptor:4.9.0&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="42"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.2.1"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    androidTestImplementation(&quot;androidx.test.ext:junit:1.1.5&quot;)"
+        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="45"
+            column="31"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.6.1"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    androidTestImplementation(&quot;androidx.test.espresso:espresso-core:3.5.1&quot;)"
+        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="46"
+            column="31"/>
     </issue>
 
     <issue
@@ -214,35 +362,35 @@
     </issue>
 
     <issue
-        id="NotifyDataSetChanged"
+        id="AnnotationProcessorOnCompilePath"
         severity="Warning"
-        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
+        message="Add annotation processor to processor path using `annotationProcessor` instead of `implementation`"
         category="Performance"
         priority="8"
-        summary="Invalidating All RecyclerView Data"
-        explanation="The `RecyclerView` adapter&apos;s `onNotifyDataSetChanged` method does not specify what about the data set has changed, forcing any observers to assume that all existing items and structure may no longer be valid. `LayoutManager`s will be forced to fully rebind and relayout all visible views."
-        errorLine1="        notifyDataSetChanged();"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
+        summary="Annotation Processor on Compile Classpath"
+        explanation="This dependency is identified as an annotation processor. Consider adding it to the processor path using `annotationProcessor` instead of including it to the compile path."
+        errorLine1="    implementation(&quot;org.projectlombok:lombok:1.18.30&quot;)"
+        errorLine2="    ~~~~~~~~~~~~~~">
         <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\SearchSuggestionAdapter.java"
-            line="53"
-            column="9"/>
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="36"
+            column="5"/>
     </issue>
 
     <issue
-        id="VectorPath"
+        id="ObsoleteLayoutParam"
         severity="Warning"
-        message="Very long vector path (953 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector."
+        message="Invalid layout param in a `FrameLayout`: `layout_weight`"
         category="Performance"
-        priority="5"
-        summary="Long vector paths"
-        explanation="Using long vector paths is bad for performance. There are several ways to make the `pathData` shorter:&#xA;* Using less precision&#xA;* Removing some minor details&#xA;* Using the Android Studio vector conversion tool&#xA;* Rasterizing the image (converting to PNG)"
-        errorLine1="    &lt;path android:fillColor=&quot;@android:color/black&quot; android:pathData=&quot;M408,528L366,486Q374,475 377,463.5Q380,452 380,440Q380,428 377,416.5Q374,405 366,395L408,352Q424,371 432,394Q440,417 440,440Q440,463 432,485.5Q424,508 408,528ZM493,614L450,571Q475,543 487.5,509Q500,475 500,440Q500,405 487.5,371.5Q475,338 450,310L493,267Q527,304 543.5,348.5Q560,393 560,440Q560,487 543.5,532Q527,577 493,614ZM200,480Q167,480 143.5,456.5Q120,433 120,400Q120,367 143.5,343.5Q167,320 200,320Q233,320 256.5,343.5Q280,367 280,400Q280,433 256.5,456.5Q233,480 200,480ZM40,640L40,617Q40,593 53,573Q66,553 89,543Q115,532 142.5,526Q170,520 200,520Q230,520 257.5,526Q285,532 311,543Q334,553 347,573Q360,593 360,617L360,640L40,640ZM760,480Q727,480 703.5,456.5Q680,433 680,400Q680,367 703.5,343.5Q727,320 760,320Q793,320 816.5,343.5Q840,367 840,400Q840,433 816.5,456.5Q793,480 760,480ZM600,640L600,617Q600,593 613,573Q626,553 649,543Q675,532 702.5,526Q730,520 760,520Q790,520 817.5,526Q845,532 871,543Q894,553 907,573Q920,593 920,617L920,640L600,640Z&quot;/>"
-        errorLine2="                                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        priority="6"
+        summary="Obsolete layout params"
+        explanation="The given layout_param is not defined for the given layout, meaning it has no effect. This usually happens when you change the parent layout or move view code around without updating the layout params. This will cause useless attribute processing at runtime, and is misleading for others reading the layout so the parameter should be removed."
+        errorLine1="        android:layout_weight=&quot;1&quot; />"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\drawable\ic_group.xml"
-            line="3"
-            column="70"/>
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml"
+            line="45"
+            column="9"/>
     </issue>
 
     <issue
@@ -266,96 +414,16 @@
     <issue
         id="Overdraw"
         severity="Warning"
-        message="Possible overdraw: Root element paints background `#FAFAFA` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)"
+        message="Possible overdraw: Root element paints background `#FFFFFF` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)"
         category="Performance"
         priority="3"
         summary="Overdraw: Painting regions more than once"
         explanation="If you set a background drawable on a root view, then you should use a custom theme where the theme background is null. Otherwise, the theme background will be painted first, only to have your custom background completely cover it; this is called &quot;overdraw&quot;.&#xA;&#xA;NOTE: This detector relies on figuring out which layouts are associated with which activities based on scanning the Java code, and it&apos;s currently doing that using an inexact pattern matching algorithm. Therefore, it can incorrectly conclude which activity the layout is associated with and then wrongly complain that a background-theme is hidden.&#xA;&#xA;If you want your custom background on multiple pages, then you should consider making a custom theme with your custom background and just using that theme instead of a root element background.&#xA;&#xA;Of course it&apos;s possible that your custom drawable is translucent and you want it to be mixed with the background. However, you will get better performance if you pre-mix the background with your drawable and use that resulting image or color as a custom theme background instead."
-        errorLine1="    android:background=&quot;#FAFAFA&quot;"
+        errorLine1="    android:background=&quot;#FFFFFF&quot;>"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml"
-            line="6"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="Overdraw"
-        severity="Warning"
-        message="Possible overdraw: Root element paints background `@color/background` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)"
-        category="Performance"
-        priority="3"
-        summary="Overdraw: Painting regions more than once"
-        explanation="If you set a background drawable on a root view, then you should use a custom theme where the theme background is null. Otherwise, the theme background will be painted first, only to have your custom background completely cover it; this is called &quot;overdraw&quot;.&#xA;&#xA;NOTE: This detector relies on figuring out which layouts are associated with which activities based on scanning the Java code, and it&apos;s currently doing that using an inexact pattern matching algorithm. Therefore, it can incorrectly conclude which activity the layout is associated with and then wrongly complain that a background-theme is hidden.&#xA;&#xA;If you want your custom background on multiple pages, then you should consider making a custom theme with your custom background and just using that theme instead of a root element background.&#xA;&#xA;Of course it&apos;s possible that your custom drawable is translucent and you want it to be mixed with the background. However, you will get better performance if you pre-mix the background with your drawable and use that resulting image or color as a custom theme background instead."
-        errorLine1="    android:background=&quot;@color/background&quot;"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupagree.xml"
-            line="5"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="Overdraw"
-        severity="Warning"
-        message="Possible overdraw: Root element paints background `@color/background` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)"
-        category="Performance"
-        priority="3"
-        summary="Overdraw: Painting regions more than once"
-        explanation="If you set a background drawable on a root view, then you should use a custom theme where the theme background is null. Otherwise, the theme background will be painted first, only to have your custom background completely cover it; this is called &quot;overdraw&quot;.&#xA;&#xA;NOTE: This detector relies on figuring out which layouts are associated with which activities based on scanning the Java code, and it&apos;s currently doing that using an inexact pattern matching algorithm. Therefore, it can incorrectly conclude which activity the layout is associated with and then wrongly complain that a background-theme is hidden.&#xA;&#xA;If you want your custom background on multiple pages, then you should consider making a custom theme with your custom background and just using that theme instead of a root element background.&#xA;&#xA;Of course it&apos;s possible that your custom drawable is translucent and you want it to be mixed with the background. However, you will get better performance if you pre-mix the background with your drawable and use that resulting image or color as a custom theme background instead."
-        errorLine1="    android:background=&quot;@color/background&quot;>"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml"
-            line="7"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="Overdraw"
-        severity="Warning"
-        message="Possible overdraw: Root element paints background `@color/background` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)"
-        category="Performance"
-        priority="3"
-        summary="Overdraw: Painting regions more than once"
-        explanation="If you set a background drawable on a root view, then you should use a custom theme where the theme background is null. Otherwise, the theme background will be painted first, only to have your custom background completely cover it; this is called &quot;overdraw&quot;.&#xA;&#xA;NOTE: This detector relies on figuring out which layouts are associated with which activities based on scanning the Java code, and it&apos;s currently doing that using an inexact pattern matching algorithm. Therefore, it can incorrectly conclude which activity the layout is associated with and then wrongly complain that a background-theme is hidden.&#xA;&#xA;If you want your custom background on multiple pages, then you should consider making a custom theme with your custom background and just using that theme instead of a root element background.&#xA;&#xA;Of course it&apos;s possible that your custom drawable is translucent and you want it to be mixed with the background. However, you will get better performance if you pre-mix the background with your drawable and use that resulting image or color as a custom theme background instead."
-        errorLine1="    android:background=&quot;@color/background&quot;>"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_makinggroup.xml"
-            line="7"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="Overdraw"
-        severity="Warning"
-        message="Possible overdraw: Root element paints background `@color/background` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)"
-        category="Performance"
-        priority="3"
-        summary="Overdraw: Painting regions more than once"
-        explanation="If you set a background drawable on a root view, then you should use a custom theme where the theme background is null. Otherwise, the theme background will be painted first, only to have your custom background completely cover it; this is called &quot;overdraw&quot;.&#xA;&#xA;NOTE: This detector relies on figuring out which layouts are associated with which activities based on scanning the Java code, and it&apos;s currently doing that using an inexact pattern matching algorithm. Therefore, it can incorrectly conclude which activity the layout is associated with and then wrongly complain that a background-theme is hidden.&#xA;&#xA;If you want your custom background on multiple pages, then you should consider making a custom theme with your custom background and just using that theme instead of a root element background.&#xA;&#xA;Of course it&apos;s possible that your custom drawable is translucent and you want it to be mixed with the background. However, you will get better performance if you pre-mix the background with your drawable and use that resulting image or color as a custom theme background instead."
-        errorLine1="    android:background=&quot;@color/background&quot;>"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_memberinvite.xml"
-            line="6"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="Overdraw"
-        severity="Warning"
-        message="Possible overdraw: Root element paints background `@color/background` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)"
-        category="Performance"
-        priority="3"
-        summary="Overdraw: Painting regions more than once"
-        explanation="If you set a background drawable on a root view, then you should use a custom theme where the theme background is null. Otherwise, the theme background will be painted first, only to have your custom background completely cover it; this is called &quot;overdraw&quot;.&#xA;&#xA;NOTE: This detector relies on figuring out which layouts are associated with which activities based on scanning the Java code, and it&apos;s currently doing that using an inexact pattern matching algorithm. Therefore, it can incorrectly conclude which activity the layout is associated with and then wrongly complain that a background-theme is hidden.&#xA;&#xA;If you want your custom background on multiple pages, then you should consider making a custom theme with your custom background and just using that theme instead of a root element background.&#xA;&#xA;Of course it&apos;s possible that your custom drawable is translucent and you want it to be mixed with the background. However, you will get better performance if you pre-mix the background with your drawable and use that resulting image or color as a custom theme background instead."
-        errorLine1="    android:background=&quot;@color/background&quot;"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml"
-            line="5"
+            line="8"
             column="5"/>
     </issue>
 
@@ -376,179 +444,35 @@
     </issue>
 
     <issue
-        id="Overdraw"
-        severity="Warning"
-        message="Possible overdraw: Root element paints background `?attr/selectableItemBackground` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)"
-        category="Performance"
-        priority="3"
-        summary="Overdraw: Painting regions more than once"
-        explanation="If you set a background drawable on a root view, then you should use a custom theme where the theme background is null. Otherwise, the theme background will be painted first, only to have your custom background completely cover it; this is called &quot;overdraw&quot;.&#xA;&#xA;NOTE: This detector relies on figuring out which layouts are associated with which activities based on scanning the Java code, and it&apos;s currently doing that using an inexact pattern matching algorithm. Therefore, it can incorrectly conclude which activity the layout is associated with and then wrongly complain that a background-theme is hidden.&#xA;&#xA;If you want your custom background on multiple pages, then you should consider making a custom theme with your custom background and just using that theme instead of a root element background.&#xA;&#xA;Of course it&apos;s possible that your custom drawable is translucent and you want it to be mixed with the background. However, you will get better performance if you pre-mix the background with your drawable and use that resulting image or color as a custom theme background instead."
-        errorLine1="    android:background=&quot;?attr/selectableItemBackground&quot;>"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\item_search_suggestion.xml"
-            line="7"
-            column="5"/>
-    </issue>
-
-    <issue
         id="UnusedResources"
         severity="Warning"
-        message="The resource `R.color.primary` appears to be unused"
+        message="The resource `R.color.black` appears to be unused"
         category="Performance"
         priority="3"
         summary="Unused resources"
         explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="    &lt;color name=&quot;primary&quot;>#2196F3&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~">
+        errorLine1="    &lt;color name=&quot;black&quot;>#FF000000&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml"
-            line="5"
+            line="3"
             column="12"/>
     </issue>
 
     <issue
         id="UnusedResources"
         severity="Warning"
-        message="The resource `R.color.primary_dark` appears to be unused"
+        message="The resource `R.color.white` appears to be unused"
         category="Performance"
         priority="3"
         summary="Unused resources"
         explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="    &lt;color name=&quot;primary_dark&quot;>#1976D2&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~">
+        errorLine1="    &lt;color name=&quot;white&quot;>#FFFFFFFF&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml"
-            line="6"
+            line="4"
             column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.color.primary_light` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="    &lt;color name=&quot;primary_light&quot;>#BBDEFB&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml"
-            line="7"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.color.accent` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="    &lt;color name=&quot;accent&quot;>#FF4081&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml"
-            line="8"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.color.secondary_text` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="    &lt;color name=&quot;secondary_text&quot;>#757575&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml"
-            line="10"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.color.primary_purple` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="    &lt;color name=&quot;primary_purple&quot;>#7C4DFF&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml"
-            line="14"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.color.primary_gradient_start` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="    &lt;color name=&quot;primary_gradient_start&quot;>#7C4DFF&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml"
-            line="15"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.color.primary_gradient_end` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="    &lt;color name=&quot;primary_gradient_end&quot;>#B388FF&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml"
-            line="16"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.color.button_text` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="    &lt;color name=&quot;button_text&quot;>#FFFFFF&lt;/color>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml"
-            line="17"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.layout.dialog_agree` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-        errorLine2="^">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\dialog_agree.xml"
-            line="2"
-            column="1"/>
     </issue>
 
     <issue
@@ -568,166 +492,18 @@
     </issue>
 
     <issue
-        id="UnusedResources"
+        id="TextFields"
         severity="Warning"
-        message="The resource `R.drawable.gradient_background` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
-        errorLine2="^">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\drawable\gradient_background.xml"
-            line="2"
-            column="1"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.drawable.rounded_black_button` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
-        errorLine2="^">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\drawable\rounded_black_button.xml"
-            line="2"
-            column="1"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
-        message="The resource `R.style.TransparentButton` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="    &lt;style name=&quot;TransparentButton&quot;>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\styles.xml"
-            line="5"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="UselessParent"
-        severity="Warning"
-        message="This `LinearLayout` layout or its `RelativeLayout` parent is unnecessary; transfer the `background` attribute to the other view"
-        category="Performance"
-        priority="2"
-        summary="Unnecessary parent layout"
-        explanation="A layout with children that has no siblings, is not a scrollview or a root layout, and does not have a background, can be removed and have its children moved directly into the parent for a flatter and more efficient layout hierarchy."
-        errorLine1="    &lt;LinearLayout"
-        errorLine2="     ~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_memberinvite.xml"
-            line="8"
-            column="6"/>
-    </issue>
-
-    <issue
-        id="UselessParent"
-        severity="Warning"
-        message="This `LinearLayout` layout or its `RelativeLayout` parent is unnecessary; transfer the `background` attribute to the other view"
-        category="Performance"
-        priority="2"
-        summary="Unnecessary parent layout"
-        explanation="A layout with children that has no siblings, is not a scrollview or a root layout, and does not have a background, can be removed and have its children moved directly into the parent for a flatter and more efficient layout hierarchy."
-        errorLine1="    &lt;LinearLayout"
-        errorLine2="     ~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml"
-            line="8"
-            column="6"/>
-    </issue>
-
-    <issue
-        id="RedundantNamespace"
-        severity="Warning"
-        message="This namespace declaration is redundant"
-        category="Performance"
-        priority="1"
-        summary="Redundant namespace"
-        explanation="In Android XML documents, only specify the namespace on the root/document element. Namespace declarations elsewhere in the document are typically accidental leftovers from copy/pasting XML from other files or documentation."
-        errorLine1="        xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml"
-            line="86"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="RedundantNamespace"
-        severity="Warning"
-        message="This namespace declaration is redundant"
-        category="Performance"
-        priority="1"
-        summary="Redundant namespace"
-        explanation="In Android XML documents, only specify the namespace on the root/document element. Namespace declarations elsewhere in the document are typically accidental leftovers from copy/pasting XML from other files or documentation."
-        errorLine1="    &lt;gradient xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
-        errorLine2="              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\drawable\gradient_background.xml"
-            line="3"
-            column="15"/>
-    </issue>
-
-    <issue
-        id="RedundantNamespace"
-        severity="Warning"
-        message="This namespace declaration is redundant"
-        category="Performance"
-        priority="1"
-        summary="Redundant namespace"
-        explanation="In Android XML documents, only specify the namespace on the root/document element. Namespace declarations elsewhere in the document are typically accidental leftovers from copy/pasting XML from other files or documentation."
-        errorLine1="    &lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;>"
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\drawable\rounded_black_button.xml"
-            line="3"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="Autofill"
-        severity="Warning"
-        message="Missing `autofillHints` attribute"
+        message="This text field does not specify an `inputType`"
         category="Usability"
-        priority="3"
-        summary="Use Autofill"
-        explanation="Specify an `autofillHints` attribute when targeting SDK version 26 or higher or explicitly specify that the view is not important for autofill. Your app can help an autofill service classify the data correctly by providing the meaning of each view that could be autofillable, such as views representing usernames, passwords, credit card fields, email addresses, etc.&#xA;&#xA;The hints can have any value, but it is recommended to use predefined values like &apos;username&apos; for a username or &apos;creditCardNumber&apos; for a credit card number. For a list of all predefined autofill hint constants, see the `AUTOFILL_HINT_` constants in the `View` reference at https://developer.android.com/reference/android/view/View.html.&#xA;&#xA;You can mark a view unimportant for autofill by specifying an `importantForAutofill` attribute on that view or a parent view. See https://developer.android.com/reference/android/view/View.html#setImportantForAutofill(int)."
-        url="https://developer.android.com/guide/topics/text/autofill.html"
-        urls="https://developer.android.com/guide/topics/text/autofill.html"
+        priority="5"
+        summary="Missing `inputType`"
+        explanation="Providing an `inputType` attribute on a text field improves usability because depending on the data to be input, optimized keyboards can be shown to the user (such as just digits and parentheses for a phone number). &#xA;&#xA;The lint detector also looks at the `id` of the view, and if the id offers a hint of the purpose of the field (for example, the `id` contains the phrase `phone` or `email`), then lint will also ensure that the `inputType` contains the corresponding type attributes.&#xA;&#xA;If you really want to keep the text field generic, you can suppress this warning by setting `inputType=&quot;text&quot;`."
         errorLine1="            &lt;EditText"
         errorLine2="             ~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml"
-            line="57"
-            column="14"/>
-    </issue>
-
-    <issue
-        id="Autofill"
-        severity="Warning"
-        message="Missing `autofillHints` attribute"
-        category="Usability"
-        priority="3"
-        summary="Use Autofill"
-        explanation="Specify an `autofillHints` attribute when targeting SDK version 26 or higher or explicitly specify that the view is not important for autofill. Your app can help an autofill service classify the data correctly by providing the meaning of each view that could be autofillable, such as views representing usernames, passwords, credit card fields, email addresses, etc.&#xA;&#xA;The hints can have any value, but it is recommended to use predefined values like &apos;username&apos; for a username or &apos;creditCardNumber&apos; for a credit card number. For a list of all predefined autofill hint constants, see the `AUTOFILL_HINT_` constants in the `View` reference at https://developer.android.com/reference/android/view/View.html.&#xA;&#xA;You can mark a view unimportant for autofill by specifying an `importantForAutofill` attribute on that view or a parent view. See https://developer.android.com/reference/android/view/View.html#setImportantForAutofill(int)."
-        url="https://developer.android.com/guide/topics/text/autofill.html"
-        urls="https://developer.android.com/guide/topics/text/autofill.html"
-        errorLine1="            &lt;EditText"
-        errorLine2="             ~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml"
-            line="30"
+            line="44"
             column="14"/>
     </issue>
 
@@ -744,8 +520,8 @@
         errorLine1="    &lt;EditText"
         errorLine2="     ~~~~~~~~">
         <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_makinggroup.xml"
-            line="10"
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_friendinvite.xml"
+            line="20"
             column="6"/>
     </issue>
 
@@ -759,12 +535,12 @@
         explanation="Specify an `autofillHints` attribute when targeting SDK version 26 or higher or explicitly specify that the view is not important for autofill. Your app can help an autofill service classify the data correctly by providing the meaning of each view that could be autofillable, such as views representing usernames, passwords, credit card fields, email addresses, etc.&#xA;&#xA;The hints can have any value, but it is recommended to use predefined values like &apos;username&apos; for a username or &apos;creditCardNumber&apos; for a credit card number. For a list of all predefined autofill hint constants, see the `AUTOFILL_HINT_` constants in the `View` reference at https://developer.android.com/reference/android/view/View.html.&#xA;&#xA;You can mark a view unimportant for autofill by specifying an `importantForAutofill` attribute on that view or a parent view. See https://developer.android.com/reference/android/view/View.html#setImportantForAutofill(int)."
         url="https://developer.android.com/guide/topics/text/autofill.html"
         urls="https://developer.android.com/guide/topics/text/autofill.html"
-        errorLine1="        &lt;EditText"
-        errorLine2="         ~~~~~~~~">
+        errorLine1="            &lt;EditText"
+        errorLine2="             ~~~~~~~~">
         <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_memberinvite.xml"
-            line="24"
-            column="10"/>
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml"
+            line="44"
+            column="14"/>
     </issue>
 
     <issue
@@ -780,21 +556,221 @@
         errorLine1="        &lt;EditText"
         errorLine2="         ~~~~~~~~">
         <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml"
-            line="32"
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml"
+            line="23"
             column="10"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        severity="Warning"
+        message="Missing `autofillHints` attribute"
+        category="Usability"
+        priority="3"
+        summary="Use Autofill"
+        explanation="Specify an `autofillHints` attribute when targeting SDK version 26 or higher or explicitly specify that the view is not important for autofill. Your app can help an autofill service classify the data correctly by providing the meaning of each view that could be autofillable, such as views representing usernames, passwords, credit card fields, email addresses, etc.&#xA;&#xA;The hints can have any value, but it is recommended to use predefined values like &apos;username&apos; for a username or &apos;creditCardNumber&apos; for a credit card number. For a list of all predefined autofill hint constants, see the `AUTOFILL_HINT_` constants in the `View` reference at https://developer.android.com/reference/android/view/View.html.&#xA;&#xA;You can mark a view unimportant for autofill by specifying an `importantForAutofill` attribute on that view or a parent view. See https://developer.android.com/reference/android/view/View.html#setImportantForAutofill(int)."
+        url="https://developer.android.com/guide/topics/text/autofill.html"
+        urls="https://developer.android.com/guide/topics/text/autofill.html"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_makinggroup.xml"
+            line="11"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        severity="Warning"
+        message="Missing `autofillHints` attribute"
+        category="Usability"
+        priority="3"
+        summary="Use Autofill"
+        explanation="Specify an `autofillHints` attribute when targeting SDK version 26 or higher or explicitly specify that the view is not important for autofill. Your app can help an autofill service classify the data correctly by providing the meaning of each view that could be autofillable, such as views representing usernames, passwords, credit card fields, email addresses, etc.&#xA;&#xA;The hints can have any value, but it is recommended to use predefined values like &apos;username&apos; for a username or &apos;creditCardNumber&apos; for a credit card number. For a list of all predefined autofill hint constants, see the `AUTOFILL_HINT_` constants in the `View` reference at https://developer.android.com/reference/android/view/View.html.&#xA;&#xA;You can mark a view unimportant for autofill by specifying an `importantForAutofill` attribute on that view or a parent view. See https://developer.android.com/reference/android/view/View.html#setImportantForAutofill(int)."
+        url="https://developer.android.com/guide/topics/text/autofill.html"
+        urls="https://developer.android.com/guide/topics/text/autofill.html"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml"
+            line="24"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        severity="Warning"
+        message="Missing `autofillHints` attribute"
+        category="Usability"
+        priority="3"
+        summary="Use Autofill"
+        explanation="Specify an `autofillHints` attribute when targeting SDK version 26 or higher or explicitly specify that the view is not important for autofill. Your app can help an autofill service classify the data correctly by providing the meaning of each view that could be autofillable, such as views representing usernames, passwords, credit card fields, email addresses, etc.&#xA;&#xA;The hints can have any value, but it is recommended to use predefined values like &apos;username&apos; for a username or &apos;creditCardNumber&apos; for a credit card number. For a list of all predefined autofill hint constants, see the `AUTOFILL_HINT_` constants in the `View` reference at https://developer.android.com/reference/android/view/View.html.&#xA;&#xA;You can mark a view unimportant for autofill by specifying an `importantForAutofill` attribute on that view or a parent view. See https://developer.android.com/reference/android/view/View.html#setImportantForAutofill(int)."
+        url="https://developer.android.com/guide/topics/text/autofill.html"
+        urls="https://developer.android.com/guide/topics/text/autofill.html"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_register.xml"
+            line="8"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="Autofill"
+        severity="Warning"
+        message="Missing `autofillHints` attribute"
+        category="Usability"
+        priority="3"
+        summary="Use Autofill"
+        explanation="Specify an `autofillHints` attribute when targeting SDK version 26 or higher or explicitly specify that the view is not important for autofill. Your app can help an autofill service classify the data correctly by providing the meaning of each view that could be autofillable, such as views representing usernames, passwords, credit card fields, email addresses, etc.&#xA;&#xA;The hints can have any value, but it is recommended to use predefined values like &apos;username&apos; for a username or &apos;creditCardNumber&apos; for a credit card number. For a list of all predefined autofill hint constants, see the `AUTOFILL_HINT_` constants in the `View` reference at https://developer.android.com/reference/android/view/View.html.&#xA;&#xA;You can mark a view unimportant for autofill by specifying an `importantForAutofill` attribute on that view or a parent view. See https://developer.android.com/reference/android/view/View.html#setImportantForAutofill(int)."
+        url="https://developer.android.com/guide/topics/text/autofill.html"
+        urls="https://developer.android.com/guide/topics/text/autofill.html"
+        errorLine1="    &lt;EditText"
+        errorLine2="     ~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_register.xml"
+            line="16"
+            column="6"/>
     </issue>
 
     <issue
         id="UseTomlInstead"
         severity="Warning"
-        message="Use the existing version catalog reference (`libs.material`) instead"
+        message="Use version catalog instead (androidx.appcompat:appcompat is already available as `appcompat`, but using version 1.7.0 instead)"
         category="Productivity"
         priority="4"
         summary="Use TOML Version Catalog Instead"
         explanation="If your project is using a `libs.versions.toml` file, you should place all Gradle dependencies in the TOML file. This lint check looks for version declarations outside of the TOML file and suggests moving them (and in the IDE, provides a quickfix to performing the operation automatically)."
-        errorLine1="    implementation(&quot;com.google.android.material:material:1.12.0&quot;)"
+        errorLine1="    implementation(&quot;androidx.appcompat:appcompat:1.6.1&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="30"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="UseTomlInstead"
+        severity="Warning"
+        message="Use version catalog instead (com.google.android.material:material is already available as `material`, but using version 1.12.0 instead)"
+        category="Productivity"
+        priority="4"
+        summary="Use TOML Version Catalog Instead"
+        explanation="If your project is using a `libs.versions.toml` file, you should place all Gradle dependencies in the TOML file. This lint check looks for version declarations outside of the TOML file and suggests moving them (and in the IDE, provides a quickfix to performing the operation automatically)."
+        errorLine1="    implementation(&quot;com.google.android.material:material:1.11.0&quot;)"
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="31"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="UseTomlInstead"
+        severity="Warning"
+        message="Use version catalog instead (androidx.constraintlayout:constraintlayout is already available as `constraintlayout`, but using version 2.2.1 instead)"
+        category="Productivity"
+        priority="4"
+        summary="Use TOML Version Catalog Instead"
+        explanation="If your project is using a `libs.versions.toml` file, you should place all Gradle dependencies in the TOML file. This lint check looks for version declarations outside of the TOML file and suggests moving them (and in the IDE, provides a quickfix to performing the operation automatically)."
+        errorLine1="    implementation(&quot;androidx.constraintlayout:constraintlayout:2.1.4&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="32"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="UseTomlInstead"
+        severity="Warning"
+        message="Use version catalog instead (com.google.android.gms:play-services-maps is already available as `play-services-maps`, but using version 19.2.0 instead)"
+        category="Productivity"
+        priority="4"
+        summary="Use TOML Version Catalog Instead"
+        explanation="If your project is using a `libs.versions.toml` file, you should place all Gradle dependencies in the TOML file. This lint check looks for version declarations outside of the TOML file and suggests moving them (and in the IDE, provides a quickfix to performing the operation automatically)."
+        errorLine1="    implementation(&quot;com.google.android.gms:play-services-maps:18.2.0&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="33"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="UseTomlInstead"
+        severity="Warning"
+        message="Use version catalog instead"
+        category="Productivity"
+        priority="4"
+        summary="Use TOML Version Catalog Instead"
+        explanation="If your project is using a `libs.versions.toml` file, you should place all Gradle dependencies in the TOML file. This lint check looks for version declarations outside of the TOML file and suggests moving them (and in the IDE, provides a quickfix to performing the operation automatically)."
+        errorLine1="    implementation(&quot;org.projectlombok:lombok:1.18.30&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="36"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="UseTomlInstead"
+        severity="Warning"
+        message="Use version catalog instead"
+        category="Productivity"
+        priority="4"
+        summary="Use TOML Version Catalog Instead"
+        explanation="If your project is using a `libs.versions.toml` file, you should place all Gradle dependencies in the TOML file. This lint check looks for version declarations outside of the TOML file and suggests moving them (and in the IDE, provides a quickfix to performing the operation automatically)."
+        errorLine1="    annotationProcessor(&quot;org.projectlombok:lombok:1.18.30&quot;)"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="37"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="UseTomlInstead"
+        severity="Warning"
+        message="Use version catalog instead"
+        category="Productivity"
+        priority="4"
+        summary="Use TOML Version Catalog Instead"
+        explanation="If your project is using a `libs.versions.toml` file, you should place all Gradle dependencies in the TOML file. This lint check looks for version declarations outside of the TOML file and suggests moving them (and in the IDE, provides a quickfix to performing the operation automatically)."
+        errorLine1="    implementation(&quot;com.squareup.retrofit2:retrofit:2.9.0&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="40"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="UseTomlInstead"
+        severity="Warning"
+        message="Use version catalog instead"
+        category="Productivity"
+        priority="4"
+        summary="Use TOML Version Catalog Instead"
+        explanation="If your project is using a `libs.versions.toml` file, you should place all Gradle dependencies in the TOML file. This lint check looks for version declarations outside of the TOML file and suggests moving them (and in the IDE, provides a quickfix to performing the operation automatically)."
+        errorLine1="    implementation(&quot;com.squareup.retrofit2:converter-gson:2.9.0&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="41"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="UseTomlInstead"
+        severity="Warning"
+        message="Use version catalog instead"
+        category="Productivity"
+        priority="4"
+        summary="Use TOML Version Catalog Instead"
+        explanation="If your project is using a `libs.versions.toml` file, you should place all Gradle dependencies in the TOML file. This lint check looks for version declarations outside of the TOML file and suggests moving them (and in the IDE, provides a quickfix to performing the operation automatically)."
+        errorLine1="    implementation(&quot;com.squareup.okhttp3:logging-interceptor:4.9.0&quot;)"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
             line="42"
@@ -804,33 +780,49 @@
     <issue
         id="UseTomlInstead"
         severity="Warning"
-        message="Use version catalog instead"
+        message="Use the existing version catalog reference (`libs.junit`) instead"
         category="Productivity"
         priority="4"
         summary="Use TOML Version Catalog Instead"
         explanation="If your project is using a `libs.versions.toml` file, you should place all Gradle dependencies in the TOML file. This lint check looks for version declarations outside of the TOML file and suggests moving them (and in the IDE, provides a quickfix to performing the operation automatically)."
-        errorLine1="    implementation(&quot;com.squareup.okhttp3:okhttp:4.9.3&quot;)"
-        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="    testImplementation(&quot;junit:junit:4.13.2&quot;)"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
-            line="43"
-            column="20"/>
+            line="44"
+            column="24"/>
     </issue>
 
     <issue
         id="UseTomlInstead"
         severity="Warning"
-        message="Use version catalog instead"
+        message="Use version catalog instead (androidx.test.ext:junit is already available as `ext-junit`, but using version 1.2.1 instead)"
         category="Productivity"
         priority="4"
         summary="Use TOML Version Catalog Instead"
         explanation="If your project is using a `libs.versions.toml` file, you should place all Gradle dependencies in the TOML file. This lint check looks for version declarations outside of the TOML file and suggests moving them (and in the IDE, provides a quickfix to performing the operation automatically)."
-        errorLine1="    implementation(&quot;com.google.maps.android:android-maps-utils:2.2.5&quot;)"
-        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="    androidTestImplementation(&quot;androidx.test.ext:junit:1.1.5&quot;)"
+        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
-            line="44"
-            column="20"/>
+            line="45"
+            column="31"/>
+    </issue>
+
+    <issue
+        id="UseTomlInstead"
+        severity="Warning"
+        message="Use version catalog instead (androidx.test.espresso:espresso-core is already available as `espresso-core`, but using version 3.6.1 instead)"
+        category="Productivity"
+        priority="4"
+        summary="Use TOML Version Catalog Instead"
+        explanation="If your project is using a `libs.versions.toml` file, you should place all Gradle dependencies in the TOML file. This lint check looks for version declarations outside of the TOML file and suggests moving them (and in the IDE, provides a quickfix to performing the operation automatically)."
+        errorLine1="    androidTestImplementation(&quot;androidx.test.espresso:espresso-core:3.5.1&quot;)"
+        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts"
+            line="46"
+            column="31"/>
     </issue>
 
     <issue
@@ -847,7 +839,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\MyPageActivity.java"
-            line="48"
+            line="55"
             column="38"/>
     </issue>
 
@@ -865,7 +857,7 @@
         errorLine2="                                   ~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\MyPageActivity.java"
-            line="49"
+            line="56"
             column="36"/>
     </issue>
 
@@ -879,30 +871,12 @@
         explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
         url="https://developer.android.com/guide/topics/resources/localization.html"
         urls="https://developer.android.com/guide/topics/resources/localization.html"
-        errorLine1="                userNameTextView.setText(&quot;이름 : &quot; + name);"
-        errorLine2="                                         ~~~~~~~~~~~~~~">
+        errorLine1="                            userNameTextView.setText(&quot;이름 : &quot; + name);"
+        errorLine2="                                                     ~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\MyPageActivity.java"
-            line="88"
-            column="42"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        severity="Warning"
-        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
-        category="Internationalization"
-        priority="6"
-        summary="TextView Internationalization"
-        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
-        url="https://developer.android.com/guide/topics/resources/localization.html"
-        urls="https://developer.android.com/guide/topics/resources/localization.html"
-        errorLine1="                userIdTextView.setText(&quot;아이디 : &quot; + userId);"
-        errorLine2="                                       ~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\MyPageActivity.java"
-            line="89"
-            column="40"/>
+            line="115"
+            column="54"/>
     </issue>
 
     <issue
@@ -919,24 +893,72 @@
         errorLine2="                                         ~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\MyPageActivity.java"
-            line="125"
+            line="154"
             column="42"/>
     </issue>
 
     <issue
         id="HardcodedText"
         severity="Warning"
-        message="Hardcoded string &quot;그룹 없음&quot;, should use `@string` resource"
+        message="Hardcoded string &quot;친구 초대하기&quot;, should use `@string` resource"
         category="Internationalization"
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;그룹 없음&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="        android:text=&quot;친구 초대하기&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml"
-            line="23"
-            column="13"/>
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_friendinvite.xml"
+            line="14"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;친구 ID 또는 이메일 입력&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="        android:hint=&quot;친구 ID 또는 이메일 입력&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_friendinvite.xml"
+            line="24"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;초대 보내기&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="        android:text=&quot;초대 보내기&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_friendinvite.xml"
+            line="33"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;초대한 친구 목록&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="        android:text=&quot;초대한 친구 목록&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_friendinvite.xml"
+            line="40"
+            column="9"/>
     </issue>
 
     <issue
@@ -947,44 +969,28 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;그룹 생성&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="        android:text=&quot;그룹 생성&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml"
-            line="34"
-            column="13"/>
+            line="13"
+            column="9"/>
     </issue>
 
     <issue
         id="HardcodedText"
         severity="Warning"
-        message="Hardcoded string &quot;kitti&quot;, should use `@string` resource"
+        message="Hardcoded string &quot;친구 초대&quot;, should use `@string` resource"
         category="Internationalization"
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;kitti&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="        android:text=&quot;친구 초대&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml"
-            line="55"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        severity="Warning"
-        message="Hardcoded string &quot;멤버 초대&quot;, should use `@string` resource"
-        category="Internationalization"
-        priority="5"
-        summary="Hardcoded text"
-        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;멤버 초대&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml"
-            line="67"
-            column="13"/>
+            line="20"
+            column="9"/>
     </issue>
 
     <issue
@@ -995,12 +1001,12 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;그룹원 동의&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="        android:text=&quot;그룹원 동의&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml"
-            line="82"
-            column="13"/>
+            line="27"
+            column="9"/>
     </issue>
 
     <issue
@@ -1011,59 +1017,43 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;그룹 채팅&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="        android:text=&quot;그룹 채팅&quot;/>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml"
-            line="97"
-            column="13"/>
+            line="34"
+            column="9"/>
     </issue>
 
     <issue
         id="HardcodedText"
         severity="Warning"
-        message="Hardcoded string &quot;나가기&quot;, should use `@string` resource"
+        message="Hardcoded string &quot;위치 공유 시작&quot;, should use `@string` resource"
         category="Internationalization"
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="                android:text=&quot;나가기&quot;"
-        errorLine2="                ~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml"
-            line="121"
-            column="17"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        severity="Warning"
-        message="Hardcoded string &quot;삭제&quot;, should use `@string` resource"
-        category="Internationalization"
-        priority="5"
-        summary="Hardcoded text"
-        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="                android:text=&quot;삭제&quot;"
-        errorLine2="                ~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml"
-            line="140"
-            column="17"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        severity="Warning"
-        message="Hardcoded string &quot;동의하기&quot;, should use `@string` resource"
-        category="Internationalization"
-        priority="5"
-        summary="Hardcoded text"
-        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="        android:text=&quot;동의하기&quot;"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~">
+        errorLine1="        android:text=&quot;위치 공유 시작&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupagree.xml"
-            line="22"
+            line="11"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;동의 현황&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="        android:text=&quot;동의 현황&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupagree.xml"
+            line="20"
             column="9"/>
     </issue>
 
@@ -1091,27 +1081,11 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="                android:contentDescription=&quot;메뉴&quot;"
+        errorLine1="                android:contentDescription=&quot;메뉴&quot; />"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml"
-            line="28"
-            column="17"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        severity="Warning"
-        message="Hardcoded string &quot;그룹 채팅&quot;, should use `@string` resource"
-        category="Internationalization"
-        priority="5"
-        summary="Hardcoded text"
-        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="                android:text=&quot;그룹 채팅&quot;"
-        errorLine2="                ~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml"
-            line="36"
+            line="26"
             column="17"/>
     </issue>
 
@@ -1123,27 +1097,27 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="                android:hint=&quot;메시지를 입력하세요&quot;"
+        errorLine1="                android:hint=&quot;메시지를 입력하세요&quot; />"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml"
-            line="62"
+            line="50"
             column="17"/>
     </issue>
 
     <issue
         id="HardcodedText"
         severity="Warning"
-        message="Hardcoded string &quot;메시지 전송&quot;, should use `@string` resource"
+        message="Hardcoded string &quot;전송&quot;, should use `@string` resource"
         category="Internationalization"
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="                android:contentDescription=&quot;메시지 전송&quot;/>"
-        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="                android:contentDescription=&quot;전송&quot; />"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml"
-            line="80"
+            line="58"
             column="17"/>
     </issue>
 
@@ -1159,7 +1133,7 @@
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml"
-            line="105"
+            line="82"
             column="17"/>
     </issue>
 
@@ -1171,12 +1145,12 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="                android:hint=&quot;검색&quot;"
-        errorLine2="                ~~~~~~~~~~~~~~~~~">
+        errorLine1="            android:hint=&quot;검색&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml"
-            line="35"
-            column="17"/>
+            line="28"
+            column="13"/>
     </issue>
 
     <issue
@@ -1187,12 +1161,12 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="                android:text=&quot;검색&quot;"
-        errorLine2="                ~~~~~~~~~~~~~~~~~">
+        errorLine1="            android:text=&quot;검색&quot; />"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml"
-            line="45"
-            column="17"/>
+            line="37"
+            column="13"/>
     </issue>
 
     <issue
@@ -1203,12 +1177,12 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="                android:text=&quot;마이페이지&quot;"
-        errorLine2="                ~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="            android:text=&quot;마이페이지&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml"
-            line="68"
-            column="17"/>
+            line="62"
+            column="13"/>
     </issue>
 
     <issue
@@ -1219,12 +1193,12 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="                android:text=&quot;그룹&quot;"
-        errorLine2="                ~~~~~~~~~~~~~~~~~">
+        errorLine1="            android:text=&quot;그룹&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml"
-            line="82"
-            column="17"/>
+            line="73"
+            column="13"/>
     </issue>
 
     <issue
@@ -1235,12 +1209,12 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="                android:text=&quot;위치 공유&quot;"
-        errorLine2="                ~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="            android:text=&quot;위치 공유&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml"
-            line="97"
-            column="17"/>
+            line="85"
+            column="13"/>
     </issue>
 
     <issue
@@ -1271,88 +1245,24 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_makinggroup.xml"
-            line="25"
+            line="26"
             column="9"/>
     </issue>
 
     <issue
         id="HardcodedText"
         severity="Warning"
-        message="Hardcoded string &quot;멤버 목록&quot;, should use `@string` resource"
+        message="Hardcoded string &quot;그룹 저장&quot;, should use `@string` resource"
         category="Internationalization"
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="        android:text=&quot;멤버 목록&quot;"
+        errorLine1="        android:text=&quot;그룹 저장&quot;"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_makinggroup.xml"
-            line="35"
+            line="44"
             column="9"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        severity="Warning"
-        message="Hardcoded string &quot;그룹 생성&quot;, should use `@string` resource"
-        category="Internationalization"
-        priority="5"
-        summary="Hardcoded text"
-        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="        android:text=&quot;그룹 생성&quot;"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_makinggroup.xml"
-            line="51"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        severity="Warning"
-        message="Hardcoded string &quot;멤버 초대하기&quot;, should use `@string` resource"
-        category="Internationalization"
-        priority="5"
-        summary="Hardcoded text"
-        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;멤버 초대하기&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_memberinvite.xml"
-            line="20"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        severity="Warning"
-        message="Hardcoded string &quot;멤버 ID 또는 이메일 입력&quot;, should use `@string` resource"
-        category="Internationalization"
-        priority="5"
-        summary="Hardcoded text"
-        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:hint=&quot;멤버 ID 또는 이메일 입력&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_memberinvite.xml"
-            line="29"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        severity="Warning"
-        message="Hardcoded string &quot;초대 보내기&quot;, should use `@string` resource"
-        category="Internationalization"
-        priority="5"
-        summary="Hardcoded text"
-        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;초대 보내기&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_memberinvite.xml"
-            line="38"
-            column="13"/>
     </issue>
 
     <issue
@@ -1363,12 +1273,12 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;이름 : &quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="        android:text=&quot;이름 : &quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml"
-            line="20"
-            column="13"/>
+            line="12"
+            column="9"/>
     </issue>
 
     <issue
@@ -1379,12 +1289,12 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;아이디 : &quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="        android:text=&quot;아이디 : &quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml"
-            line="28"
-            column="13"/>
+            line="20"
+            column="9"/>
     </issue>
 
     <issue
@@ -1395,12 +1305,12 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:hint=&quot;이름을 입력하세요&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="        android:hint=&quot;이름을 입력하세요&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml"
-            line="37"
-            column="13"/>
+            line="28"
+            column="9"/>
     </issue>
 
     <issue
@@ -1411,12 +1321,12 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;저장&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        errorLine1="        android:text=&quot;저장&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml"
-            line="46"
-            column="13"/>
+            line="35"
+            column="9"/>
     </issue>
 
     <issue
@@ -1427,12 +1337,12 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;이름 수정&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="        android:text=&quot;이름 수정&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml"
-            line="55"
-            column="13"/>
+            line="42"
+            column="9"/>
     </issue>
 
     <issue
@@ -1443,12 +1353,60 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;수정 확인&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="        android:text=&quot;수정 확인&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml"
-            line="64"
-            column="13"/>
+            line="49"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;이름&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="        android:hint=&quot;이름&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_register.xml"
+            line="12"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;이메일&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="        android:hint=&quot;이메일&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_register.xml"
+            line="20"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;회원 등록&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="        android:text=&quot;회원 등록&quot;/>"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_register.xml"
+            line="28"
+            column="9"/>
     </issue>
 
     <issue

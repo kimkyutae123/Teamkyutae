@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 규태</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .user-card {
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .group-card {
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .user-list, .group-list {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">팀 규태</h1>
+        
+        <!-- 사용자 목록 -->
+        <div class="user-list">
+            <h2>사용자 목록</h2>
+            <div id="userList" class="row"></div>
+        </div>
+
+        <!-- 그룹 목록 -->
+        <div class="group-list">
+            <h2>그룹 목록</h2>
+            <div id="groupList" class="row"></div>
+        </div>
+    </div>
+
+    <script>
+        // 사용자 목록 로드
+        function loadUsers() {
+            fetch('http://localhost:8080/api/users')
+                .then(response => response.json())
+                .then(data => {
+                    const userList = document.getElementById('userList');
+                    userList.innerHTML = '';
+                    data.forEach(user => {
+                        const userCard = document.createElement('div');
+                        userCard.className = 'col-md-4';
+                        userCard.innerHTML = `
+                            <div class="user-card">
+                                <h3>${user.name}</h3>
+                                <p>동의 여부: ${user.agree ? '동의' : '미동의'}</p>
+                                <p>위치: ${user.location ? user.location.name : '없음'}</p>
+                                <p>그룹: ${user.group ? user.group.name : '없음'}</p>
+                                <button class="btn btn-danger" onclick="deleteUser(${user.id})">삭제</button>
+                            </div>
+                        `;
+                        userList.appendChild(userCard);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // 그룹 목록 로드
+        function loadGroups() {
+            fetch('http://localhost:8080/api/groups')
+                .then(response => response.json())
+                .then(data => {
+                    const groupList = document.getElementById('groupList');
+                    groupList.innerHTML = '';
+                    data.forEach(group => {
+                        const groupCard = document.createElement('div');
+                        groupCard.className = 'col-md-4';
+                        groupCard.innerHTML = `
+                            <div class="group-card">
+                                <h3>${group.name}</h3>
+                                <p>위치: ${group.location ? group.location.name : '없음'}</p>
+                                <button class="btn btn-danger" onclick="deleteGroup(${group.id})">삭제</button>
+                            </div>
+                        `;
+                        groupList.appendChild(groupCard);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // 사용자 삭제
+        function deleteUser(userId) {
+            if (confirm('정말로 이 사용자를 삭제하시겠습니까?')) {
+                fetch(`http://localhost:8080/api/users/${userId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        loadUsers();
+                    } else {
+                        throw new Error('삭제 실패');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+
+        // 그룹 삭제
+        function deleteGroup(groupId) {
+            if (confirm('정말로 이 그룹을 삭제하시겠습니까?')) {
+                fetch(`http://localhost:8080/api/groups/${groupId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        loadGroups();
+                    } else {
+                        throw new Error('삭제 실패');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+
+        // 페이지 로드 시 데이터 로드
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUsers();
+            loadGroups();
+        });
+    </script>
+</body>
+</html> 

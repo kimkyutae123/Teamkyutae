@@ -1,49 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="accent">#FF4081</color>
-    <color name="background">#FAFAFA</color>
     <color name="black">#FF000000</color>
-    <color name="button_text">#FFFFFF</color>
-    <color name="divider">#BDBDBD</color>
-    <color name="primary">#2196F3</color>
-    <color name="primary_dark">#1976D2</color>
-    <color name="primary_gradient_end">#B388FF</color>
-    <color name="primary_gradient_start">#7C4DFF</color>
-    <color name="primary_light">#BBDEFB</color>
-    <color name="primary_purple">#7C4DFF</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#757575</color>
-    <color name="semi_transparent">#80FFFFFF</color>
     <color name="white">#FFFFFFFF</color>
     <string name="app_name">Project_1</string>
     <style name="Base.Theme.Project_1" parent="Theme.Material3.DayNight.NoActionBar">
         
         
     </style>
-    <style name="CustomEditText">
-        <item name="android:background">@drawable/edit_text_background</item>
-        <item name="android:padding">12dp</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:layout_marginBottom">16dp</item>
-    </style>
-    <style name="CustomListView">
-        <item name="android:background">@drawable/list_background</item>
-        <item name="android:divider">@color/divider</item>
-        <item name="android:dividerHeight">1dp</item>
-        <item name="android:padding">8dp</item>
-    </style>
     <style name="Theme.Project_1" parent="Base.Theme.Project_1"/>
-    <style name="TitleText">
-        <item name="android:textSize">20sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/primary_text</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_marginBottom">16dp</item>
-    </style>
-    <style name="TransparentButton">
-        <item name="android:background">@drawable/semi_transparent_button</item>
-        <item name="android:textColor">#000000</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:padding">12dp</item>
-    </style>
 </resources>

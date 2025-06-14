@@ -2,7 +2,7 @@
     name="debug"
     package="com.example.project_1"
     minSdkVersion="24"
-    targetSdkVersion="35"
+    targetSdkVersion="34"
     debuggable="true"
     mergedManifest="build\intermediates\merged_manifest\debug\processDebugMainManifest\AndroidManifest.xml"
     partialResultsDir="build\intermediates\android_test_lint_partial_results\debug\lintAnalyzeDebugAndroidTest\out"

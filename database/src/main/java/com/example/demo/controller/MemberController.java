@@ -1,52 +1,110 @@
 package com.example.demo.controller;
 
-
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.model.Member;
 import com.example.demo.repository.MemberRepository;
 
 @RestController
-@RequestMapping("/api/member")
+@RequestMapping("/api/members")
+@CrossOrigin(origins = "*")
 public class MemberController {
     
     @Autowired
     private MemberRepository memberRepository;
     
-    // 회원 등록
-    @PostMapping("/register")
-    public ResponseEntity<?> registerMember(@RequestBody Member member) {
+    @GetMapping
+    public ResponseEntity<?> getAllMembers() {
         try {
-            System.out.println("받은 데이터: " + member.toString());
-            Member savedMember = memberRepository.save(member);
-            System.out.println("저장된 데이터: " + savedMember.toString());
-            return ResponseEntity.ok(savedMember);
+            List<Member> members = memberRepository.findAll();
+            return ResponseEntity.ok(members);
         } catch (Exception e) {
-            System.out.println("에러 발생: " + e.getMessage());
-            return ResponseEntity.badRequest().body("회원 등록 실패: " + e.getMessage());
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "멤버 목록을 가져오는데 실패했습니다: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getMember(@PathVariable Integer id) {
+        try {
+            Optional<Member> member = memberRepository.findById(id);
+            if (member.isPresent()) {
+                return ResponseEntity.ok(member.get());
+            } else {
+                Map<String, String> response = new HashMap<>();
+                response.put("error", "멤버를 찾을 수 없습니다");
+                return ResponseEntity.badRequest().body(response);
+            }
+        } catch (Exception e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "멤버 정보를 가져오는데 실패했습니다: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
         }
     }
 
-    // 회원 조회
-    @GetMapping("/{userId}")
-    public ResponseEntity<?> getMember(@PathVariable Integer userId) {
+    @PostMapping
+    public ResponseEntity<?> createMember(@RequestBody Member member) {
         try {
-            Optional<Member> member = memberRepository.findById(userId);
-            if(member.isPresent()) {
-                return ResponseEntity.ok(member.get());
+            if (member.getName() == null || member.getName().trim().isEmpty()) {
+                Map<String, String> response = new HashMap<>();
+                response.put("error", "이름은 필수입니다");
+                return ResponseEntity.badRequest().body(response);
             }
-            return ResponseEntity.notFound().build();
+            Member savedMember = memberRepository.save(member);
+            return ResponseEntity.ok(savedMember);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("회원 조회 실패: " + e.getMessage());
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "멤버 생성에 실패했습니다: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteMember(@PathVariable Integer id) {
+        try {
+            if (memberRepository.existsById(id)) {
+                memberRepository.deleteById(id);
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "멤버가 성공적으로 삭제되었습니다");
+                return ResponseEntity.ok(response);
+            } else {
+                Map<String, String> response = new HashMap<>();
+                response.put("error", "멤버를 찾을 수 없습니다");
+                return ResponseEntity.badRequest().body(response);
+            }
+        } catch (Exception e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "멤버 삭제에 실패했습니다: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    @PutMapping("/{id}/agree")
+    public ResponseEntity<?> updateAgreeStatus(@PathVariable Integer id, @RequestBody Map<String, Boolean> request) {
+        try {
+            Optional<Member> memberOpt = memberRepository.findById(id);
+            if (memberOpt.isPresent()) {
+                Member member = memberOpt.get();
+                member.setAgree(request.get("agree"));
+                memberRepository.save(member);
+                return ResponseEntity.ok(member);
+            } else {
+                Map<String, String> response = new HashMap<>();
+                response.put("error", "멤버를 찾을 수 없습니다");
+                return ResponseEntity.badRequest().body(response);
+            }
+        } catch (Exception e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "동의 상태 업데이트에 실패했습니다: " + e.getMessage());
+            return ResponseEntity.badRequest().body(response);
         }
     }
 }

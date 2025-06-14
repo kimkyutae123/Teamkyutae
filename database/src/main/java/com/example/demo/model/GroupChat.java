@@ -1,34 +1,28 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.Data;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "GroupChat")
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
+@Table(name = "group_chat")
 public class GroupChat {
     @Id
-    private Integer Room_id;
-    
-    @Column(nullable = false)
-    private Integer GroupRoom_user;
-    
-    private String Message_text;
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne
-    @JoinColumn(name = "send_id")
-    private Member sender;
-    
-    @ManyToOne
-    @JoinColumn(name = "Group_id")
+    @JoinColumn(name = "group_id", nullable = false)
     private Group group;
+
+    @ManyToOne
+    @JoinColumn(name = "sender_id", nullable = false)
+    private User sender;
+
+    @Column(nullable = false)
+    private String message;
+
+    @Column(nullable = false)
+    private LocalDateTime timestamp;
 }

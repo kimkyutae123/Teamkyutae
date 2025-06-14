@@ -1,32 +1,28 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.Data;
+import java.util.Set;
 
+@Data
 @Entity
-@Table(name = "groupcreate")
-@Getter
-@Setter
-@NoArgsConstructor
+@Table(name = "user_groups")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Group_id")
-    private Integer groupId;
+    private Integer id;
 
-    @Column(name = "Group_name", nullable = false)
-    private String groupName;
+    @Column(nullable = false)
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Member member;
+    @ManyToMany
+    @JoinTable(
+        name = "group_users",
+        joinColumns = @JoinColumn(name = "group_id"),
+        inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> users;
+
+    @OneToOne(mappedBy = "group")
+    private ChatRoom chatRoom;
 }

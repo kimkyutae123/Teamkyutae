@@ -6,268 +6,279 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="24"
-9        android:targetSdkVersion="35" />
+9        android:targetSdkVersion="34" />
 10
-11    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-11-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:5:5-79
-11-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:5:22-76
-12    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-12-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:6:5-81
-12-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:6:22-78
-13
-14    <!-- Include required permissions for Google Maps API to run. -->
-15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[com.google.android.gms:play-services-maps:19.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\5df0791b4ae16c209d91fe32b3d7e3c3\transformed\play-services-maps-19.2.0\AndroidManifest.xml:20:5-78
-15-->[com.google.android.gms:play-services-maps:19.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\5df0791b4ae16c209d91fe32b3d7e3c3\transformed\play-services-maps-19.2.0\AndroidManifest.xml:20:22-76
-16    <uses-permission android:name="android.permission.INTERNET" />
-16-->[com.google.android.gms:play-services-maps:19.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\5df0791b4ae16c209d91fe32b3d7e3c3\transformed\play-services-maps-19.2.0\AndroidManifest.xml:21:5-66
-16-->[com.google.android.gms:play-services-maps:19.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\5df0791b4ae16c209d91fe32b3d7e3c3\transformed\play-services-maps-19.2.0\AndroidManifest.xml:21:22-64
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+12-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:6:5-79
+12-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:6:22-76
+13    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+13-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:7:5-81
+13-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:7:22-78
+14
+15    <!-- Include required permissions for Google Maps API to run. -->
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\3ad65a87b440d01877800e8b34042159\transformed\play-services-maps-18.2.0\AndroidManifest.xml:23:5-79
+16-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\3ad65a87b440d01877800e8b34042159\transformed\play-services-maps-18.2.0\AndroidManifest.xml:23:22-76
 17
 18    <uses-feature
-18-->[com.google.android.gms:play-services-maps:19.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\5df0791b4ae16c209d91fe32b3d7e3c3\transformed\play-services-maps-19.2.0\AndroidManifest.xml:22:5-24:33
+18-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\3ad65a87b440d01877800e8b34042159\transformed\play-services-maps-18.2.0\AndroidManifest.xml:26:5-28:35
 19        android:glEsVersion="0x00020000"
-19-->[com.google.android.gms:play-services-maps:19.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\5df0791b4ae16c209d91fe32b3d7e3c3\transformed\play-services-maps-19.2.0\AndroidManifest.xml:23:8-40
+19-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\3ad65a87b440d01877800e8b34042159\transformed\play-services-maps-18.2.0\AndroidManifest.xml:27:9-41
 20        android:required="true" />
-20-->[com.google.android.gms:play-services-maps:19.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\5df0791b4ae16c209d91fe32b3d7e3c3\transformed\play-services-maps-19.2.0\AndroidManifest.xml:24:8-31
+20-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\3ad65a87b440d01877800e8b34042159\transformed\play-services-maps-18.2.0\AndroidManifest.xml:28:9-32
 21
 22    <queries>
-22-->[com.google.android.gms:play-services-maps:19.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\5df0791b4ae16c209d91fe32b3d7e3c3\transformed\play-services-maps-19.2.0\AndroidManifest.xml:27:5-30:15
+22-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\3ad65a87b440d01877800e8b34042159\transformed\play-services-maps-18.2.0\AndroidManifest.xml:30:5-34:15
 23
 24        <!-- Needs to be explicitly declared on Android R+ -->
 25        <package android:name="com.google.android.apps.maps" />
-25-->[com.google.android.gms:play-services-maps:19.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\5df0791b4ae16c209d91fe32b3d7e3c3\transformed\play-services-maps-19.2.0\AndroidManifest.xml:29:7-61
-25-->[com.google.android.gms:play-services-maps:19.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\5df0791b4ae16c209d91fe32b3d7e3c3\transformed\play-services-maps-19.2.0\AndroidManifest.xml:29:16-59
+25-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\3ad65a87b440d01877800e8b34042159\transformed\play-services-maps-18.2.0\AndroidManifest.xml:33:9-64
+25-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\3ad65a87b440d01877800e8b34042159\transformed\play-services-maps-18.2.0\AndroidManifest.xml:33:18-61
 26    </queries>
 27
 28    <permission
-28-->[androidx.core:core:1.13.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\56f9469ef5162555402127da57bda514\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
+28-->[androidx.core:core:1.9.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\a67284421d90e86515c7c1272606071d\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
 29        android:name="com.example.project_1.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-29-->[androidx.core:core:1.13.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\56f9469ef5162555402127da57bda514\transformed\core-1.13.0\AndroidManifest.xml:23:9-81
+29-->[androidx.core:core:1.9.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\a67284421d90e86515c7c1272606071d\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
 30        android:protectionLevel="signature" />
-30-->[androidx.core:core:1.13.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\56f9469ef5162555402127da57bda514\transformed\core-1.13.0\AndroidManifest.xml:24:9-44
+30-->[androidx.core:core:1.9.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\a67284421d90e86515c7c1272606071d\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
 31
 32    <uses-permission android:name="com.example.project_1.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-32-->[androidx.core:core:1.13.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\56f9469ef5162555402127da57bda514\transformed\core-1.13.0\AndroidManifest.xml:26:5-97
-32-->[androidx.core:core:1.13.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\56f9469ef5162555402127da57bda514\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
+32-->[androidx.core:core:1.9.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\a67284421d90e86515c7c1272606071d\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+32-->[androidx.core:core:1.9.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\a67284421d90e86515c7c1272606071d\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 33
 34    <application
-34-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:8:5-84:19
+34-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:9:5-92:19
 35        android:allowBackup="true"
-35-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:9:9-35
+35-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:10:9-35
 36        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-36-->[androidx.core:core:1.13.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\56f9469ef5162555402127da57bda514\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
+36-->[androidx.core:core:1.9.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\a67284421d90e86515c7c1272606071d\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 37        android:dataExtractionRules="@xml/data_extraction_rules"
-37-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:10:9-65
+37-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:11:9-65
 38        android:debuggable="true"
 39        android:extractNativeLibs="false"
 40        android:fullBackupContent="@xml/backup_rules"
-40-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:11:9-54
+40-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:12:9-54
 41        android:icon="@mipmap/ic_launcher"
-41-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:12:9-43
+41-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:13:9-43
 42        android:label="@string/app_name"
-42-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:13:9-41
+42-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:14:9-41
 43        android:roundIcon="@mipmap/ic_launcher_round"
-43-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:14:9-54
+43-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:15:9-54
 44        android:supportsRtl="true"
-44-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:15:9-35
+44-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:16:9-35
 45        android:testOnly="true"
-46        android:theme="@style/Theme.Project_1" >
-46-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:16:9-47
-47        <meta-data
-47-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:19:9-21:71
-48            android:name="com.google.android.geo.API_KEY"
-48-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:20:13-58
-49            android:value="AIzaSyCJuRNfoKVHkbzTe9TfrehNh2WxfXNYHxw" />
-49-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:21:13-68
-50
-51        <activity
-51-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:23:9-31:20
-52            android:name="com.example.project_1.SplashActivity"
-52-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:24:13-43
-53            android:exported="true"
-53-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:26:13-36
-54            android:label="@string/app_name" >
-54-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:25:13-45
-55            <intent-filter>
-55-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:27:13-30:29
-56                <action android:name="android.intent.action.MAIN" />
-56-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:28:17-69
-56-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:28:25-66
-57
-58                <category android:name="android.intent.category.LAUNCHER" />
-58-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:29:17-77
-58-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:29:27-74
-59            </intent-filter>
-60        </activity>
-61        <activity
-61-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:33:9-41:20
-62            android:name="com.example.project_1.MainActivity"
-62-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:34:13-41
-63            android:exported="true" >
-63-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:35:13-36
-64            <intent-filter>
-64-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:27:13-30:29
-65                <action android:name="android.intent.action.MAIN" />
-65-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:28:17-69
-65-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:28:25-66
-66
-67                <category android:name="android.intent.category.LAUNCHER" />
-67-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:29:17-77
-67-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:29:27-74
-68            </intent-filter>
-69        </activity>
-70        <activity
-70-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:43:9-47:20
-71            android:name="com.example.project_1.GroupActivity"
-71-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:44:13-42
-72            android:exported="true"
-72-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:46:13-36
-73            android:label="그룹 화면" >
-73-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:45:13-34
-74        </activity>
-75        <activity
-75-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:49:9-53:20
-76            android:name="com.example.project_1.MyPageActivity"
-76-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:50:13-43
-77            android:exported="true"
-77-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:52:13-36
-78            android:label="마이페이지 화면" >
-78-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:51:13-37
-79        </activity>
-80        <activity
-80-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:55:9-58:40
-81            android:name="com.example.project_1.MemberInvite"
-81-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:56:13-41
-82            android:exported="false"
-82-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:58:13-37
-83            android:label="멤버 초대" />
-83-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:57:13-34
-84        <activity
-84-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:60:9-64:20
-85            android:name="com.example.project_1.MakingGroupActivity"
-85-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:61:13-48
-86            android:exported="false"
-86-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:63:13-37
-87            android:label="그룹 생성" >
-87-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:62:13-34
-88        </activity>
-89        <activity
-89-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:66:9-70:20
-90            android:name="com.example.project_1.GroupAgreeActivity"
-90-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:67:13-47
-91            android:exported="false"
-91-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:69:13-37
-92            android:label="그룹원 동의" >
-92-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:68:13-35
-93        </activity>
-94        <activity
-94-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:72:9-76:20
-95            android:name="com.example.project_1.GroupAgreeList"
-95-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:73:13-43
-96            android:exported="false"
-96-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:75:13-37
-97            android:label="그룹원 동의 현황" >
-97-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:74:13-38
-98        </activity>
-99        <activity
-99-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:78:9-82:20
-100            android:name="com.example.project_1.GroupChatActivity"
-100-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:79:13-46
-101            android:exported="false"
-101-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:81:13-37
-102            android:label="그룹 채팅" >
-102-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:80:13-34
-103        </activity>
-104
-105        <!-- Needs to be explicitly declared on P+ -->
-106        <uses-library
-106-->[com.google.android.gms:play-services-maps:19.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\5df0791b4ae16c209d91fe32b3d7e3c3\transformed\play-services-maps-19.2.0\AndroidManifest.xml:33:7-86
-107            android:name="org.apache.http.legacy"
-107-->[com.google.android.gms:play-services-maps:19.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\5df0791b4ae16c209d91fe32b3d7e3c3\transformed\play-services-maps-19.2.0\AndroidManifest.xml:33:21-58
-108            android:required="false" />
-108-->[com.google.android.gms:play-services-maps:19.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\5df0791b4ae16c209d91fe32b3d7e3c3\transformed\play-services-maps-19.2.0\AndroidManifest.xml:33:59-83
-109
-110        <activity
-110-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\156a90590506ceccd73a198caa57cc91\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:9-173
-111            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-111-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\156a90590506ceccd73a198caa57cc91\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:19-85
-112            android:exported="false"
-112-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\156a90590506ceccd73a198caa57cc91\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:146-170
-113            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-113-->[com.google.android.gms:play-services-base:18.5.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\156a90590506ceccd73a198caa57cc91\transformed\play-services-base-18.5.0\AndroidManifest.xml:5:86-145
-114
-115        <meta-data
-115-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\c84ea9748c7a73856bf4dd586a3d9772\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:9-122
-116            android:name="com.google.android.gms.version"
-116-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\c84ea9748c7a73856bf4dd586a3d9772\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:20-65
-117            android:value="@integer/google_play_services_version" />
-117-->[com.google.android.gms:play-services-basement:18.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\c84ea9748c7a73856bf4dd586a3d9772\transformed\play-services-basement-18.4.0\AndroidManifest.xml:6:66-119
-118
-119        <provider
-119-->[androidx.emoji2:emoji2:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\8ae0f66167361e455b541b4fc3f2b856\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
-120            android:name="androidx.startup.InitializationProvider"
-120-->[androidx.emoji2:emoji2:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\8ae0f66167361e455b541b4fc3f2b856\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
-121            android:authorities="com.example.project_1.androidx-startup"
-121-->[androidx.emoji2:emoji2:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\8ae0f66167361e455b541b4fc3f2b856\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
-122            android:exported="false" >
-122-->[androidx.emoji2:emoji2:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\8ae0f66167361e455b541b4fc3f2b856\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
-123            <meta-data
-123-->[androidx.emoji2:emoji2:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\8ae0f66167361e455b541b4fc3f2b856\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
-124                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-124-->[androidx.emoji2:emoji2:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\8ae0f66167361e455b541b4fc3f2b856\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
-125                android:value="androidx.startup" />
-125-->[androidx.emoji2:emoji2:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\8ae0f66167361e455b541b4fc3f2b856\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
-126            <meta-data
-126-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\1969741f48c38e9412c47b6b72091579\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:29:13-31:52
-127                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-127-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\1969741f48c38e9412c47b6b72091579\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:30:17-78
-128                android:value="androidx.startup" />
-128-->[androidx.lifecycle:lifecycle-process:2.6.2] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\1969741f48c38e9412c47b6b72091579\transformed\lifecycle-process-2.6.2\AndroidManifest.xml:31:17-49
+46        android:theme="@style/Theme.Project_1"
+46-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:17:9-47
+47        android:usesCleartextTraffic="true" >
+47-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:18:9-44
+48        <meta-data
+48-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:21:9-23:71
+49            android:name="com.google.android.geo.API_KEY"
+49-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:22:13-58
+50            android:value="AIzaSyCJuRNfoKVHkbzTe9TfrehNh2WxfXNYHxw" />
+50-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:23:13-68
+51
+52        <activity
+52-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:25:9-33:20
+53            android:name="com.example.project_1.SplashActivity"
+53-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:26:13-64
+54            android:exported="true"
+54-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:28:13-36
+55            android:label="@string/app_name" >
+55-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:27:13-45
+56            <intent-filter>
+56-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:29:13-32:29
+57                <action android:name="android.intent.action.MAIN" />
+57-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:30:17-69
+57-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:30:25-66
+58
+59                <category android:name="android.intent.category.LAUNCHER" />
+59-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:31:17-77
+59-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:31:27-74
+60            </intent-filter>
+61        </activity>
+62        <activity
+62-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:35:9-43:20
+63            android:name="com.example.project_1.MainActivity"
+63-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:36:13-62
+64            android:exported="true" >
+64-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:37:13-36
+65            <intent-filter>
+65-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:29:13-32:29
+66                <action android:name="android.intent.action.MAIN" />
+66-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:30:17-69
+66-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:30:25-66
+67
+68                <category android:name="android.intent.category.LAUNCHER" />
+68-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:31:17-77
+68-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:31:27-74
+69            </intent-filter>
+70        </activity>
+71        <activity
+71-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:45:9-49:20
+72            android:name="com.example.project_1.GroupActivity"
+72-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:46:13-63
+73            android:exported="true"
+73-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:48:13-36
+74            android:label="그룹 화면" >
+74-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:47:13-34
+75        </activity>
+76        <activity
+76-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:51:9-55:20
+77            android:name="com.example.project_1.MyPageActivity"
+77-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:52:13-64
+78            android:exported="true"
+78-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:54:13-36
+79            android:label="마이페이지 화면" >
+79-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:53:13-37
+80        </activity>
+81        <activity
+81-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:57:9-61:20
+82            android:name="com.example.project_1.Friendinvite"
+82-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:58:13-62
+83            android:exported="false"
+83-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:60:13-37
+84            android:label="친구 초대" >
+84-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:59:13-34
+85        </activity>
+86        <activity
+86-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:63:9-67:20
+87            android:name="com.example.project_1.MakingGroupActivity"
+87-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:64:13-69
+88            android:exported="false"
+88-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:66:13-37
+89            android:label="그룹 생성" >
+89-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:65:13-34
+90        </activity>
+91        <activity
+91-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:69:9-73:20
+92            android:name="com.example.project_1.GroupAgreeActivity"
+92-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:70:13-68
+93            android:exported="false"
+93-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:72:13-37
+94            android:label="그룹원 동의" >
+94-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:71:13-35
+95        </activity>
+96        <activity
+96-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:75:9-79:20
+97            android:name="com.example.project_1.GroupAgreeList"
+97-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:76:13-64
+98            android:exported="false"
+98-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:78:13-37
+99            android:label="그룹원 동의 현황" >
+99-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:77:13-38
+100        </activity>
+101        <activity
+101-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:81:9-85:20
+102            android:name="com.example.project_1.GroupChatActivity"
+102-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:82:13-67
+103            android:exported="false"
+103-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:84:13-37
+104            android:label="그룹 채팅" >
+104-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:83:13-34
+105        </activity>
+106        <activity
+106-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:87:9-90:37
+107            android:name="com.example.project_1.RegisterActivity"
+107-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:88:13-45
+108            android:exported="false"
+108-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:89:13-37
+109            android:label="회원 등록" />
+109-->C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:90:13-34
+110
+111        <!-- Needs to be explicitly declared on P+ -->
+112        <uses-library
+112-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\3ad65a87b440d01877800e8b34042159\transformed\play-services-maps-18.2.0\AndroidManifest.xml:39:9-41:40
+113            android:name="org.apache.http.legacy"
+113-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\3ad65a87b440d01877800e8b34042159\transformed\play-services-maps-18.2.0\AndroidManifest.xml:40:13-50
+114            android:required="false" />
+114-->[com.google.android.gms:play-services-maps:18.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\3ad65a87b440d01877800e8b34042159\transformed\play-services-maps-18.2.0\AndroidManifest.xml:41:13-37
+115
+116        <activity
+116-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7f0b8f69b201e87a7d04674e702a420f\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+117            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+117-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7f0b8f69b201e87a7d04674e702a420f\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+118            android:exported="false"
+118-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7f0b8f69b201e87a7d04674e702a420f\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+119            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+119-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7f0b8f69b201e87a7d04674e702a420f\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+120
+121        <meta-data
+121-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\ac5de166a2655cdddffa7d202a7d2a24\transformed\play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+122            android:name="com.google.android.gms.version"
+122-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\ac5de166a2655cdddffa7d202a7d2a24\transformed\play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+123            android:value="@integer/google_play_services_version" />
+123-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\ac5de166a2655cdddffa7d202a7d2a24\transformed\play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+124
+125        <provider
+125-->[androidx.emoji2:emoji2:1.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\c7f37ae895a6a93925f30e06a3648300\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+126            android:name="androidx.startup.InitializationProvider"
+126-->[androidx.emoji2:emoji2:1.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\c7f37ae895a6a93925f30e06a3648300\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+127            android:authorities="com.example.project_1.androidx-startup"
+127-->[androidx.emoji2:emoji2:1.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\c7f37ae895a6a93925f30e06a3648300\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+128            android:exported="false" >
+128-->[androidx.emoji2:emoji2:1.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\c7f37ae895a6a93925f30e06a3648300\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
 129            <meta-data
-129-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
-130                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-130-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+129-->[androidx.emoji2:emoji2:1.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\c7f37ae895a6a93925f30e06a3648300\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+130                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+130-->[androidx.emoji2:emoji2:1.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\c7f37ae895a6a93925f30e06a3648300\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
 131                android:value="androidx.startup" />
-131-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
-132        </provider>
-133
-134        <receiver
-134-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
-135            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-135-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
-136            android:directBootAware="false"
-136-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
-137            android:enabled="true"
-137-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
-138            android:exported="true"
-138-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
-139            android:permission="android.permission.DUMP" >
-139-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
-140            <intent-filter>
-140-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
-141                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-141-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
-141-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
-142            </intent-filter>
-143            <intent-filter>
-143-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
-144                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-144-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
-144-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
-145            </intent-filter>
+131-->[androidx.emoji2:emoji2:1.2.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\c7f37ae895a6a93925f30e06a3648300\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+132            <meta-data
+132-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7d6cd43fec6418af51f00bd88a5c012b\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+133                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+133-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7d6cd43fec6418af51f00bd88a5c012b\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+134                android:value="androidx.startup" />
+134-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7d6cd43fec6418af51f00bd88a5c012b\transformed\lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+135            <meta-data
+135-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+136                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+136-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+137                android:value="androidx.startup" />
+137-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+138        </provider>
+139
+140        <receiver
+140-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+141            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+141-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+142            android:directBootAware="false"
+142-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+143            android:enabled="true"
+143-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+144            android:exported="true"
+144-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+145            android:permission="android.permission.DUMP" >
+145-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
 146            <intent-filter>
-146-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
-147                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-147-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
-147-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+146-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+147                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+147-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+147-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
 148            </intent-filter>
 149            <intent-filter>
-149-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
-150                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-150-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
-150-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\7401dc15a5e5578a324a1136cbdeb7a3\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+149-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+150                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+150-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+150-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
 151            </intent-filter>
-152        </receiver>
-153    </application>
-154
-155</manifest>
+152            <intent-filter>
+152-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+153                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+153-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+153-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+154            </intent-filter>
+155            <intent-filter>
+155-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+156                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+156-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+156-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\oriole27\.gradle\caches\8.11.1\transforms\65ca51cb643e69cf1c606f53d3a52100\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+157            </intent-filter>
+158        </receiver>
+159    </application>
+160
+161</manifest>
