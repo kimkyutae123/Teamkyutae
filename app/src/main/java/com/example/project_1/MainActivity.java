@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -29,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -37,15 +39,28 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.maps.android.PolyUtil;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 // 메인화면 (구글 맵 위에 놓여질 버튼들 관련)
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback
@@ -59,6 +74,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private Button setDestinationButton;
     private Button confirmDestinationButton;
     private Button locationToggleButton;
+    private Button btnGPS;  // GPS 버튼 추가
     private Marker destinationMarker;
     private Marker currentLocationMarker;
     private Circle rangeCircle;
@@ -100,6 +116,17 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         initializeViews();
         setupSearchFeature();
         setupButtons();
+
+        // GPS 버튼 초기화 및 설정
+        btnGPS = findViewById(R.id.btnGPS);
+        btnGPS.setOnClickListener(v -> {
+            if (currentLocationMarker != null) {
+                LatLng currentLocation = currentLocationMarker.getPosition();
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 17));
+            } else {
+                Toast.makeText(this, "현재 위치를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initializeViews()
@@ -325,22 +352,61 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         // 목적지 설정 버튼 처리
-        setDestinationButton.setOnClickListener(v ->
-        {
-            isSettingDestination = true;
-            locationToggleButton.setVisibility(View.GONE);
-            confirmDestinationButton.setVisibility(View.VISIBLE);
-            
-            // 현재 지도 중심에 마커 추가
-            LatLng center = mMap.getCameraPosition().target;
+        setDestinationButton.setOnClickListener(v -> {
             if (destinationMarker != null) {
-                destinationMarker.remove();
+                // 목적지가 이미 설정되어 있는 경우, 설정 해제 옵션을 포함한 다이얼로그 표시
+                new AlertDialog.Builder(this)
+                    .setTitle("목적지 설정")
+                    .setMessage("목적지를 변경하시겠습니까?")
+                    .setPositiveButton("변경", (dialog, which) -> {
+                        isSettingDestination = true;
+                        locationToggleButton.setVisibility(View.GONE);
+                        confirmDestinationButton.setVisibility(View.VISIBLE);
+                        
+                        // 현재 지도 중심에 마커 추가
+                        LatLng center = mMap.getCameraPosition().target;
+                        destinationMarker.remove();
+                        destinationMarker = mMap.addMarker(new MarkerOptions()
+                            .position(center)
+                            .title("목적지")
+                            .draggable(true)
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                    })
+                    .setNegativeButton("해제", (dialog, which) -> {
+                        destinationMarker.remove();
+                        destinationMarker = null;
+                        destinationLatLng = null;
+                        
+                        // 폴리라인 제거
+                        for (Polyline polyline : polylines) {
+                            polyline.remove();
+                        }
+                        polylines.clear();
+                        
+                        // 범위 원 제거
+                        if (rangeCircle != null) {
+                            rangeCircle.remove();
+                            rangeCircle = null;
+                        }
+                        
+                        Toast.makeText(this, "목적지가 해제되었습니다.", Toast.LENGTH_SHORT).show();
+                    })
+                    .setNeutralButton("취소", null)
+                    .show();
+            } else {
+                // 목적지가 설정되어 있지 않은 경우, 기존 동작 수행
+                isSettingDestination = true;
+                locationToggleButton.setVisibility(View.GONE);
+                confirmDestinationButton.setVisibility(View.VISIBLE);
+                
+                // 현재 지도 중심에 마커 추가
+                LatLng center = mMap.getCameraPosition().target;
+                destinationMarker = mMap.addMarker(new MarkerOptions()
+                    .position(center)
+                    .title("목적지")
+                    .draggable(true)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
             }
-            destinationMarker = mMap.addMarker(new MarkerOptions()
-                .position(center)
-                .title("목적지")
-                .draggable(true)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         });
 
         // 목적지 확인 버튼 처리
@@ -434,14 +500,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
         // 현재 위치에서 목적지까지의 폴리라인 (항상 그리기)
         if (currentLocationMarker != null) {
-            List<LatLng> points = new ArrayList<>();
-            points.add(currentLocationMarker.getPosition());
-            points.add(destinationLatLng);
-            Polyline polyline = mMap.addPolyline(new PolylineOptions()
-                .addAll(points)
-                .color(Color.RED)
-                .width(5));
-            polylines.add(polyline);
+            drawRouteOnRoad(currentLocationMarker.getPosition(), destinationLatLng, Color.RED);
         }
 
         // 그룹에 속해있을 때만 그룹 멤버들의 폴리라인 그리기
@@ -464,18 +523,103 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     boolean hasAgreed = groupPrefs.getBoolean("agreed_" + uniqueNumber, false);
                     
                     if (isInvited && hasAgreed) {
-                        List<LatLng> points = new ArrayList<>();
-                        points.add(marker.getPosition());
-                        points.add(destinationLatLng);
-                        Polyline polyline = mMap.addPolyline(new PolylineOptions()
-                            .addAll(points)
-                            .color(Color.BLUE)
-                            .width(5));
-                        polylines.add(polyline);
+                        drawRouteOnRoad(marker.getPosition(), destinationLatLng, Color.BLUE);
                     }
                 }
             }
         }
+    }
+
+    private void drawRouteOnRoad(LatLng origin, LatLng destination, int color) {
+        String url = "https://maps.googleapis.com/maps/api/directions/json?"
+                + "origin=" + origin.latitude + "," + origin.longitude
+                + "&destination=" + destination.latitude + "," + destination.longitude
+                + "&mode=transit"
+                + "&key=AIzaSyCbJ3tx-fky5FdSrp1jCBqomyf1VSNagu0";
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(url).build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String json = response.body().string();
+                Log.d("DIRECTIONS_API", "API 호출 성공");
+                Log.d("DIRECTIONS_API", "응답 데이터: " + json);
+
+                try {
+                    JSONObject jsonObject = new JSONObject(json);
+                    String status = jsonObject.getString("status");
+                    Log.d("DIRECTIONS_STATUS", "API 상태: " + status);
+
+                    if (!"OK".equals(status)) {
+                        String errorMessage = jsonObject.optString("error_message", "알 수 없는 오류");
+                        Log.e("DIRECTIONS_ERROR", "API 오류: " + errorMessage);
+                        runOnUiThread(() -> {
+                            Toast.makeText(MainActivity.this,
+                                    "경로 검색 실패: " + errorMessage,
+                                    Toast.LENGTH_LONG).show();
+                        });
+                        return;
+                    }
+
+                    JSONArray routes = jsonObject.getJSONArray("routes");
+
+                    if (routes.length() > 0) {
+                        JSONObject route = routes.getJSONObject(0);
+                        JSONObject overviewPolyline = route.getJSONObject("overview_polyline");
+                        String points = overviewPolyline.getString("points");
+
+                        List<LatLng> decodedPath = PolyUtil.decode(points);
+                        Log.d("DIRECTIONS_PATH", "경로 포인트 개수: " + decodedPath.size());
+
+                        runOnUiThread(() -> {
+                            try {
+                                PolylineOptions polylineOptions = new PolylineOptions()
+                                        .addAll(decodedPath)
+                                        .width(12)
+                                        .color(color)
+                                        .geodesic(true);
+
+                                Polyline polyline = mMap.addPolyline(polylineOptions);
+                                polylines.add(polyline);
+
+                                Log.d("DIRECTIONS_DRAW", "경로 그리기 성공");
+                            } catch (Exception e) {
+                                Log.e("DIRECTIONS_ERROR", "경로 그리기 실패", e);
+                                Toast.makeText(MainActivity.this,
+                                        "경로를 그리는데 실패했습니다: " + e.getMessage(),
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } else {
+                        Log.e("DIRECTIONS_ERROR", "경로를 찾을 수 없습니다");
+                        runOnUiThread(() -> {
+                            Toast.makeText(MainActivity.this,
+                                    "경로를 찾을 수 없습니다",
+                                    Toast.LENGTH_LONG).show();
+                        });
+                    }
+                } catch (JSONException e) {
+                    Log.e("DIRECTIONS_ERROR", "JSON 파싱 오류", e);
+                    runOnUiThread(() -> {
+                        Toast.makeText(MainActivity.this,
+                                "경로 데이터 처리 중 오류가 발생했습니다",
+                                Toast.LENGTH_LONG).show();
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("DIRECTIONS_ERROR", "네트워크 오류", e);
+                runOnUiThread(() -> {
+                    Toast.makeText(MainActivity.this,
+                            "네트워크 오류가 발생했습니다: " + e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                });
+            }
+        });
     }
 
     @Override
