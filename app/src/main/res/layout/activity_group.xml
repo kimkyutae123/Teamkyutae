@@ -17,7 +17,7 @@
         android:layout_marginTop="64dp">
 
         <TextView
-            android:id="@+id/groupNameText"
+            android:id="@+id/noGroupText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="그룹 없음"
@@ -50,9 +50,10 @@
         android:visibility="gone">
 
         <TextView
+            android:id="@+id/groupNameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="kitti"
+            android:text=""
             android:textSize="32sp"
             android:textStyle="bold"
             android:letterSpacing="0.02"
@@ -105,6 +106,18 @@
             android:layout_marginBottom="24dp"
             android:fontFamily="sans-serif-light"/>
 
+        <TextView
+            android:id="@+id/groupMembersTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:background="#F5F5F5"
+            android:textSize="16sp"
+            android:minHeight="100dp"
+            android:gravity="top|start"
+            android:hint="그룹원 목록이 여기에 표시됩니다." />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,7 +126,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp">
 
-        <com.google.android.material.button.MaterialButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/leaveGroupButton"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
@@ -152,5 +165,6 @@
                 android:layout_marginStart="8dp" />
 
         </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>
