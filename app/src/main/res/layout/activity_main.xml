@@ -114,14 +114,13 @@
             android:visibility="gone"/>
     </LinearLayout>
 
-    <!-- 위치 공유 버튼 (우측 하단) -->
+    <!-- 위치 공유 버튼 (중앙 하단) -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/locationToggleButton"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
         android:text="위치 공유"
         app:icon="@drawable/ic_location"
         app:iconPadding="8dp"

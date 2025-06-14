@@ -1,9 +1,10 @@
 package com.example.project_1;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,12 +23,22 @@ public class GroupActivity extends AppCompatActivity
     private Button groupChatButton;
     private Button leaveGroupButton;
     private Button deleteGroupButton;
+    private DatabaseHelper dbHelper;
+    private int currentUserId;
+    private long currentGroupId = -1;
+    private boolean isLeader = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_group);  // activity_group.xml 사용
+        // 키보드가 자동으로 나타나지 않도록 설정
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        setContentView(R.layout.activity_group);
+
+        dbHelper = new DatabaseHelper(this);
+        currentUserId = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+            .getInt("user_id", -1);
 
         initializeViews();
         checkGroupStatus();
@@ -49,11 +60,38 @@ public class GroupActivity extends AppCompatActivity
 
     private void checkGroupStatus()
     {
-        SharedPreferences prefs = getSharedPreferences("GroupPrefs", MODE_PRIVATE);
-        boolean hasGroup = prefs.getBoolean("has_group", false);
-        String groupName = prefs.getString("group_name", "");
-        boolean isLeader = prefs.getBoolean("is_leader", false);
-        updateUI(hasGroup, groupName, isLeader);
+        // 사용자가 속한 그룹 찾기
+        Cursor groupsCursor = dbHelper.getAllGroups();
+        if (groupsCursor != null) {
+            while (groupsCursor.moveToNext()) {
+                long groupId = groupsCursor.getLong(groupsCursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_GROUP_ID));
+                int leaderId = groupsCursor.getInt(groupsCursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_GROUP_LEADER_ID));
+                
+                // 해당 그룹의 멤버인지 확인
+                Cursor membersCursor = dbHelper.getGroupMembers(groupId);
+                if (membersCursor != null) {
+                    while (membersCursor.moveToNext()) {
+                        int memberId = membersCursor.getInt(membersCursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_MEMBER_USER_ID));
+                        if (memberId == currentUserId) {
+                            currentGroupId = groupId;
+                            isLeader = (leaderId == currentUserId);
+                            String groupName = groupsCursor.getString(groupsCursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_GROUP_NAME));
+                            updateUI(true, groupName, isLeader);
+                            membersCursor.close();
+                            groupsCursor.close();
+                            return;
+                        }
+                    }
+                    membersCursor.close();
+                }
+            }
+            groupsCursor.close();
+        }
+        
+        // 그룹이 없는 경우
+        currentGroupId = -1;
+        isLeader = false;
+        updateUI(false, "", false);
     }
 
     private void setupButtonListeners()
@@ -75,19 +113,13 @@ public class GroupActivity extends AppCompatActivity
                 .setMessage("정말로 그룹을 나가시겠습니까?")
                 .setPositiveButton("예", (dialog, which) ->
                 {
-                    SharedPreferences prefs = getSharedPreferences("GroupPrefs", MODE_PRIVATE);
-                    boolean isLeader = prefs.getBoolean("is_leader", false);
-                    
                     if (isLeader)
                     {
                         Toast.makeText(this, "방장은 그룹을 나갈 수 없습니다. 그룹을 삭제해주세요.", Toast.LENGTH_SHORT).show();
                     }
-                    else
+                    else if (currentGroupId != -1)
                     {
-                        SharedPreferences.Editor editor = prefs.edit();
-                        editor.putBoolean("has_group", false);
-                        editor.remove("group_name");
-                        editor.apply();
+                        // 멤버 삭제 로직 구현 필요
                         updateUI(false, "", false);
                         Toast.makeText(this, "그룹을 나갔습니다.", Toast.LENGTH_SHORT).show();
                     }
@@ -106,14 +138,14 @@ public class GroupActivity extends AppCompatActivity
                 .setMessage("정말로 그룹을 삭제하시겠습니까?")
                 .setPositiveButton("예", (dialog, which) ->
                 {
-                    SharedPreferences prefs = getSharedPreferences("GroupPrefs", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putBoolean("has_group", false);
-                    editor.remove("group_name");
-                    editor.remove("is_leader");
-                    editor.apply();
-                    updateUI(false, "", false);
-                    Toast.makeText(this, "그룹이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                    if (currentGroupId != -1 && isLeader)
+                    {
+                        // 그룹 삭제 로직 구현 필요
+                        currentGroupId = -1;
+                        isLeader = false;
+                        updateUI(false, "", false);
+                        Toast.makeText(this, "그룹이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                    }
                 })
                 .setNegativeButton("아니오", null)
                 .show();
@@ -127,16 +159,22 @@ public class GroupActivity extends AppCompatActivity
         checkGroupStatus();
     }
 
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        if (dbHelper != null) {
+            dbHelper.close();
+        }
+    }
+
     private void updateUI(boolean hasGroup, String groupName, boolean isLeader)
     {
         if (hasGroup)
         {
             noGroupLayout.setVisibility(View.GONE);
             hasGroupLayout.setVisibility(View.VISIBLE);
-            TextView groupNameTextView = findViewById(R.id.groupNameText);
-            if (groupNameTextView != null) {
-                groupNameTextView.setText(groupName);
-            }
+            groupNameText.setText(groupName);
             deleteGroupButton.setVisibility(isLeader ? View.VISIBLE : View.GONE);
         }
         else
