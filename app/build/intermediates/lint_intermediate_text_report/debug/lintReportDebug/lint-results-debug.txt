@@ -1,0 +1,504 @@
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\MainActivity.java:353: Warning: Using this method may override behaviors set by the Maps SDK for Android Utility Library. If you are not using clustering, GeoJson, or KML, you can safely suppress this warning, otherwise, refer to the utility library's migration guide: https://bit.ly/3kTpQmY [PotentialBehaviorOverride from com.google.maps.android.lint.checks.mapsutils]
+        mMap.setOnMarkerClickListener(marker -> {
+        ^
+
+   Explanation for issues of type "PotentialBehaviorOverride":
+   This lint warns for potential behavior override while using clustering,
+   GeoJson, or
+   KML since these features use this method in their internal implementations.
+   As such,
+   to achieve the desired behavior requires using an alternative API.
+
+   For example, if you are using the clustering feature and want to set a
+   custom info
+   window, rather than invoking GoogleMap#setInfoWindowAdapter(...), you would
+   need
+   to set the custom info window on the MarkerManager.Collection object
+   instead.
+
+   e.g.
+
+   ClusterManager clusterManager = // ...
+   MarkerManager.Collection collection =
+   clusterManager.getMarkerCollection();
+   collection.setInfoWindowAdapter(...);
+
+   Refer to the migration guide for more info: https://bit.ly/3kTpQmY
+
+   Vendor: Google (com.google.maps.android.lint.checks.mapsutils)
+   Identifier: com.google.maps.android.lint.checks.mapsutils
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\SplashActivity.java:10: Warning: The application should not provide its own launch screen [CustomSplashScreen]
+public class SplashActivity extends AppCompatActivity
+             ~~~~~~~~~~~~~~
+
+   Explanation for issues of type "CustomSplashScreen":
+   Starting in Android 12 (API 31+), the application's Launch Screen is
+   provided by the system and the application should not create its own,
+   otherwise the user will see two splashscreens. Please check the
+   SplashScreen class to check how the Splash Screen can be controlled and
+   customized.
+
+   https://developer.android.com/guide/topics/ui/splash-screen
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml:9: Warning: Replace the <fragment> tag with FragmentContainerView. [FragmentTagUsage from androidx.fragment]
+    <fragment
+     ~~~~~~~~
+
+   Explanation for issues of type "FragmentTagUsage":
+   FragmentContainerView replaces the <fragment> tag as the preferred         
+          way of adding fragments via XML. Unlike the <fragment> tag,
+   FragmentContainerView                 uses a normal FragmentTransaction
+   under the hood to add the initial fragment,                 allowing
+   further FragmentTransaction operations on the FragmentContainerView        
+           and providing a consistent timing for lifecycle events.
+
+   https://developer.android.com/reference/androidx/fragment/app/FragmentContainerView.html
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.fragment
+   Feedback: https://issuetracker.google.com/issues/new?component=460964
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\AndroidManifest.xml:25: Warning: Redundant label can be removed [RedundantLabel]
+            android:label="@string/app_name"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "RedundantLabel":
+   When an activity does not have a label attribute, it will use the one from
+   the application tag. Since the application has already specified the same
+   label, the label on this activity can be omitted.
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\gradle\libs.versions.toml:2: Warning: A newer version of com.android.application than 8.9.1 is available: 8.10.1. (There is also a newer version of 8.9.𝑥 available, if upgrading to 8.10.1 is difficult: 8.9.3) [AndroidGradlePluginVersion]
+agp = "8.9.1"
+      ~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\gradle\libs.versions.toml:2: Warning: A newer version of com.android.application than 8.9.1 is available: 8.10.1. (There is also a newer version of 8.9.𝑥 available, if upgrading to 8.10.1 is difficult: 8.9.3) [AndroidGradlePluginVersion]
+agp = "8.9.1"
+      ~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\gradle\libs.versions.toml:2: Warning: A newer version of com.android.application than 8.9.1 is available: 8.10.1. (There is also a newer version of 8.9.𝑥 available, if upgrading to 8.10.1 is difficult: 8.9.3) [AndroidGradlePluginVersion]
+agp = "8.9.1"
+      ~~~~~~~
+
+   Explanation for issues of type "AndroidGradlePluginVersion":
+   This detector looks for usage of the Android Gradle Plugin where the
+   version you are using is not the current stable release. Using older
+   versions is fine, and there are cases where you deliberately want to stick
+   with an older version. However, you may simply not be aware that a more
+   recent version is available, and that is what this lint check helps find.
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts:43: Warning: A newer version of com.squareup.okhttp3:okhttp than 4.9.3 is available: 4.12.0 [GradleDependency]
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts:44: Warning: A newer version of com.google.maps.android:android-maps-utils than 2.2.5 is available: 3.8.0 [GradleDependency]
+    implementation("com.google.maps.android:android-maps-utils:2.2.5")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\gradle\libs.versions.toml:6: Warning: A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.7.1 [GradleDependency]
+appcompat = "1.7.0"
+            ~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\gradle\libs.versions.toml:6: Warning: A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.7.1 [GradleDependency]
+appcompat = "1.7.0"
+            ~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\gradle\libs.versions.toml:6: Warning: A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.7.1 [GradleDependency]
+appcompat = "1.7.0"
+            ~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\strings.xml:2: Warning: Did you mean "Project_!" instead of "Project_1"? [Typos]
+    <string name="app_name">Project_1</string>
+                            ^
+
+   Explanation for issues of type "Typos":
+   This check looks through the string definitions, and if it finds any words
+   that look like likely misspellings, they are flagged.
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\SearchSuggestionAdapter.java:53: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        notifyDataSetChanged();
+        ~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "NotifyDataSetChanged":
+   The RecyclerView adapter's onNotifyDataSetChanged method does not specify
+   what about the data set has changed, forcing any observers to assume that
+   all existing items and structure may no longer be valid. `LayoutManager`s
+   will be forced to fully rebind and relayout all visible views.
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\drawable\ic_group.xml:3: Warning: Very long vector path (953 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector. [VectorPath]
+    <path android:fillColor="@android:color/black" android:pathData="M408,528L366,486Q374,475 377,463.5Q380,452 380,440Q380,428 377,416.5Q374,405 366,395L408,352Q424,371 432,394Q440,417 440,440Q440,463 432,485.5Q424,508 408,528ZM493,614L450,571Q475,543 487.5,509Q500,475 500,440Q500,405 487.5,371.5Q475,338 450,310L493,267Q527,304 543.5,348.5Q560,393 560,440Q560,487 543.5,532Q527,577 493,614ZM200,480Q167,480 143.5,456.5Q120,433 120,400Q120,367 143.5,343.5Q167,320 200,320Q233,320 256.5,343.5Q280,367 280,400Q280,433 256.5,456.5Q233,480 200,480ZM40,640L40,617Q40,593 53,573Q66,553 89,543Q115,532 142.5,526Q170,520 200,520Q230,520 257.5,526Q285,532 311,543Q334,553 347,573Q360,593 360,617L360,640L40,640ZM760,480Q727,480 703.5,456.5Q680,433 680,400Q680,367 703.5,343.5Q727,320 760,320Q793,320 816.5,343.5Q840,367 840,400Q840,433 816.5,456.5Q793,480 760,480ZM600,640L600,617Q600,593 613,573Q626,553 649,543Q675,532 702.5,526Q730,520 760,520Q790,520 817.5,526Q845,532 871,543Q894,553 907,573Q920,593 920,617L920,640L600,640Z"/>
+                                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "VectorPath":
+   Using long vector paths is bad for performance. There are several ways to
+   make the pathData shorter:
+   * Using less precision
+   * Removing some minor details
+   * Using the Android Studio vector conversion tool
+   * Rasterizing the image (converting to PNG)
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml:2: Warning: This <FrameLayout> can be replaced with a <merge> tag [MergeRootFrame]
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+^
+
+   Explanation for issues of type "MergeRootFrame":
+   If a <FrameLayout> is the root of a layout and does not provide background
+   or padding etc, it can often be replaced with a <merge> tag which is
+   slightly more efficient. Note that this depends on context, so make sure
+   you understand how the <merge> tag works before proceeding.
+
+   https://android-developers.googleblog.com/2009/03/android-layout-tricks-3-optimize-by.html
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml:6: Warning: Possible overdraw: Root element paints background #FAFAFA with a theme that also paints a background (inferred theme is @style/Theme.Project_1) [Overdraw]
+    android:background="#FAFAFA"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupagree.xml:5: Warning: Possible overdraw: Root element paints background @color/background with a theme that also paints a background (inferred theme is @style/Theme.Project_1) [Overdraw]
+    android:background="@color/background"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml:7: Warning: Possible overdraw: Root element paints background @color/background with a theme that also paints a background (inferred theme is @style/Theme.Project_1) [Overdraw]
+    android:background="@color/background">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_makinggroup.xml:7: Warning: Possible overdraw: Root element paints background @color/background with a theme that also paints a background (inferred theme is @style/Theme.Project_1) [Overdraw]
+    android:background="@color/background">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_memberinvite.xml:6: Warning: Possible overdraw: Root element paints background @color/background with a theme that also paints a background (inferred theme is @style/Theme.Project_1) [Overdraw]
+    android:background="@color/background">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml:5: Warning: Possible overdraw: Root element paints background @color/background with a theme that also paints a background (inferred theme is @style/Theme.Project_1) [Overdraw]
+    android:background="@color/background"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_splash.xml:5: Warning: Possible overdraw: Root element paints background #ffffff with a theme that also paints a background (inferred theme is @style/Theme.Project_1) [Overdraw]
+    android:background="#ffffff">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\item_search_suggestion.xml:7: Warning: Possible overdraw: Root element paints background ?attr/selectableItemBackground with a theme that also paints a background (inferred theme is @style/Theme.Project_1) [Overdraw]
+    android:background="?attr/selectableItemBackground">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "Overdraw":
+   If you set a background drawable on a root view, then you should use a
+   custom theme where the theme background is null. Otherwise, the theme
+   background will be painted first, only to have your custom background
+   completely cover it; this is called "overdraw".
+
+   NOTE: This detector relies on figuring out which layouts are associated
+   with which activities based on scanning the Java code, and it's currently
+   doing that using an inexact pattern matching algorithm. Therefore, it can
+   incorrectly conclude which activity the layout is associated with and then
+   wrongly complain that a background-theme is hidden.
+
+   If you want your custom background on multiple pages, then you should
+   consider making a custom theme with your custom background and just using
+   that theme instead of a root element background.
+
+   Of course it's possible that your custom drawable is translucent and you
+   want it to be mixed with the background. However, you will get better
+   performance if you pre-mix the background with your drawable and use that
+   resulting image or color as a custom theme background instead.
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml:5: Warning: The resource R.color.primary appears to be unused [UnusedResources]
+    <color name="primary">#2196F3</color>
+           ~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml:6: Warning: The resource R.color.primary_dark appears to be unused [UnusedResources]
+    <color name="primary_dark">#1976D2</color>
+           ~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml:7: Warning: The resource R.color.primary_light appears to be unused [UnusedResources]
+    <color name="primary_light">#BBDEFB</color>
+           ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml:8: Warning: The resource R.color.accent appears to be unused [UnusedResources]
+    <color name="accent">#FF4081</color>
+           ~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml:10: Warning: The resource R.color.secondary_text appears to be unused [UnusedResources]
+    <color name="secondary_text">#757575</color>
+           ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml:14: Warning: The resource R.color.primary_purple appears to be unused [UnusedResources]
+    <color name="primary_purple">#7C4DFF</color>
+           ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml:15: Warning: The resource R.color.primary_gradient_start appears to be unused [UnusedResources]
+    <color name="primary_gradient_start">#7C4DFF</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml:16: Warning: The resource R.color.primary_gradient_end appears to be unused [UnusedResources]
+    <color name="primary_gradient_end">#B388FF</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\colors.xml:17: Warning: The resource R.color.button_text appears to be unused [UnusedResources]
+    <color name="button_text">#FFFFFF</color>
+           ~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\dialog_agree.xml:2: Warning: The resource R.layout.dialog_agree appears to be unused [UnusedResources]
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\dialog_consent.xml:2: Warning: The resource R.layout.dialog_consent appears to be unused [UnusedResources]
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\drawable\gradient_background.xml:2: Warning: The resource R.drawable.gradient_background appears to be unused [UnusedResources]
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+^
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\drawable\rounded_black_button.xml:2: Warning: The resource R.drawable.rounded_black_button appears to be unused [UnusedResources]
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+^
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\values\styles.xml:5: Warning: The resource R.style.TransparentButton appears to be unused [UnusedResources]
+    <style name="TransparentButton">
+           ~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_memberinvite.xml:8: Warning: This LinearLayout layout or its RelativeLayout parent is unnecessary; transfer the background attribute to the other view [UselessParent]
+    <LinearLayout
+     ~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml:8: Warning: This LinearLayout layout or its RelativeLayout parent is unnecessary; transfer the background attribute to the other view [UselessParent]
+    <LinearLayout
+     ~~~~~~~~~~~~
+
+   Explanation for issues of type "UselessParent":
+   A layout with children that has no siblings, is not a scrollview or a root
+   layout, and does not have a background, can be removed and have its
+   children moved directly into the parent for a flatter and more efficient
+   layout hierarchy.
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml:86: Warning: This namespace declaration is redundant [RedundantNamespace]
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\drawable\gradient_background.xml:3: Warning: This namespace declaration is redundant [RedundantNamespace]
+    <gradient xmlns:android="http://schemas.android.com/apk/res/android"
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\drawable\rounded_black_button.xml:3: Warning: This namespace declaration is redundant [RedundantNamespace]
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "RedundantNamespace":
+   In Android XML documents, only specify the namespace on the root/document
+   element. Namespace declarations elsewhere in the document are typically
+   accidental leftovers from copy/pasting XML from other files or
+   documentation.
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml:57: Warning: Missing autofillHints attribute [Autofill]
+            <EditText
+             ~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml:30: Warning: Missing autofillHints attribute [Autofill]
+            <EditText
+             ~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_makinggroup.xml:10: Warning: Missing autofillHints attribute [Autofill]
+    <EditText
+     ~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_memberinvite.xml:24: Warning: Missing autofillHints attribute [Autofill]
+        <EditText
+         ~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml:32: Warning: Missing autofillHints attribute [Autofill]
+        <EditText
+         ~~~~~~~~
+
+   Explanation for issues of type "Autofill":
+   Specify an autofillHints attribute when targeting SDK version 26 or higher
+   or explicitly specify that the view is not important for autofill. Your app
+   can help an autofill service classify the data correctly by providing the
+   meaning of each view that could be autofillable, such as views representing
+   usernames, passwords, credit card fields, email addresses, etc.
+
+   The hints can have any value, but it is recommended to use predefined
+   values like 'username' for a username or 'creditCardNumber' for a credit
+   card number. For a list of all predefined autofill hint constants, see the
+   AUTOFILL_HINT_ constants in the View reference at
+   https://developer.android.com/reference/android/view/View.html.
+
+   You can mark a view unimportant for autofill by specifying an
+   importantForAutofill attribute on that view or a parent view. See
+   https://developer.android.com/reference/android/view/View.html#setImportant
+   ForAutofill(int).
+
+   https://developer.android.com/guide/topics/text/autofill.html
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts:42: Warning: Use the existing version catalog reference (libs.material) instead [UseTomlInstead]
+    implementation("com.google.android.material:material:1.12.0")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts:43: Warning: Use version catalog instead [UseTomlInstead]
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\build.gradle.kts:44: Warning: Use version catalog instead [UseTomlInstead]
+    implementation("com.google.maps.android:android-maps-utils:2.2.5")
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseTomlInstead":
+   If your project is using a libs.versions.toml file, you should place all
+   Gradle dependencies in the TOML file. This lint check looks for version
+   declarations outside of the TOML file and suggests moving them (and in the
+   IDE, provides a quickfix to performing the operation automatically).
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\MyPageActivity.java:48: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+            userNameTextView.setText("이름 : " + userName);
+                                     ~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\MyPageActivity.java:49: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+            userIdTextView.setText("아이디 : " + userId);
+                                   ~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\MyPageActivity.java:88: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                userNameTextView.setText("이름 : " + name);
+                                         ~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\MyPageActivity.java:89: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                userIdTextView.setText("아이디 : " + userId);
+                                       ~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\java\com\example\project_1\MyPageActivity.java:125: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                userNameTextView.setText("이름 : " + newName);
+                                         ~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SetTextI18n":
+   When calling TextView#setText
+   * Never call Number#toString() to format numbers; it will not handle
+   fraction separators and locale-specific digits properly. Consider using
+   String#format with proper format specifications (%d or %f) instead.
+   * Do not pass a string literal (e.g. "Hello") to display text. Hardcoded
+   text can not be properly translated to other languages. Consider using
+   Android resource strings instead.
+   * Do not build messages by concatenating text chunks. Such messages can not
+   be properly translated.
+
+   https://developer.android.com/guide/topics/resources/localization.html
+
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml:23: Warning: Hardcoded string "그룹 없음", should use @string resource [HardcodedText]
+            android:text="그룹 없음"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml:34: Warning: Hardcoded string "그룹 생성", should use @string resource [HardcodedText]
+            android:text="그룹 생성"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml:55: Warning: Hardcoded string "kitti", should use @string resource [HardcodedText]
+            android:text="kitti"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml:67: Warning: Hardcoded string "멤버 초대", should use @string resource [HardcodedText]
+            android:text="멤버 초대"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml:82: Warning: Hardcoded string "그룹원 동의", should use @string resource [HardcodedText]
+            android:text="그룹원 동의"
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml:97: Warning: Hardcoded string "그룹 채팅", should use @string resource [HardcodedText]
+            android:text="그룹 채팅"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml:121: Warning: Hardcoded string "나가기", should use @string resource [HardcodedText]
+                android:text="나가기"
+                ~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_group.xml:140: Warning: Hardcoded string "삭제", should use @string resource [HardcodedText]
+                android:text="삭제"
+                ~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupagree.xml:22: Warning: Hardcoded string "동의하기", should use @string resource [HardcodedText]
+        android:text="동의하기"
+        ~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupagree_list.xml:11: Warning: Hardcoded string "그룹원 동의 현황", should use @string resource [HardcodedText]
+        android:text="그룹원 동의 현황"
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml:28: Warning: Hardcoded string "메뉴", should use @string resource [HardcodedText]
+                android:contentDescription="메뉴"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml:36: Warning: Hardcoded string "그룹 채팅", should use @string resource [HardcodedText]
+                android:text="그룹 채팅"
+                ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml:62: Warning: Hardcoded string "메시지를 입력하세요", should use @string resource [HardcodedText]
+                android:hint="메시지를 입력하세요"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml:80: Warning: Hardcoded string "메시지 전송", should use @string resource [HardcodedText]
+                android:contentDescription="메시지 전송"/>
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_groupchat.xml:105: Warning: Hardcoded string "그룹원 리스트", should use @string resource [HardcodedText]
+                android:text="그룹원 리스트"
+                ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml:35: Warning: Hardcoded string "검색", should use @string resource [HardcodedText]
+                android:hint="검색"
+                ~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml:45: Warning: Hardcoded string "검색", should use @string resource [HardcodedText]
+                android:text="검색"
+                ~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml:68: Warning: Hardcoded string "마이페이지", should use @string resource [HardcodedText]
+                android:text="마이페이지"
+                ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml:82: Warning: Hardcoded string "그룹", should use @string resource [HardcodedText]
+                android:text="그룹"
+                ~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_main.xml:97: Warning: Hardcoded string "위치 공유", should use @string resource [HardcodedText]
+                android:text="위치 공유"
+                ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_makinggroup.xml:15: Warning: Hardcoded string "그룹 이름을 입력하세요", should use @string resource [HardcodedText]
+        android:hint="그룹 이름을 입력하세요"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_makinggroup.xml:25: Warning: Hardcoded string "멤버 추가", should use @string resource [HardcodedText]
+        android:text="멤버 추가"
+        ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_makinggroup.xml:35: Warning: Hardcoded string "멤버 목록", should use @string resource [HardcodedText]
+        android:text="멤버 목록"
+        ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_makinggroup.xml:51: Warning: Hardcoded string "그룹 생성", should use @string resource [HardcodedText]
+        android:text="그룹 생성"
+        ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_memberinvite.xml:20: Warning: Hardcoded string "멤버 초대하기", should use @string resource [HardcodedText]
+            android:text="멤버 초대하기"
+            ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_memberinvite.xml:29: Warning: Hardcoded string "멤버 ID 또는 이메일 입력", should use @string resource [HardcodedText]
+            android:hint="멤버 ID 또는 이메일 입력"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_memberinvite.xml:38: Warning: Hardcoded string "초대 보내기", should use @string resource [HardcodedText]
+            android:text="초대 보내기"
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml:20: Warning: Hardcoded string "이름 : ", should use @string resource [HardcodedText]
+            android:text="이름 : "
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml:28: Warning: Hardcoded string "아이디 : ", should use @string resource [HardcodedText]
+            android:text="아이디 : "
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml:37: Warning: Hardcoded string "이름을 입력하세요", should use @string resource [HardcodedText]
+            android:hint="이름을 입력하세요"
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml:46: Warning: Hardcoded string "저장", should use @string resource [HardcodedText]
+            android:text="저장"
+            ~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml:55: Warning: Hardcoded string "이름 수정", should use @string resource [HardcodedText]
+            android:text="이름 수정"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_mypage.xml:64: Warning: Hardcoded string "수정 확인", should use @string resource [HardcodedText]
+            android:text="수정 확인"
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\activity_splash.xml:11: Warning: Hardcoded string "Teamkyutae", should use @string resource [HardcodedText]
+        android:text="Teamkyutae"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\dialog_agree.xml:12: Warning: Hardcoded string "위치 공유에 동의합니다", should use @string resource [HardcodedText]
+        android:text="위치 공유에 동의합니다" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\dialog_consent.xml:12: Warning: Hardcoded string "위치 공유에 동의합니다", should use @string resource [HardcodedText]
+        android:text="위치 공유에 동의합니다" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\item_chat_left.xml:12: Warning: Hardcoded string "상대 메시지", should use @string resource [HardcodedText]
+        android:text="상대 메시지"
+        ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\item_chat_right.xml:13: Warning: Hardcoded string "내 메시지", should use @string resource [HardcodedText]
+        android:text="내 메시지"
+        ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\item_group_member.xml:14: Warning: Hardcoded string "이름", should use @string resource [HardcodedText]
+        android:text="이름"
+        ~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\layout\item_group_member.xml:21: Warning: Hardcoded string "동의 여부", should use @string resource [HardcodedText]
+        android:text="동의 여부"
+        ~~~~~~~~~~~~~~~~~~~~
+C:\Users\oriole27\Documents\202107030\3_android\Teamkyutae\app\src\main\res\menu\menu_main.xml:6: Warning: Hardcoded string "설정", should use @string resource [HardcodedText]
+        android:title="설정"
+        ~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "HardcodedText":
+   Hardcoding text attributes directly in layout files is bad for several
+   reasons:
+
+   * When creating configuration variations (for example for landscape or
+   portrait) you have to repeat the actual text (and keep it up to date when
+   making changes)
+
+   * The application cannot be translated to other languages by just adding
+   new translations for existing string resources.
+
+   There are quickfixes to automatically extract this hardcoded string into a
+   resource lookup.
+
+0 errors, 97 warnings

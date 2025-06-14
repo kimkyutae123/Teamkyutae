@@ -1,0 +1,1311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.9.1" type="incidents">
+
+    <incident
+        id="PotentialBehaviorOverride"
+        severity="warning"
+        message="Using this method may override behaviors set by the Maps SDK for Android Utility Library. If you are not using clustering, GeoJson, or KML, you can safely suppress this warning, otherwise, refer to the utility library&apos;s migration guide: https://bit.ly/3kTpQmY">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/project_1/MainActivity.java"
+            line="353"
+            column="9"
+            startOffset="11959"
+            endLine="356"
+            endColumn="11"
+            endOffset="12073"/>
+    </incident>
+
+    <incident
+        id="FragmentTagUsage"
+        severity="warning"
+        message="Replace the &lt;fragment> tag with FragmentContainerView.">
+        <fix-replace
+            description="Replace with androidx.fragment.app.FragmentContainerView"
+            oldString="fragment"
+            replacement="androidx.fragment.app.FragmentContainerView"
+            priority="0"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="9"
+            column="6"
+            startOffset="314"
+            endLine="9"
+            endColumn="14"
+            endOffset="322"/>
+    </incident>
+
+    <incident
+        id="RedundantLabel"
+        severity="warning"
+        message="Redundant label can be removed">
+        <fix-attribute
+            description="Delete label"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="label"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="25"
+            column="13"
+            startOffset="990"
+            endLine="25"
+            endColumn="45"
+            endOffset="1022"/>
+    </incident>
+
+    <incident
+        id="AndroidGradlePluginVersion"
+        severity="warning"
+        message="A newer version of com.android.application than 8.9.1 is available: 8.10.1. (There is also a newer version of 8.9.𝑥 available, if upgrading to 8.10.1 is difficult: 8.9.3)">
+        <fix-alternatives>
+            <fix-replace
+                description="Change to 8.10.1"
+                family="Update versions"
+                oldString="8.9.1"
+                replacement="8.10.1"
+                priority="0"/>
+            <fix-replace
+                description="Change to 8.9.3"
+                family="Update versions"
+                robot="true"
+                independent="true"
+                oldString="8.9.1"
+                replacement="8.9.3"
+                priority="0"/>
+        </fix-alternatives>
+        <location
+            file="$HOME/Documents/202107030/3_android/Teamkyutae/gradle/libs.versions.toml"
+            line="2"
+            column="7"
+            startOffset="18"
+            endLine="2"
+            endColumn="14"
+            endOffset="25"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.squareup.okhttp3:okhttp than 4.9.3 is available: 4.12.0">
+        <fix-replace
+            description="Change to 4.12.0"
+            family="Update versions"
+            oldString="4.9.3"
+            replacement="4.12.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="43"
+            column="20"
+            startOffset="1089"
+            endLine="43"
+            endColumn="55"
+            endOffset="1124"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of com.google.maps.android:android-maps-utils than 2.2.5 is available: 3.8.0">
+        <fix-replace
+            description="Change to 3.8.0"
+            family="Update versions"
+            oldString="2.2.5"
+            replacement="3.8.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="44"
+            column="20"
+            startOffset="1145"
+            endLine="44"
+            endColumn="70"
+            endOffset="1195"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.7.1">
+        <fix-replace
+            description="Change to 1.7.1"
+            family="Update versions"
+            oldString="1.7.0"
+            replacement="1.7.1"
+            priority="0"/>
+        <location
+            file="$HOME/Documents/202107030/3_android/Teamkyutae/gradle/libs.versions.toml"
+            line="6"
+            column="13"
+            startOffset="105"
+            endLine="6"
+            endColumn="20"
+            endOffset="112"/>
+    </incident>
+
+    <incident
+        id="Typos"
+        severity="warning"
+        message="Did you mean &quot;Project_!&quot; instead of &quot;Project_1&quot;?">
+        <fix-replace
+            description="Replace with &quot;Project_!&quot;"
+            oldString="Project_1"
+            replacement="Project_!"
+            priority="0">
+            <range
+                file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+                startOffset="41"
+                endOffset="50"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="2"
+            column="29"
+            startOffset="41"
+            endLine="2"
+            endColumn="29"
+            endOffset="49"/>
+    </incident>
+
+    <incident
+        id="NotifyDataSetChanged"
+        severity="warning"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/project_1/SearchSuggestionAdapter.java"
+            line="53"
+            column="9"
+            startOffset="1617"
+            endLine="53"
+            endColumn="31"
+            endOffset="1639"/>
+    </incident>
+
+    <incident
+        id="VectorPath"
+        severity="warning"
+        message="Very long vector path (953 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/ic_group.xml"
+            line="3"
+            column="70"
+            startOffset="269"
+            endLine="3"
+            endColumn="1023"
+            endOffset="1222"/>
+    </incident>
+
+    <incident
+        id="MergeRootFrame"
+        severity="warning"
+        message="This `&lt;FrameLayout>` can be replaced with a `&lt;merge>` tag">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="2"
+            column="1"
+            startOffset="40"
+            endLine="116"
+            endColumn="15"
+            endOffset="4633"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `#FAFAFA` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_group.xml"
+            line="6"
+            column="5"
+            startOffset="254"
+            endLine="6"
+            endColumn="33"
+            endOffset="282"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/background` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_groupagree.xml"
+            line="5"
+            column="5"
+            startOffset="203"
+            endLine="5"
+            endColumn="43"
+            endOffset="241"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/background` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_groupchat.xml"
+            line="7"
+            column="5"
+            startOffset="323"
+            endLine="7"
+            endColumn="43"
+            endOffset="361"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/background` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_makinggroup.xml"
+            line="7"
+            column="5"
+            startOffset="265"
+            endLine="7"
+            endColumn="43"
+            endOffset="303"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/background` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_memberinvite.xml"
+            line="6"
+            column="5"
+            startOffset="231"
+            endLine="6"
+            endColumn="43"
+            endOffset="269"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/background` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_mypage.xml"
+            line="5"
+            column="5"
+            startOffset="203"
+            endLine="5"
+            endColumn="43"
+            endOffset="241"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `#ffffff` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_splash.xml"
+            line="5"
+            column="5"
+            startOffset="200"
+            endLine="5"
+            endColumn="33"
+            endOffset="228"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `?attr/selectableItemBackground` with a theme that also paints a background (inferred theme is `@style/Theme.Project_1`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_search_suggestion.xml"
+            line="7"
+            column="5"
+            startOffset="265"
+            endLine="7"
+            endColumn="56"
+            endOffset="316"/>
+    </incident>
+
+    <incident
+        id="UselessParent"
+        severity="warning"
+        message="This `LinearLayout` layout or its `RelativeLayout` parent is unnecessary; transfer the `background` attribute to the other view">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_memberinvite.xml"
+            line="8"
+            column="6"
+            startOffset="279"
+            endLine="8"
+            endColumn="18"
+            endOffset="291"/>
+    </incident>
+
+    <incident
+        id="UselessParent"
+        severity="warning"
+        message="This `LinearLayout` layout or its `RelativeLayout` parent is unnecessary; transfer the `background` attribute to the other view">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_mypage.xml"
+            line="8"
+            column="6"
+            startOffset="279"
+            endLine="8"
+            endColumn="18"
+            endOffset="291"/>
+    </incident>
+
+    <incident
+        id="RedundantNamespace"
+        severity="warning"
+        message="This namespace declaration is redundant">
+        <fix-attribute
+            description="Delete namespace"
+            attribute="xmlns:app"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_groupchat.xml"
+            line="86"
+            column="9"
+            startOffset="3290"
+            endLine="86"
+            endColumn="60"
+            endOffset="3341"/>
+    </incident>
+
+    <incident
+        id="RedundantNamespace"
+        severity="warning"
+        message="This namespace declaration is redundant">
+        <fix-attribute
+            description="Delete namespace"
+            attribute="xmlns:android"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/gradient_background.xml"
+            line="3"
+            column="15"
+            startOffset="125"
+            endLine="3"
+            endColumn="73"
+            endOffset="183"/>
+    </incident>
+
+    <incident
+        id="RedundantNamespace"
+        severity="warning"
+        message="This namespace declaration is redundant">
+        <fix-attribute
+            description="Delete namespace"
+            attribute="xmlns:android"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/rounded_black_button.xml"
+            line="3"
+            column="12"
+            startOffset="122"
+            endLine="3"
+            endColumn="70"
+            endOffset="180"/>
+    </incident>
+
+    <incident
+        id="Autofill"
+        severity="warning"
+        message="Missing `autofillHints` attribute">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set autofillHints"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="autofillHints"
+                value=""
+                point="0"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAutofill=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAutofill"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_groupchat.xml"
+            line="57"
+            column="14"
+            startOffset="2098"
+            endLine="57"
+            endColumn="22"
+            endOffset="2106"/>
+    </incident>
+
+    <incident
+        id="Autofill"
+        severity="warning"
+        message="Missing `autofillHints` attribute">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set autofillHints"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="autofillHints"
+                value=""
+                point="0"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAutofill=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAutofill"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="30"
+            column="14"
+            startOffset="1033"
+            endLine="30"
+            endColumn="22"
+            endOffset="1041"/>
+    </incident>
+
+    <incident
+        id="Autofill"
+        severity="warning"
+        message="Missing `autofillHints` attribute">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set autofillHints"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="autofillHints"
+                value=""
+                point="0"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAutofill=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAutofill"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_makinggroup.xml"
+            line="10"
+            column="6"
+            startOffset="336"
+            endLine="10"
+            endColumn="14"
+            endOffset="344"/>
+    </incident>
+
+    <incident
+        id="Autofill"
+        severity="warning"
+        message="Missing `autofillHints` attribute">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set autofillHints"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="autofillHints"
+                value=""
+                point="0"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAutofill=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAutofill"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_memberinvite.xml"
+            line="24"
+            column="10"
+            startOffset="831"
+            endLine="24"
+            endColumn="18"
+            endOffset="839"/>
+    </incident>
+
+    <incident
+        id="Autofill"
+        severity="warning"
+        message="Missing `autofillHints` attribute">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set autofillHints"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="autofillHints"
+                value=""
+                point="0"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAutofill=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAutofill"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_mypage.xml"
+            line="32"
+            column="10"
+            startOffset="1125"
+            endLine="32"
+            endColumn="18"
+            endOffset="1133"/>
+    </incident>
+
+    <incident
+        id="UseTomlInstead"
+        severity="warning"
+        message="Use the existing version catalog reference (`libs.material`) instead">
+        <fix-replace
+            description="Replace with existing version catalog reference `material`"
+            robot="true"
+            independent="true"
+            replacement="libs.material"
+            priority="0">
+            <range
+                file="${:app*projectDir}/build.gradle.kts"
+                startOffset="1023"
+                endOffset="1068"/>
+        </fix-replace>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="42"
+            column="20"
+            startOffset="1023"
+            endLine="42"
+            endColumn="65"
+            endOffset="1068"/>
+    </incident>
+
+    <incident
+        id="UseTomlInstead"
+        severity="warning"
+        message="Use version catalog instead">
+        <fix-composite
+            description="Replace with new library catalog declaration for okhttp"
+            robot="true">
+            <fix-replace
+                description="Replace with okhttp = &quot;4.9.3&quot;..."
+                robot="true"
+                oldString="_lint_insert_begin_"
+                replacement="okhttp = &quot;4.9.3&quot;&#xA;"
+                priority="0">
+                <range
+                    file="$HOME/Documents/202107030/3_android/Teamkyutae/gradle/libs.versions.toml"
+                    startOffset="184"
+                    endOffset="184"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with okhttp = { module = &quot;com.squareup.okhttp3:okhttp&quot;, version.ref = &quot;okhttp&quot; }..."
+                robot="true"
+                oldString="_lint_insert_begin_"
+                replacement="okhttp = { module = &quot;com.squareup.okhttp3:okhttp&quot;, version.ref = &quot;okhttp&quot; }&#xA;"
+                priority="0">
+                <range
+                    file="$HOME/Documents/202107030/3_android/Teamkyutae/gradle/libs.versions.toml"
+                    startOffset="930"
+                    endOffset="930"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with libs.okhttp"
+                robot="true"
+                replacement="libs.okhttp"
+                priority="0">
+                <range
+                    file="${:app*projectDir}/build.gradle.kts"
+                    startOffset="1089"
+                    endOffset="1124"/>
+            </fix-replace>
+        </fix-composite>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="43"
+            column="20"
+            startOffset="1089"
+            endLine="43"
+            endColumn="55"
+            endOffset="1124"/>
+    </incident>
+
+    <incident
+        id="UseTomlInstead"
+        severity="warning"
+        message="Use version catalog instead">
+        <fix-composite
+            description="Replace with new library catalog declaration for android-maps-utils"
+            robot="true">
+            <fix-replace
+                description="Replace with androidMapsUtils = &quot;2.2.5&quot;..."
+                robot="true"
+                oldString="_lint_insert_begin_"
+                replacement="androidMapsUtils = &quot;2.2.5&quot;&#xA;"
+                priority="0">
+                <range
+                    file="$HOME/Documents/202107030/3_android/Teamkyutae/gradle/libs.versions.toml"
+                    startOffset="27"
+                    endOffset="27"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with android-maps-utils = { module = &quot;com.google.maps.android:android-maps-utils&quot;, version.ref = &quot;androidMapsUtils&quot; }..."
+                robot="true"
+                oldString="_lint_insert_begin_"
+                replacement="android-maps-utils = { module = &quot;com.google.maps.android:android-maps-utils&quot;, version.ref = &quot;androidMapsUtils&quot; }&#xA;"
+                priority="0">
+                <range
+                    file="$HOME/Documents/202107030/3_android/Teamkyutae/gradle/libs.versions.toml"
+                    startOffset="261"
+                    endOffset="261"/>
+            </fix-replace>
+            <fix-replace
+                description="Replace with libs.android.maps.utils"
+                robot="true"
+                replacement="libs.android.maps.utils"
+                priority="0">
+                <range
+                    file="${:app*projectDir}/build.gradle.kts"
+                    startOffset="1145"
+                    endOffset="1195"/>
+            </fix-replace>
+        </fix-composite>
+        <location
+            file="${:app*projectDir}/build.gradle.kts"
+            line="44"
+            column="20"
+            startOffset="1145"
+            endLine="44"
+            endColumn="70"
+            endOffset="1195"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/project_1/MyPageActivity.java"
+            line="48"
+            column="38"
+            startOffset="1539"
+            endLine="48"
+            endColumn="56"
+            endOffset="1557"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/project_1/MyPageActivity.java"
+            line="49"
+            column="36"
+            startOffset="1595"
+            endLine="49"
+            endColumn="53"
+            endOffset="1612"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/project_1/MyPageActivity.java"
+            line="88"
+            column="42"
+            startOffset="2948"
+            endLine="88"
+            endColumn="56"
+            endOffset="2962"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/project_1/MyPageActivity.java"
+            line="89"
+            column="40"
+            startOffset="3004"
+            endLine="89"
+            endColumn="57"
+            endOffset="3021"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/example/project_1/MyPageActivity.java"
+            line="125"
+            column="42"
+            startOffset="4305"
+            endLine="125"
+            endColumn="59"
+            endOffset="4322"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;그룹 없음&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_group.xml"
+            line="23"
+            column="13"
+            startOffset="837"
+            endLine="23"
+            endColumn="33"
+            endOffset="857"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;그룹 생성&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_group.xml"
+            line="34"
+            column="13"
+            startOffset="1293"
+            endLine="34"
+            endColumn="33"
+            endOffset="1313"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;kitti&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_group.xml"
+            line="55"
+            column="13"
+            startOffset="2025"
+            endLine="55"
+            endColumn="33"
+            endOffset="2045"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;멤버 초대&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_group.xml"
+            line="67"
+            column="13"
+            startOffset="2522"
+            endLine="67"
+            endColumn="33"
+            endOffset="2542"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;그룹원 동의&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_group.xml"
+            line="82"
+            column="13"
+            startOffset="3130"
+            endLine="82"
+            endColumn="34"
+            endOffset="3151"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;그룹 채팅&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_group.xml"
+            line="97"
+            column="13"
+            startOffset="3737"
+            endLine="97"
+            endColumn="33"
+            endOffset="3757"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;나가기&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_group.xml"
+            line="121"
+            column="17"
+            startOffset="4701"
+            endLine="121"
+            endColumn="35"
+            endOffset="4719"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;삭제&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_group.xml"
+            line="140"
+            column="17"
+            startOffset="5514"
+            endLine="140"
+            endColumn="34"
+            endOffset="5531"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;동의하기&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_groupagree.xml"
+            line="22"
+            column="9"
+            startOffset="755"
+            endLine="22"
+            endColumn="28"
+            endOffset="774"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;그룹원 동의 현황&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_groupagree_list.xml"
+            line="11"
+            column="9"
+            startOffset="378"
+            endLine="11"
+            endColumn="33"
+            endOffset="402"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;메뉴&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_groupchat.xml"
+            line="28"
+            column="17"
+            startOffset="1076"
+            endLine="28"
+            endColumn="48"
+            endOffset="1107"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;그룹 채팅&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_groupchat.xml"
+            line="36"
+            column="17"
+            startOffset="1375"
+            endLine="36"
+            endColumn="37"
+            endOffset="1395"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;메시지를 입력하세요&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_groupchat.xml"
+            line="62"
+            column="17"
+            startOffset="2312"
+            endLine="62"
+            endColumn="42"
+            endOffset="2337"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;메시지 전송&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_groupchat.xml"
+            line="80"
+            column="17"
+            startOffset="3104"
+            endLine="80"
+            endColumn="52"
+            endOffset="3139"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;그룹원 리스트&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_groupchat.xml"
+            line="105"
+            column="17"
+            startOffset="4029"
+            endLine="105"
+            endColumn="39"
+            endOffset="4051"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;검색&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="35"
+            column="17"
+            startOffset="1250"
+            endLine="35"
+            endColumn="34"
+            endOffset="1267"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;검색&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="45"
+            column="17"
+            startOffset="1670"
+            endLine="45"
+            endColumn="34"
+            endOffset="1687"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;마이페이지&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="68"
+            column="17"
+            startOffset="2612"
+            endLine="68"
+            endColumn="37"
+            endOffset="2632"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;그룹&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="82"
+            column="17"
+            startOffset="3231"
+            endLine="82"
+            endColumn="34"
+            endOffset="3248"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;위치 공유&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="97"
+            column="17"
+            startOffset="3885"
+            endLine="97"
+            endColumn="37"
+            endOffset="3905"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;그룹 이름을 입력하세요&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_makinggroup.xml"
+            line="15"
+            column="9"
+            startOffset="529"
+            endLine="15"
+            endColumn="36"
+            endOffset="556"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;멤버 추가&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_makinggroup.xml"
+            line="25"
+            column="9"
+            startOffset="862"
+            endLine="25"
+            endColumn="29"
+            endOffset="882"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;멤버 목록&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_makinggroup.xml"
+            line="35"
+            column="9"
+            startOffset="1182"
+            endLine="35"
+            endColumn="29"
+            endOffset="1202"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;그룹 생성&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_makinggroup.xml"
+            line="51"
+            column="9"
+            startOffset="1693"
+            endLine="51"
+            endColumn="29"
+            endOffset="1713"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;멤버 초대하기&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_memberinvite.xml"
+            line="20"
+            column="13"
+            startOffset="712"
+            endLine="20"
+            endColumn="35"
+            endOffset="734"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;멤버 ID 또는 이메일 입력&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_memberinvite.xml"
+            line="29"
+            column="13"
+            startOffset="1040"
+            endLine="29"
+            endColumn="43"
+            endOffset="1070"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;초대 보내기&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_memberinvite.xml"
+            line="38"
+            column="13"
+            startOffset="1374"
+            endLine="38"
+            endColumn="34"
+            endOffset="1395"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;이름 : &quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_mypage.xml"
+            line="20"
+            column="13"
+            startOffset="723"
+            endLine="20"
+            endColumn="33"
+            endOffset="743"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;아이디 : &quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_mypage.xml"
+            line="28"
+            column="13"
+            startOffset="1002"
+            endLine="28"
+            endColumn="34"
+            endOffset="1023"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;이름을 입력하세요&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_mypage.xml"
+            line="37"
+            column="13"
+            startOffset="1333"
+            endLine="37"
+            endColumn="37"
+            endOffset="1357"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;저장&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_mypage.xml"
+            line="46"
+            column="13"
+            startOffset="1657"
+            endLine="46"
+            endColumn="30"
+            endOffset="1674"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;이름 수정&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_mypage.xml"
+            line="55"
+            column="13"
+            startOffset="1976"
+            endLine="55"
+            endColumn="33"
+            endOffset="1996"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;수정 확인&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_mypage.xml"
+            line="64"
+            column="13"
+            startOffset="2300"
+            endLine="64"
+            endColumn="33"
+            endOffset="2320"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;Teamkyutae&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_splash.xml"
+            line="11"
+            column="9"
+            startOffset="386"
+            endLine="11"
+            endColumn="34"
+            endOffset="411"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;위치 공유에 동의합니다&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_agree.xml"
+            line="12"
+            column="9"
+            startOffset="422"
+            endLine="12"
+            endColumn="36"
+            endOffset="449"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;위치 공유에 동의합니다&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_consent.xml"
+            line="12"
+            column="9"
+            startOffset="424"
+            endLine="12"
+            endColumn="36"
+            endOffset="451"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;상대 메시지&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_chat_left.xml"
+            line="12"
+            column="9"
+            startOffset="431"
+            endLine="12"
+            endColumn="30"
+            endOffset="452"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;내 메시지&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_chat_right.xml"
+            line="13"
+            column="9"
+            startOffset="459"
+            endLine="13"
+            endColumn="29"
+            endOffset="479"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;이름&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_group_member.xml"
+            line="14"
+            column="9"
+            startOffset="481"
+            endLine="14"
+            endColumn="26"
+            endOffset="498"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;동의 여부&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_group_member.xml"
+            line="21"
+            column="9"
+            startOffset="690"
+            endLine="21"
+            endColumn="29"
+            endOffset="710"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;설정&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/menu/menu_main.xml"
+            line="6"
+            column="9"
+            startOffset="226"
+            endLine="6"
+            endColumn="27"
+            endOffset="244"/>
+    </incident>
+
+</incidents>

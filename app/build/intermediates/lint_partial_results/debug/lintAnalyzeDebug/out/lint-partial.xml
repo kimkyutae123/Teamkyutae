@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.9.1" type="partial_results">
+    <map id="UnsafeIntentLaunch">
+            <map id="unprotected">
+                <entry
+                    name="com.example.project_1.GroupActivity"
+                    boolean="true"/>
+                <entry
+                    name="com.example.project_1.MainActivity"
+                    boolean="true"/>
+                <entry
+                    name="com.example.project_1.MyPageActivity"
+                    boolean="true"/>
+                <entry
+                    name="com.example.project_1.SplashActivity"
+                    boolean="true"/>
+            </map>
+    </map>
+    <map id="UnusedResources">
+        <location id="R.color.accent"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="8"
+            column="12"
+            startOffset="290"
+            endLine="8"
+            endColumn="25"
+            endOffset="303"/>
+        <location id="R.color.button_text"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="17"
+            column="12"
+            startOffset="737"
+            endLine="17"
+            endColumn="30"
+            endOffset="755"/>
+        <location id="R.color.primary"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="5"
+            column="12"
+            startOffset="150"
+            endLine="5"
+            endColumn="26"
+            endOffset="164"/>
+        <location id="R.color.primary_dark"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="6"
+            column="12"
+            startOffset="193"
+            endLine="6"
+            endColumn="31"
+            endOffset="212"/>
+        <location id="R.color.primary_gradient_end"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="16"
+            column="12"
+            startOffset="681"
+            endLine="16"
+            endColumn="39"
+            endOffset="708"/>
+        <location id="R.color.primary_gradient_start"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="15"
+            column="12"
+            startOffset="623"
+            endLine="15"
+            endColumn="41"
+            endOffset="652"/>
+        <location id="R.color.primary_light"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="7"
+            column="12"
+            startOffset="241"
+            endLine="7"
+            endColumn="32"
+            endOffset="261"/>
+        <location id="R.color.primary_purple"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="14"
+            column="12"
+            startOffset="573"
+            endLine="14"
+            endColumn="33"
+            endOffset="594"/>
+        <location id="R.color.secondary_text"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/colors.xml"
+            line="10"
+            column="12"
+            startOffset="380"
+            endLine="10"
+            endColumn="33"
+            endOffset="401"/>
+        <location id="R.drawable.gradient_background"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/gradient_background.xml"
+            line="2"
+            column="1"
+            startOffset="40"
+            endLine="7"
+            endColumn="12"
+            endOffset="343"/>
+        <location id="R.drawable.rounded_black_button"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/drawable/rounded_black_button.xml"
+            line="2"
+            column="1"
+            startOffset="40"
+            endLine="7"
+            endColumn="12"
+            endOffset="296"/>
+        <location id="R.layout.dialog_agree"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_agree.xml"
+            line="2"
+            column="1"
+            startOffset="40"
+            endLine="13"
+            endColumn="16"
+            endOffset="469"/>
+        <location id="R.layout.dialog_consent"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_consent.xml"
+            line="2"
+            column="1"
+            startOffset="40"
+            endLine="13"
+            endColumn="16"
+            endOffset="471"/>
+        <location id="R.style.TransparentButton"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/styles.xml"
+            line="5"
+            column="12"
+            startOffset="91"
+            endLine="5"
+            endColumn="36"
+            endOffset="115"/>
+        <entry
+            name="model"
+            string="attr[selectableItemBackgroundBorderless(R),selectableItemBackground(R)],color[semi_transparent(U),divider(U),primary_gradient_end(D),primary_gradient_start(D),background(U),white(U),black(U),primary(D),primary_dark(D),primary_light(D),accent(D),primary_text(U),secondary_text(D),primary_purple(D),button_text(D)],drawable[bg_chat_left(U),bg_chat_right(U),edit_text_background(U),gradient_background(D),ic_delete(U),ic_exit(U),ic_group(U),ic_launcher_background(U),ic_launcher_foreground(U),ic_launcher_foreground_1(R),ic_location(U),ic_menu(U),ic_person(U),ic_send_arrow(U),list_background(U),rounded_black_button(D),semi_transparent_button(U)],id[noGroupLayout(U),groupNameText(U),createGroupButton(U),hasGroupLayout(U),inviteMemberButton(U),groupAgreeButton(U),groupChatButton(U),leaveGroupButton(U),deleteGroupButton(U),agreeListView(U),agreeButton(U),recyclerGroupMembers(U),drawerLayout(U),btnMenu(U),chatRecyclerView(U),editMessage(U),btnSend(U),navigationView(U),memberListView(U),rootLayout(D),map(U),searchEditText(U),searchButton(U),myPageButton(U),groupButton(U),locationToggleButton(U),searchSuggestionList(U),groupNameEditText(U),addMemberButton(U),inviteTitleText(D),memberIdInput(U),sendInviteButton(U),userNameTextView(U),userIdTextView(U),nameEditText(U),saveButton(U),editButton(U),updateButton(U),splash_text(D),checkbox_agree(D),checkbox_consent(D),textMessage(U),textName(U),textStatus(U),textAddress(U),action_settings(D)],layout[activity_group(U),activity_groupagree(U),activity_groupagree_list(U),activity_groupchat(U),activity_main(U),activity_makinggroup(U),activity_memberinvite(U),activity_mypage(U),activity_splash(U),dialog_agree(D),dialog_consent(D),item_chat_left(U),item_chat_right(U),item_group_member(U),item_search_suggestion(U)],menu[menu_main(U)],mipmap[ic_launcher(U),ic_launcher_round(U)],string[app_name(U)],style[Theme_Project_1(U),CustomListView(U),TitleText(U),CustomEditText(U),TransparentButton(D),Base_Theme_Project_1(U),Theme_Material3_DayNight_NoActionBar(R)],xml[data_extraction_rules(U),backup_rules(U)];13^2^3,14^4^5,19^1a,50^1d^17^1e^16^15,51^6^2c^64,53^6^0^1c^65^1e^64,54^21^7^8^1d^17^1b,55^6^66^65^64,56^6^65^66,57^6^65^66,5b^11,5c^12,5e^1,60^18^19,61^18^19,63^68,64^1f^3,65^d,66^13,67^21,68^69;;;"/>
+    </map>
+
+</incidents>
