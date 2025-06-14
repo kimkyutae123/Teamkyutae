@@ -29,6 +29,8 @@ public class MakingGroupActivity extends AppCompatActivity
 
         // 뷰 연결
         groupNameEditText = findViewById(R.id.groupNameEditText);
+        groupNameEditText.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+        groupNameEditText.setFilters(new android.text.InputFilter[] { new android.text.InputFilter.LengthFilter(6) });
         addMemberButton = findViewById(R.id.addMemberButton);
         createGroupButton = findViewById(R.id.createGroupButton);
         memberListView = findViewById(R.id.memberListView);
@@ -47,7 +49,9 @@ public class MakingGroupActivity extends AppCompatActivity
         addMemberButton.setOnClickListener(v ->
         {
             EditText input = new EditText(this);
-            input.setHint("추가할 멤버 아이디");
+            input.setHint("6자리 숫자 입력");
+            input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+            input.setFilters(new android.text.InputFilter[] { new android.text.InputFilter.LengthFilter(6) });
             
             new AlertDialog.Builder(this)
                 .setTitle("멤버 추가")
@@ -55,7 +59,7 @@ public class MakingGroupActivity extends AppCompatActivity
                 .setPositiveButton("추가", (dialog, which) ->
                 {
                     String memberId = input.getText().toString().trim();
-                    if (!memberId.isEmpty())
+                    if (memberId.length() == 6)
                     {
                         String memberWithStatus = memberId + " (초대보냄)";
                         if (!memberList.contains(memberWithStatus) && !memberId.equals(myName))
@@ -71,7 +75,7 @@ public class MakingGroupActivity extends AppCompatActivity
                     }
                     else
                     {
-                        Toast.makeText(this, "멤버 아이디를 입력하세요.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "6자리 숫자를 입력하세요.", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton("취소", null)
@@ -82,9 +86,9 @@ public class MakingGroupActivity extends AppCompatActivity
         createGroupButton.setOnClickListener(v ->
         {
             String groupName = groupNameEditText.getText().toString().trim();
-            if (groupName.isEmpty())
+            if (groupName.length() != 6)
             {
-                Toast.makeText(this, "그룹 이름을 입력하세요.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "6자리 숫자를 입력하세요.", Toast.LENGTH_SHORT).show();
                 return;
             }
 

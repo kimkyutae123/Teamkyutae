@@ -133,13 +133,20 @@ public class GroupActivity extends AppCompatActivity
         {
             noGroupLayout.setVisibility(View.GONE);
             hasGroupLayout.setVisibility(View.VISIBLE);
-            groupNameText.setText(groupName);
+            TextView groupNameTextView = findViewById(R.id.groupNameText);
+            if (groupNameTextView != null) {
+                groupNameTextView.setText(groupName);
+            }
             deleteGroupButton.setVisibility(isLeader ? View.VISIBLE : View.GONE);
         }
         else
         {
             noGroupLayout.setVisibility(View.VISIBLE);
             hasGroupLayout.setVisibility(View.GONE);
+            TextView noGroupTextView = findViewById(R.id.noGroupText);
+            if (noGroupTextView != null) {
+                noGroupTextView.setText("그룹 없음");
+            }
         }
     }
 }
