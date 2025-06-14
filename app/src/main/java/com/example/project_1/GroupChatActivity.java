@@ -32,6 +32,7 @@ public class GroupChatActivity extends AppCompatActivity
     private ImageButton btnSend;
     private ChatAdapter chatAdapter;
     private List<ChatMessage> chatMessages;
+    private List<String> groupMembersList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -63,22 +64,8 @@ public class GroupChatActivity extends AppCompatActivity
 
     private void setupMemberList()
     {
-        SharedPreferences prefs = getSharedPreferences("GroupPrefs", MODE_PRIVATE);
-        Set<String> members = prefs.getStringSet("group_members", new HashSet<>());
-        String myName = getSharedPreferences("UserPrefs", MODE_PRIVATE).getString("user_name", "");
-        
-        List<String> memberList = new ArrayList<>();
-        memberList.add(myName + " (나)");
-        
-        for (String member : members)
-        {
-            if (!member.equals(myName))
-            {
-                memberList.add(member);
-            }
-        }
-        
-        ArrayAdapter<String> memberAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, memberList);
+        loadGroupMembers();
+        ArrayAdapter<String> memberAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, groupMembersList);
         memberListView.setAdapter(memberAdapter);
     }
 
@@ -113,5 +100,35 @@ public class GroupChatActivity extends AppCompatActivity
             chatRecyclerView.scrollToPosition(chatMessages.size() - 1);
             editMessage.setText("");
         }
+    }
+
+    private void loadGroupMembers() {
+        SharedPreferences prefs = getSharedPreferences("GroupPrefs", MODE_PRIVATE);
+        groupMembersList.clear();
+        
+        // 현재 사용자(나) 추가
+        SharedPreferences userPrefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String myName = userPrefs.getString("user_name", "나");
+        String myNumber = userPrefs.getString("user_number", "");
+        String myInfo = myName + " (나)";
+        groupMembersList.add(myInfo);
+        
+        // 초대된 멤버들 중 동의한 멤버들을 로드
+        String[] testUserNumbers = {"123456", "234567", "345678"};
+        String[] testUserNames = {"김철수", "이영희", "박지성"};
+        
+        for (int i = 0; i < testUserNumbers.length; i++) {
+            if (prefs.getBoolean("invited_" + testUserNumbers[i], false) && 
+                prefs.getBoolean("agreed_" + testUserNumbers[i], false)) {
+                String memberInfo = testUserNames[i] + " (" + testUserNumbers[i] + ")";
+                groupMembersList.add(memberInfo);
+            }
+        }
+        
+        updateGroupMembersList();
+    }
+
+    private void updateGroupMembersList() {
+        // Implementation of updateGroupMembersList method
     }
 }

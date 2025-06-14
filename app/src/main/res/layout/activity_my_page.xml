@@ -1,61 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:background="#FAFAFA"
+    android:padding="32dp"
+    android:gravity="center_horizontal">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="마이페이지"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.02"
+        android:textColor="#1A1A1A"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="sans-serif-medium"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:layout_marginBottom="24dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameEditText"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="이름을 입력하세요"
+            android:hint="이름 입력"
             android:inputType="textPersonName"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:fontFamily="sans-serif-light"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/nameTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:visibility="gone" />
-
-        <Button
-            android:id="@+id/nameEditButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="수정"
-            android:visibility="gone" />
-
-        <Button
-            android:id="@+id/nameSaveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="저장"
-            android:visibility="gone" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        android:textColor="#1A1A1A"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        android:fontFamily="sans-serif-light"/>
 
     <TextView
         android:id="@+id/userIdTextView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="16sp"
-        android:visibility="gone" />
+        android:textSize="18sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="32dp"
+        android:visibility="gone"
+        android:fontFamily="sans-serif-light"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/nameEditButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="수정"
+        app:cornerRadius="16dp"
+        android:backgroundTint="#4C3AFF"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-light"
+        android:visibility="gone"
+        android:layout_marginBottom="12dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/nameSaveButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="저장"
+        app:cornerRadius="16dp"
+        android:backgroundTint="#4C3AFF"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-light"
+        android:visibility="gone"
+        android:layout_marginBottom="12dp"/>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/logoutButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="로그아웃" />
+        android:layout_height="48dp"
+        android:text="로그아웃"
+        app:cornerRadius="16dp"
+        android:backgroundTint="#FF3B30"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-light"/>
 
 </LinearLayout> 
