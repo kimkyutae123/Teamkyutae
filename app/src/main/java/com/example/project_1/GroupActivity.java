@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputType;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -31,6 +33,9 @@ public class GroupActivity extends AppCompatActivity
     private String currentGroupId = "";
     private ArrayList<String> groupMembersList = new ArrayList<>();
     private TextView groupMembersTextView;
+    private EditText groupNameEditText;
+    private ArrayList<String> memberList = new ArrayList<>();
+    private ListView memberListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -68,6 +73,8 @@ public class GroupActivity extends AppCompatActivity
         leaveGroupButton = findViewById(R.id.leaveGroupButton);
         deleteGroupButton = findViewById(R.id.deleteGroupButton);
         groupMembersTextView = findViewById(R.id.groupMembersTextView);
+        groupNameEditText = findViewById(R.id.groupNameEditText);
+        memberListView = findViewById(R.id.memberListView);
     }
 
     private void checkGroupStatus()
@@ -263,5 +270,66 @@ public class GroupActivity extends AppCompatActivity
             membersText.append(member).append("\n");
         }
         groupMembersTextView.setText(membersText.toString());
+    }
+
+    private void setupMemberList() {
+        // 현재 사용자 정보 가져오기
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String userName = prefs.getString("user_name", "사용자");
+        String uniqueNumber = prefs.getString("unique_number", "0000");
+
+        // 현재 사용자를 리스트의 맨 위에 추가
+        String currentUserInfo = userName + " (" + uniqueNumber + ") (나)";
+        memberList.add(currentUserInfo);
+
+        // 초대된 멤버들 추가
+        SharedPreferences groupPrefs = getSharedPreferences("group_prefs", MODE_PRIVATE);
+        for (int i = 1; i <= 5; i++) {
+            String invitedKey = "invited_" + String.format("%04d", i);
+            if (groupPrefs.getBoolean(invitedKey, false)) {
+                String memberInfo = "테스트 사용자 " + i + " (" + String.format("%04d", i) + ")";
+                memberList.add(memberInfo);
+            }
+        }
+
+        // 어댑터 설정
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, memberList);
+        memberListView.setAdapter(adapter);
+    }
+
+    private void createGroup() {
+        String groupName = groupNameEditText.getText().toString().trim();
+        if (groupName.isEmpty()) {
+            Toast.makeText(this, "그룹 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // 현재 사용자 정보 가져오기
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String uniqueNumber = prefs.getString("unique_number", "0000");
+
+        // 그룹 정보 저장
+        SharedPreferences groupPrefs = getSharedPreferences("group_prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = groupPrefs.edit();
+        editor.putString("group_name", groupName);
+        editor.putBoolean("is_in_group", true);
+        editor.putBoolean("is_group_leader", true);
+        
+        // 현재 사용자를 그룹 멤버로 추가
+        editor.putBoolean("invited_" + uniqueNumber, true);
+        editor.putBoolean("agreed_" + uniqueNumber, true);
+
+        // 초대된 멤버들 저장
+        for (int i = 1; i <= 5; i++) {
+            String invitedKey = "invited_" + String.format("%04d", i);
+            if (groupPrefs.getBoolean(invitedKey, false)) {
+                editor.putBoolean(invitedKey, true);
+            }
+        }
+        editor.apply();
+
+        Toast.makeText(this, "그룹이 생성되었습니다", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

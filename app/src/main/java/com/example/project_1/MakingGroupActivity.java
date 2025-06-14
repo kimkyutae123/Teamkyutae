@@ -22,6 +22,8 @@ public class MakingGroupActivity extends AppCompatActivity
     private Button createGroupButton;
     private TextView groupMembersTextView;
     private ArrayList<String> groupMembersList = new ArrayList<>();
+    private ArrayList<String> memberList = new ArrayList<>();
+    private ListView memberListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,6 +34,7 @@ public class MakingGroupActivity extends AppCompatActivity
         initializeViews();
         setupInviteButton();
         setupCreateButton();
+        setupMemberList();
     }
 
     private void initializeViews()
@@ -40,6 +43,7 @@ public class MakingGroupActivity extends AppCompatActivity
         addMemberButton = findViewById(R.id.addMemberButton);
         createGroupButton = findViewById(R.id.createGroupButton);
         groupMembersTextView = findViewById(R.id.groupMembersTextView);
+        memberListView = findViewById(R.id.memberListView);
     }
 
     private void setupInviteButton()
@@ -99,25 +103,68 @@ public class MakingGroupActivity extends AppCompatActivity
     {
         createGroupButton.setOnClickListener(v ->
         {
-            String groupName = groupNameEditText.getText().toString().trim();
-            if (groupName.isEmpty())
-            {
-                Toast.makeText(this, "그룹 이름을 입력하세요.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // 그룹 생성 처리
-            SharedPreferences prefs = getSharedPreferences("GroupPrefs", MODE_PRIVATE);
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("has_group", true);
-            editor.putString("group_name", groupName);
-            editor.putBoolean("is_leader", true);
-            editor.putString("group_id", String.valueOf(System.currentTimeMillis()));
-            editor.apply();
-
-            Toast.makeText(this, "그룹이 생성되었습니다.", Toast.LENGTH_SHORT).show();
-            finish();
+            createGroup();
         });
+    }
+
+    private void setupMemberList() {
+        memberList.clear();  // 기존 목록 초기화
+
+        // 현재 사용자를 리스트의 맨 위에 추가 (방장으로 표시)
+        memberList.add("나 (방장)");
+
+        // 초대된 멤버들 추가
+        SharedPreferences groupPrefs = getSharedPreferences("group_prefs", MODE_PRIVATE);
+        for (int i = 1; i <= 5; i++) {
+            String invitedKey = "invited_" + String.format("%04d", i);
+            if (groupPrefs.getBoolean(invitedKey, false)) {
+                String memberInfo = "테스트 사용자 " + i + " (" + String.format("%04d", i) + ") (멤버)";
+                memberList.add(memberInfo);
+            }
+        }
+
+        // 어댑터 설정
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, memberList);
+        memberListView.setAdapter(adapter);
+    }
+
+    private void createGroup() {
+        String groupName = groupNameEditText.getText().toString().trim();
+        if (groupName.isEmpty()) {
+            Toast.makeText(this, "그룹 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // 현재 사용자 정보 가져오기
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String uniqueNumber = prefs.getString("unique_number", "0000");
+
+        // 그룹 정보 저장
+        SharedPreferences groupPrefs = getSharedPreferences("GroupPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = groupPrefs.edit();
+        
+        // 모든 초대 기록 초기화
+        for (int i = 1; i <= 5; i++) {
+            String invitedKey = "invited_" + String.format("%04d", i);
+            String agreedKey = "agreed_" + String.format("%04d", i);
+            editor.remove(invitedKey);
+            editor.remove(agreedKey);
+        }
+
+        // 새로운 그룹 정보 저장
+        editor.putString("group_name", groupName);
+        editor.putBoolean("has_group", true);
+        editor.putBoolean("is_leader", true);
+        
+        // 현재 사용자만 그룹 멤버로 추가
+        editor.putBoolean("invited_" + uniqueNumber, true);
+        editor.putBoolean("agreed_" + uniqueNumber, true);
+
+        editor.apply();
+
+        Toast.makeText(this, "그룹이 생성되었습니다", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     private void updateGroupMembersList()

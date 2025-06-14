@@ -20,6 +20,9 @@ import java.util.List;
 import java.util.Set;
 
 import android.content.SharedPreferences;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class GroupChatActivity extends AppCompatActivity
 {
@@ -33,6 +36,7 @@ public class GroupChatActivity extends AppCompatActivity
     private ChatAdapter chatAdapter;
     private List<ChatMessage> chatMessages;
     private List<String> groupMembersList = new ArrayList<>();
+    private String currentGroupId = "default";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,10 +44,15 @@ public class GroupChatActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groupchat);
 
+        // 그룹 ID 불러오기 (없으면 default)
+        SharedPreferences groupPrefs = getSharedPreferences("GroupPrefs", MODE_PRIVATE);
+        currentGroupId = groupPrefs.getString("group_id", "default");
+
         initializeViews();
         setupDrawer();
         setupMemberList();
         setupChat();
+        loadChatMessages();
     }
 
     private void initializeViews()
@@ -94,12 +103,54 @@ public class GroupChatActivity extends AppCompatActivity
         String message = editMessage.getText().toString().trim();
         if (!message.isEmpty())
         {
-            // (임시) 서버 연동 필요
             chatMessages.add(new ChatMessage(message, true));
             chatAdapter.notifyItemInserted(chatMessages.size() - 1);
             chatRecyclerView.scrollToPosition(chatMessages.size() - 1);
             editMessage.setText("");
+            saveChatMessages();
         }
+    }
+
+    private void saveChatMessages() {
+        SharedPreferences prefs = getSharedPreferences("GroupChatPrefs", MODE_PRIVATE);
+        JSONArray jsonArray = new JSONArray();
+        for (ChatMessage msg : chatMessages) {
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put("message", msg.getMessage());
+                obj.put("isMine", msg.isMine());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            jsonArray.put(obj);
+        }
+        prefs.edit().putString("GroupChat_" + currentGroupId, jsonArray.toString()).apply();
+    }
+
+    private void loadChatMessages() {
+        SharedPreferences prefs = getSharedPreferences("GroupChatPrefs", MODE_PRIVATE);
+        String json = prefs.getString("GroupChat_" + currentGroupId, null);
+        chatMessages.clear();
+        if (json != null) {
+            try {
+                JSONArray jsonArray = new JSONArray(json);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    String message = obj.getString("message");
+                    boolean isMine = obj.getBoolean("isMine");
+                    chatMessages.add(new ChatMessage(message, isMine));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        if (chatAdapter != null) chatAdapter.notifyDataSetChanged();
+    }
+
+    // 그룹 삭제/나가기 시 아래 메서드로 채팅 내역 삭제
+    public static void clearChatHistory(android.content.Context context, String groupId) {
+        SharedPreferences prefs = context.getSharedPreferences("GroupChatPrefs", MODE_PRIVATE);
+        prefs.edit().remove("GroupChat_" + groupId).apply();
     }
 
     private void loadGroupMembers() {

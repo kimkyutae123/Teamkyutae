@@ -39,6 +39,8 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.IOException;
@@ -63,8 +65,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private boolean isSettingDestination = false;
     private FusedLocationProviderClient fusedLocationClient;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-    private List<Marker> testUserMarkers = new ArrayList<>();  // 클래스 변수로 추가
+    private List<Marker> testUserMarkers = new ArrayList<>();
     private boolean isLocationSharingEnabled = false;
+    private List<Polyline> polylines = new ArrayList<>();
+    private LatLng destinationLatLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -408,6 +412,69 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 .strokeColor(Color.argb(100, 255, 0, 0))  // 더 불투명한 빨간색 외곽선
                 .fillColor(Color.argb(50, 255, 0, 0))     // 더 불투명한 빨간색 채우기
                 .strokeWidth(2));
+
+            // 폴리라인 그리기
+            drawPolylines();
+        }
+    }
+
+    private void drawPolylines() {
+        // 기존 폴리라인 제거
+        for (Polyline polyline : polylines) {
+            polyline.remove();
+        }
+        polylines.clear();
+
+        if (destinationMarker == null) return;
+        destinationLatLng = destinationMarker.getPosition();
+
+        // 현재 사용자가 그룹에 속해있는지 확인
+        SharedPreferences groupPrefs = getSharedPreferences("GroupPrefs", MODE_PRIVATE);
+        boolean isInGroup = groupPrefs.getBoolean("has_group", false);
+
+        // 현재 위치에서 목적지까지의 폴리라인 (항상 그리기)
+        if (currentLocationMarker != null) {
+            List<LatLng> points = new ArrayList<>();
+            points.add(currentLocationMarker.getPosition());
+            points.add(destinationLatLng);
+            Polyline polyline = mMap.addPolyline(new PolylineOptions()
+                .addAll(points)
+                .color(Color.RED)
+                .width(5));
+            polylines.add(polyline);
+        }
+
+        // 그룹에 속해있을 때만 그룹 멤버들의 폴리라인 그리기
+        if (isInGroup) {
+            for (Marker marker : testUserMarkers) {
+                // 마커의 고유번호 가져오기
+                String markerTitle = marker.getTitle();
+                String uniqueNumber = "";
+                if (markerTitle != null && markerTitle.contains("(") && markerTitle.contains(")")) {
+                    int startIndex = markerTitle.indexOf("(") + 1;
+                    int endIndex = markerTitle.indexOf(")");
+                    if (startIndex < endIndex) {
+                        uniqueNumber = markerTitle.substring(startIndex, endIndex);
+                    }
+                }
+                
+                if (!uniqueNumber.isEmpty()) {
+                    // 해당 사용자가 그룹 멤버인지 확인
+                    boolean isInvited = groupPrefs.getBoolean("invited_" + uniqueNumber, false);
+                    boolean hasAgreed = groupPrefs.getBoolean("agreed_" + uniqueNumber, false);
+                    
+                    if (isInvited && hasAgreed) {
+                        List<LatLng> points = new ArrayList<>();
+                        points.add(marker.getPosition());
+                        points.add(destinationLatLng);
+                        Polyline polyline = mMap.addPolyline(new PolylineOptions()
+                            .addAll(points)
+                            .color(Color.BLUE)
+                            .width(5));
+                        polylines.add(polyline);
+                    }
+                }
+            }
         }
     }
 
@@ -638,7 +705,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         if (isLocationSharingEnabled && mMap != null) {
             // 그룹 상태 확인
             SharedPreferences groupPrefs = getSharedPreferences("GroupPrefs", MODE_PRIVATE);
-            boolean isInGroup = groupPrefs.getBoolean("isInGroup", false);
+            boolean isInGroup = groupPrefs.getBoolean("has_group", false);
 
             if (testUserMarkers.isEmpty()) {
                 initializeTestUsers();
