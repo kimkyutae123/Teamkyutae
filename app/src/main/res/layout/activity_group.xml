@@ -17,7 +17,7 @@
         android:layout_marginTop="64dp">
 
         <TextView
-            android:id="@+id/groupNameText"
+            android:id="@+id/noGroupText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="그룹 없음"
@@ -50,9 +50,10 @@
         android:visibility="gone">
 
         <TextView
+            android:id="@+id/groupNameText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="kitti"
+            android:text=""
             android:textSize="32sp"
             android:textStyle="bold"
             android:letterSpacing="0.02"

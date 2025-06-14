@@ -1,69 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:padding="16dp">
+    android:orientation="vertical"
+    android:background="#FAFAFA"
+    android:padding="32dp"
+    android:gravity="center_horizontal">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textUserId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.02"
+        android:textColor="#1A1A1A"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="sans-serif-medium"/>
+
+    <TextView
+        android:id="@+id/textUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        android:textColor="#1A1A1A"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="sans-serif-light"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true"
-        android:gravity="center">
+        android:layout_marginBottom="24dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <TextView
-            android:id="@+id/userNameTextView"
-            style="@style/TitleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이름 : "
-            android:visibility="gone"/>
-
-        <TextView
-            android:id="@+id/userIdTextView"
-            style="@style/TitleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="아이디 : "
-            android:layout_marginBottom="32dp"
-            android:visibility="gone"/>
-
-        <EditText
-            android:id="@+id/nameEditText"
-            style="@style/CustomEditText"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="이름을 입력하세요"
-            android:gravity="center"
-            android:layout_marginBottom="32dp"
-            android:inputType="text"/>
+            android:hint="이름 입력"
+            android:inputType="textPersonName"
+            android:fontFamily="sans-serif-light"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="저장"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#000000"
-            android:visibility="gone"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="저장"
+        app:cornerRadius="16dp"
+        android:backgroundTint="#4C3AFF"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-light"
+        android:layout_marginBottom="12dp"/>
 
-        <Button
-            android:id="@+id/editButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="이름 수정"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#000000"
-            android:visibility="gone"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/updateButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="수정"
+        app:cornerRadius="16dp"
+        android:backgroundTint="#4C3AFF"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-light"/>
 
-        <Button
-            android:id="@+id/updateButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="수정 확인"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#000000"
-            android:visibility="gone"/>
-    </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

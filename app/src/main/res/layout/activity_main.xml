@@ -53,6 +53,7 @@
                 android:paddingBottom="10dp" />
         </LinearLayout>
 
+        <!-- 상단 버튼 레이아웃 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,10 +92,10 @@
                 android:layout_marginEnd="8dp"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/locationToggleButton"
-                android:layout_width="140dp"
+                android:id="@+id/setDestinationButton"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="위치 공유"
+                android:text="목적지"
                 app:icon="@drawable/ic_location"
                 app:iconPadding="8dp"
                 app:iconTint="@color/black"
@@ -112,5 +113,51 @@
             android:background="@drawable/semi_transparent_button"
             android:visibility="gone"/>
     </LinearLayout>
+
+    <!-- 위치 공유 버튼 (중앙 하단) -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/locationToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:text="위치 공유"
+        app:icon="@drawable/ic_location"
+        app:iconPadding="8dp"
+        app:iconTint="@color/black"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/white"
+        app:cornerRadius="40dp"
+        android:elevation="4dp"/>
+
+    <!-- 경로 정보 표시 (상단 중앙) -->
+    <TextView
+        android:id="@+id/routeInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/semi_transparent_button"
+        android:padding="8dp"
+        android:textColor="@color/black"
+        android:visibility="gone" />
+
+    <!-- 목적지 설정 버튼 (하단 중앙) -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/confirmDestinationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:text="목적지 설정"
+        app:icon="@drawable/ic_location"
+        app:iconPadding="8dp"
+        app:iconTint="@color/white"
+        android:textColor="@color/white"
+        android:backgroundTint="#000000"
+        app:cornerRadius="40dp"
+        android:elevation="4dp"
+        android:visibility="gone"/>
 
 </FrameLayout>

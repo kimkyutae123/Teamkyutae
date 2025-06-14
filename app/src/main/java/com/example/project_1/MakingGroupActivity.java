@@ -1,10 +1,7 @@
 package com.example.project_1;
 
-import android.content.ContentValues;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Handler;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,19 +10,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
-import android.content.Intent;
-import android.util.Log;
 
 public class MakingGroupActivity extends AppCompatActivity
 {
-    private static final String TAG = "MakingGroupActivity";
     private EditText groupNameEditText;
     private Button addMemberButton;
     private Button createGroupButton;
     private ListView memberListView;
-    private DatabaseHelper dbHelper;
-    private int currentUserId;
-    private String currentGroupName;
 
     private ArrayList<String> memberList;
     private ArrayAdapter<String> memberAdapter;
@@ -34,27 +25,10 @@ public class MakingGroupActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_makinggroup);
-
-        dbHelper = new DatabaseHelper(this);
-        
-        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-        String userIdStr = prefs.getString("userId", null);
-        String userName = prefs.getString("userName", null);
-
-        // 아이디와 이름이 설정되지 않은 경우
-        if (userIdStr == null || userName == null) {
-            Toast.makeText(this, "먼저 마이페이지에서 아이디와 이름을 설정해주세요.", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-
-        currentUserId = Integer.parseInt(userIdStr);
+        setContentView(R.layout.activity_makinggroup);  // 레이아웃 연결
 
         // 뷰 연결
         groupNameEditText = findViewById(R.id.groupNameEditText);
-        groupNameEditText.setInputType(android.text.InputType.TYPE_CLASS_TEXT);
-        groupNameEditText.setFilters(new android.text.InputFilter[] { new android.text.InputFilter.LengthFilter(20) });
         addMemberButton = findViewById(R.id.addMemberButton);
         createGroupButton = findViewById(R.id.createGroupButton);
         memberListView = findViewById(R.id.memberListView);
@@ -62,44 +36,42 @@ public class MakingGroupActivity extends AppCompatActivity
         // 멤버 리스트 초기화
         memberList = new ArrayList<>();
         // 현재 사용자를 멤버 리스트에 추가
-        memberList.add(userName + " (방장)");
+        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String myName = prefs.getString("user_name", "") + " (나, 방장)";
+        memberList.add(myName);
 
         memberAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, memberList);
         memberListView.setAdapter(memberAdapter);
 
         // 멤버 추가 버튼 이벤트
-        addMemberButton.setOnClickListener(v -> {
+        addMemberButton.setOnClickListener(v ->
+        {
+            EditText input = new EditText(this);
+            input.setHint("추가할 멤버 아이디");
+            
             new AlertDialog.Builder(this)
                 .setTitle("멤버 추가")
-                .setMessage("추가할 멤버의 6자리 ID를 입력하세요")
-                .setView(new EditText(this))
-                .setPositiveButton("추가", (dialog, which) -> {
-                    EditText input = ((AlertDialog) dialog).findViewById(android.R.id.text1);
-                    String targetUserIdStr = input.getText().toString();
-                    
-                    if (targetUserIdStr.length() == 6) {
-                        int targetUserId = Integer.parseInt(targetUserIdStr);
-                        
-                        // 로컬 DB에 사용자 정보가 있는 경우
-                        Cursor memberCursor = dbHelper.getUser(targetUserId);
-                        if (memberCursor != null && memberCursor.moveToFirst()) {
-                            String memberName = memberCursor.getString(memberCursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_USER_NAME));
-                            String memberWithStatus = memberName + " (초대보냄)";
-                            
-                            if (!memberList.contains(memberWithStatus) && 
-                                targetUserId != currentUserId) {
-                                memberList.add(memberWithStatus);
-                                memberAdapter.notifyDataSetChanged();
-                                Toast.makeText(this, "멤버가 추가되었습니다.", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(this, "이미 추가된 멤버입니다.", Toast.LENGTH_SHORT).show();
-                            }
-                            memberCursor.close();
-                        } else {
-                            Toast.makeText(this, "존재하지 않는 사용자입니다.", Toast.LENGTH_SHORT).show();
+                .setView(input)
+                .setPositiveButton("추가", (dialog, which) ->
+                {
+                    String memberId = input.getText().toString().trim();
+                    if (!memberId.isEmpty())
+                    {
+                        String memberWithStatus = memberId + " (초대보냄)";
+                        if (!memberList.contains(memberWithStatus) && !memberId.equals(myName))
+                        {
+                            memberList.add(memberWithStatus);
+                            memberAdapter.notifyDataSetChanged();
+                            Toast.makeText(this, "멤버가 추가되었습니다.", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(this, "6자리 숫자를 입력하세요.", Toast.LENGTH_SHORT).show();
+                        else
+                        {
+                            Toast.makeText(this, "이미 추가된 멤버입니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(this, "멤버 아이디를 입력하세요.", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton("취소", null)
@@ -107,30 +79,31 @@ public class MakingGroupActivity extends AppCompatActivity
         });
 
         // 그룹 생성 버튼 이벤트
-        createGroupButton.setOnClickListener(v -> {
+        createGroupButton.setOnClickListener(v ->
+        {
             String groupName = groupNameEditText.getText().toString().trim();
-            if (groupName.isEmpty()) {
-                Toast.makeText(this, "그룹 이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            if (groupName.isEmpty())
+            {
+                Toast.makeText(this, "그룹 이름을 입력하세요.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // 그룹 생성
-            long groupId = dbHelper.createGroup(groupName, "", currentUserId);
-            if (groupId != -1) {
-                Toast.makeText(this, "그룹이 생성되었습니다.", Toast.LENGTH_SHORT).show();
-                finish();
-            } else {
-                Toast.makeText(this, "그룹 생성에 실패했습니다.", Toast.LENGTH_SHORT).show();
+            if (memberList.size() <= 1)
+            {
+                Toast.makeText(this, "최소 한 명의 멤버를 추가하세요.", Toast.LENGTH_SHORT).show();
+                return;
             }
-        });
-    }
 
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-        if (dbHelper != null) {
-            dbHelper.close();
-        }
+            // 그룹 생성 처리
+            SharedPreferences groupPrefs = getSharedPreferences("GroupPrefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = groupPrefs.edit();
+            editor.putBoolean("has_group", true);
+            editor.putString("group_name", groupName);
+            editor.putBoolean("is_leader", true);  // 그룹 생성자를 방장으로 설정
+            editor.apply();
+
+            Toast.makeText(this, "그룹이 생성되었습니다.", Toast.LENGTH_SHORT).show();
+            finish();
+        });
     }
 }
